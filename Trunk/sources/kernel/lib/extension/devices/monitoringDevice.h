@@ -185,4 +185,7 @@ class MonitoringDevice : public IMonitoringDevice, public MessageReceiver, publi
 
 	public:
 		virtual void createAndSendMessage(MESSAGE_NUMBER messageNumber, unsigned char parameter1 = 0, unsigned char parameter2 = 0, unsigned char parameter3 = 0, unsigned char parameter4 = 0);
+
+	private:
+		void bkZatvor(unsigned char par2, unsigned char par3);
 };

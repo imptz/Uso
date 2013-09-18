@@ -158,7 +158,9 @@ class IMonitoringDevice : public IDevice
 
 				MESSAGE_NUMBER_START_PROGRAMMI_SCANIROVANIJA = 250,
 
-				MESSAGE_NUMBER_DUMMY = 251
+				MESSAGE_NUMBER_DUMMY = 251,
+
+				MESSAGE_NUMBER_BK_ZATVOR = 252
 			};
 
 		virtual void createAndSendMessage(MESSAGE_NUMBER messageNumber, unsigned char parameter1 = 0, unsigned char parameter2 = 0, unsigned char parameter3 = 0, unsigned char parameter4 = 0) = 0;

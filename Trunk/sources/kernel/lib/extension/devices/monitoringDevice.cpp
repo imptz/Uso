@@ -644,6 +644,7 @@ bool MonitoringDevice::isLogingMessage(unsigned char* pMsg)
 		case MESSAGE_NUMBER_NIZKOE_NAPRAZHENIE_PITANIA_PLATI:
 		case MESSAGE_NUMBER_VISOKOE_NAPRAZHENIE_PITANIA_PLATI:
 		case MESSAGE_NUMBER_NAPRAZHENIE_PITANIA_PLATI_V_NORME:
+		case MESSAGE_NUMBER_BK_ZATVOR:
 			
 			result = false;
 			break;
@@ -1122,6 +1123,9 @@ void MonitoringDevice::getMessageInfo(unsigned char* pMsg, char** text, unsigned
 			*parameter1 = pMsg[MESSAGE_PAR2_OFFSET];
 			*parameter2 = pMsg[MESSAGE_PAR3_OFFSET];
 			break;
+		case MESSAGE_NUMBER_BK_ZATVOR:
+			bkZatvor(pMsg[MESSAGE_PAR2_OFFSET], pMsg[MESSAGE_PAR3_OFFSET]);
+			break;
 		default:
 //			DEBUG_PUT_METHOD("default: %i %i %i\n", pMsg[MESSAGE_CODE_OFFSET], pMsg[MESSAGE_PAR2_OFFSET], pMsg[MESSAGE_PAR3_OFFSET])
 			*text = "...";//const_cast<char*>("FIG ZNAET CHTO");
@@ -1156,4 +1160,6 @@ bool MonitoringDevice::isCommandMessage(unsigned char* _pArea){
 	return (getMessageType(_pArea) == MESSAGE_TYPE_COMMAND);
 }
 
-
+void MonitoringDevice::bkZatvor(unsigned char par2, unsigned char par3){
+	IOSubsystem::getSingleton().bkZatvor(par2, par3);
+}

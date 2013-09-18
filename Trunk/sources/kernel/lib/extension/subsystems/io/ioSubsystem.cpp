@@ -335,3 +335,15 @@ void IOSubsystem::disablePrFaultOutputs(unsigned char number)
 
 #pragma endregion 
 #pragma endregion 
+
+void IOSubsystem::bkZatvor(int address, int action){
+	unsigned int number = Config::getSingleton().getConfigData()->getPRNumberByAddress(address);
+	ConfigDataStructIOBk16** outputs = Config::getSingleton().getConfigData()->getConfigDataStructIOBk16();
+	for (unsigned int i = 0; i < Config::getSingleton().getConfigData()->getConfigDataStructIOBk16Count(); i++)
+		if ((outputs[i]->outputFunctionGroup == ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_BK_ZATVOR) && (outputs[i]->prGateNumber == number)){
+			if (action == 0)
+				setOutput((outputs[i]->bkAddress - 1) * 8 + outputs[i]->numberOnDevice - 1, IIODevice::OUTPUT_STATE_OFF);
+			else
+				setOutput((outputs[i]->bkAddress - 1) * 8 + outputs[i]->numberOnDevice - 1, IIODevice::OUTPUT_STATE_ON);
+		}
+}

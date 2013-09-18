@@ -600,6 +600,17 @@ unsigned char ConfigData::getPRAddressByNumber(unsigned char number)
 	return -1;
 }
 
+unsigned char ConfigData::getPRNumberByAddress(unsigned char address)
+{
+	for (unsigned int i = 0; i < cData->number_PRPositions;i++)
+	{
+		if (cData->_PRPositions[i]->address == address)
+			return cData->_PRPositions[i]->projectNumber;
+	}
+
+	return -1;
+}
+
 unsigned char ConfigData::getPRIndexByAddress(unsigned char address)
 {
 	for (unsigned int i = 0; i < cData->number_PRPositions;i++)

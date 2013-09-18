@@ -88,6 +88,7 @@ class ConfigData : public ITimer
 
 	public:
 		unsigned char getPRAddressByNumber(unsigned char number);
+		unsigned char getPRNumberByAddress(unsigned char address);
 		unsigned char getPRIndexByAddress(unsigned char address);
 
 		bool isTvExistsInConfig();

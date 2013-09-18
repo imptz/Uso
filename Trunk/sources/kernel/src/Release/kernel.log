@@ -1,0 +1,262 @@
+﻿Build started 18.09.2013 10:50:42.
+Project "c:\Projects\Git\Uso\Trunk\sources\kernel\src\kernel.vcxproj" on node 2 (rebuild target(s)).
+_PrepareForClean:
+  Deleting file "Release\kernel.lastbuildstate".
+InitializeBuildStatus:
+  Touching "Release\kernel.unsuccessfulbuild".
+PreBuildEvent:
+  VersionInc.exe ../lib/version.h
+  :VCEnd
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /MP /Ox /Oi /Oy- /Gm- /MT /GS- /Gy- /fp:fast /fp:except- /Zc:wchar_t /Zc:forScope /GR- /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\lib\action\actionGateClose.cpp ..\lib\action\actionGateOpen.cpp ..\lib\action\actionMoveToPoint.cpp ..\lib\action\actionPovorotniy.cpp ..\lib\action\actionSearch.cpp ..\lib\action\actionSendPressureTable.cpp ..\lib\action\actionStartProgramScanLine.cpp ..\lib\action\actionStartProgramScanPoint.cpp ..\lib\action\actionStopProgramScan.cpp ..\lib\action\actionValveClose.cpp ..\lib\action\actionValveOpen.cpp ..\lib\Application.cpp ..\lib\clock\clock.cpp ..\lib\config\Config.cpp ..\lib\config\ConfigData.cpp ..\lib\controls\Button.cpp ..\lib\controls\ClockControl.cpp ..\lib\controls\Control.cpp ..\lib\controls\Desktop.cpp ..\lib\controls\InfoPanel.cpp ..\lib\controls\List.cpp ..\lib\controls\LogControl.cpp ..\lib\controls\MainConfirmation.cpp ..\lib\controls\MainFinish.cpp ..\lib\controls\MainInfo.cpp ..\lib\controls\MainTabControl.cpp ..\lib\controls\TabControl.cpp ..\lib\controls\ToolsDate.cpp ..\lib\controls\ToolsJustirovka.cpp ..\lib\controls\ToolsLog.cpp ..\lib\controls\ToolsOff.cpp ..\lib\controls\ToolsTabControl.cpp ..\lib\controls\ToolsUpdate.cpp ..\lib\controls\ToolsUpdateFR.cpp ..\lib\controls\ToolsUpdatePC.cpp ..\lib\controls\UsoModeControl.cpp ..\lib\crc16.cpp ..\lib\crc32.cpp ..\lib\crt.cpp ..\lib\DEBUG\serialDebug.cpp ..\lib\display\display.cpp ..\lib\extension\devices\bk16Device.cpp ..\lib\extension\devices\fv300Device.cpp ..\lib\extension\devices\monitoringDevice.cpp ..\lib\extension\devices\rpkDevice.cpp ..\lib\extension\devices\scannerDevice.cpp ..\lib\extension\devices\tvDevice.cpp ..\lib\extension\ExtensionSystem.cpp ..\lib\extension\subsystems\detection\detectionSubsystem.cpp ..\lib\extension\subsystems\io\ioSubsystem.cpp ..\lib\extension\subsystems\monitoring\monitoringSubsystem.cpp ..\lib\extension\subsystems\rpk\rpkSubsystem.cpp ..\lib\fire\Fire.cpp ..\lib\hdd\hdd.cpp ..\lib\hdd\hddManager.cpp ..\lib\interrupt\interrupt.cpp ..\lib\logic\Logic.cpp ..\lib\logic\LogicCooling.cpp ..\lib\logic\LogicSearching.cpp ..\lib\logic\povorotniy.cpp ..\lib\log\Log.cpp ..\lib\low.cpp ..\lib\math\math.cpp ..\lib\math\sectorIntersection.cpp ..\lib\memory\memory.cpp ..\lib\message\Messages.cpp ..\lib\serialport\serialport.cpp ..\lib\string.cpp ..\lib\timer\Timer.cpp ..\lib\touchpad\touchpad.cpp
+  actionGateClose.cpp
+  actionGateOpen.cpp
+  actionMoveToPoint.cpp
+  actionPovorotniy.cpp
+  actionSearch.cpp
+  actionSendPressureTable.cpp
+  actionStartProgramScanLine.cpp
+  actionStartProgramScanPoint.cpp
+  actionStopProgramScan.cpp
+  actionValveClose.cpp
+  actionValveOpen.cpp
+  Application.cpp
+  clock.cpp
+  Config.cpp
+  ConfigData.cpp
+  Button.cpp
+  ClockControl.cpp
+  Control.cpp
+  Desktop.cpp
+  InfoPanel.cpp
+  Generating Code...
+  Compiling...
+  List.cpp
+  LogControl.cpp
+  MainConfirmation.cpp
+  MainFinish.cpp
+  MainInfo.cpp
+  MainTabControl.cpp
+  TabControl.cpp
+  ToolsDate.cpp
+  ToolsJustirovka.cpp
+  ToolsLog.cpp
+  ToolsOff.cpp
+  ToolsTabControl.cpp
+  ToolsUpdate.cpp
+  ToolsUpdateFR.cpp
+  ToolsUpdatePC.cpp
+  UsoModeControl.cpp
+  crc16.cpp
+  crc32.cpp
+  crt.cpp
+  serialDebug.cpp
+  Generating Code...
+  Compiling...
+  display.cpp
+  bk16Device.cpp
+  fv300Device.cpp
+  monitoringDevice.cpp
+  rpkDevice.cpp
+  scannerDevice.cpp
+  tvDevice.cpp
+  ExtensionSystem.cpp
+  detectionSubsystem.cpp
+  ioSubsystem.cpp
+  monitoringSubsystem.cpp
+  rpkSubsystem.cpp
+  Fire.cpp
+  hdd.cpp
+  hddManager.cpp
+  interrupt.cpp
+  Logic.cpp
+  LogicCooling.cpp
+  LogicSearching.cpp
+  povorotniy.cpp
+  Generating Code...
+  Compiling...
+  Log.cpp
+  low.cpp
+  math.cpp
+  sectorIntersection.cpp
+  memory.cpp
+  Messages.cpp
+  serialport.cpp
+  string.cpp
+  Timer.cpp
+  touchpad.cpp
+  Generating Code...
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /MP /O2 /Oi /Oy- /Gm- /MT /GS- /Gy- /fp:fast /fp:except- /Zc:wchar_t /Zc:forScope /GR- /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+  main.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Projects\Git\Uso\Trunk\sources\kernel\src\Release\kernel.exe" /VERBOSE /INCREMENTAL:NO /NOLOGO /MANIFEST:NO /ALLOWISOLATION:NO /PDB:"C:\Projects\Git\Uso\Trunk\sources\kernel\src\Release\kernel.pdb" /SUBSYSTEM:NATIVE /OPT:NOREF /OPT:NOICF /TLBID:1 /ENTRY:"mainCRTStartup" /BASE:"0x100000" /DYNAMICBASE:NO /FIXED /NXCOMPAT:NO /IMPLIB:"C:\Projects\Git\Uso\Trunk\sources\kernel\src\Release\kernel.lib" /MACHINE:X86 Release\actionGateClose.obj
+  Release\actionGateOpen.obj
+  Release\actionMoveToPoint.obj
+  Release\actionPovorotniy.obj
+  Release\actionSearch.obj
+  Release\actionSendPressureTable.obj
+  Release\actionStartProgramScanLine.obj
+  Release\actionStartProgramScanPoint.obj
+  Release\actionStopProgramScan.obj
+  Release\actionValveClose.obj
+  Release\actionValveOpen.obj
+  Release\Application.obj
+  Release\clock.obj
+  Release\Config.obj
+  Release\ConfigData.obj
+  Release\Button.obj
+  Release\ClockControl.obj
+  Release\Control.obj
+  Release\Desktop.obj
+  Release\InfoPanel.obj
+  Release\List.obj
+  Release\LogControl.obj
+  Release\MainConfirmation.obj
+  Release\MainFinish.obj
+  Release\MainInfo.obj
+  Release\MainTabControl.obj
+  Release\TabControl.obj
+  Release\ToolsDate.obj
+  Release\ToolsJustirovka.obj
+  Release\ToolsLog.obj
+  Release\ToolsOff.obj
+  Release\ToolsTabControl.obj
+  Release\ToolsUpdate.obj
+  Release\ToolsUpdateFR.obj
+  Release\ToolsUpdatePC.obj
+  Release\UsoModeControl.obj
+  Release\crc16.obj
+  Release\crc32.obj
+  Release\crt.obj
+  Release\serialDebug.obj
+  Release\display.obj
+  Release\bk16Device.obj
+  Release\fv300Device.obj
+  Release\monitoringDevice.obj
+  Release\rpkDevice.obj
+  Release\scannerDevice.obj
+  Release\tvDevice.obj
+  Release\ExtensionSystem.obj
+  Release\detectionSubsystem.obj
+  Release\ioSubsystem.obj
+  Release\monitoringSubsystem.obj
+  Release\rpkSubsystem.obj
+  Release\Fire.obj
+  Release\hdd.obj
+  Release\hddManager.obj
+  Release\interrupt.obj
+  Release\Logic.obj
+  Release\LogicCooling.obj
+  Release\LogicSearching.obj
+  Release\povorotniy.obj
+  Release\Log.obj
+  Release\low.obj
+  Release\math.obj
+  Release\sectorIntersection.obj
+  Release\memory.obj
+  Release\Messages.obj
+  Release\serialport.obj
+  Release\string.obj
+  Release\Timer.obj
+  Release\touchpad.obj
+  Release\main.obj
+  
+  Starting pass 1
+  Processed /DEFAULTLIB:LIBCMT
+  Processed /DEFAULTLIB:OLDNAMES
+  Processed /NODEFAULTLIB:libc.lib
+  Processed /NODEFAULTLIB:libcmt.lib
+  Processed /NODEFAULTLIB:libcmtd.lib
+  
+  Searching libraries
+      Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\OLDNAMES.lib:
+  
+  Finished searching libraries
+  
+  Finished pass 1
+  
+  Starting pass 2
+       main.obj
+       touchpad.obj
+       Timer.obj
+       string.obj
+       serialport.obj
+       Messages.obj
+       memory.obj
+       sectorIntersection.obj
+       math.obj
+       low.obj
+       Log.obj
+       povorotniy.obj
+       LogicSearching.obj
+       LogicCooling.obj
+       Logic.obj
+       interrupt.obj
+       hddManager.obj
+       hdd.obj
+       Fire.obj
+       rpkSubsystem.obj
+       monitoringSubsystem.obj
+       ioSubsystem.obj
+       detectionSubsystem.obj
+       ExtensionSystem.obj
+       tvDevice.obj
+       scannerDevice.obj
+       rpkDevice.obj
+       monitoringDevice.obj
+       fv300Device.obj
+       bk16Device.obj
+       display.obj
+       serialDebug.obj
+       crt.obj
+       crc32.obj
+       crc16.obj
+       UsoModeControl.obj
+       ToolsUpdatePC.obj
+       ToolsUpdateFR.obj
+       ToolsUpdate.obj
+       ToolsTabControl.obj
+       ToolsOff.obj
+       ToolsLog.obj
+       ToolsJustirovka.obj
+       ToolsDate.obj
+       TabControl.obj
+       MainTabControl.obj
+       MainInfo.obj
+       MainFinish.obj
+       MainConfirmation.obj
+       LogControl.obj
+       List.obj
+       InfoPanel.obj
+       Desktop.obj
+       Control.obj
+       ClockControl.obj
+       Button.obj
+       ConfigData.obj
+       Config.obj
+       clock.obj
+       Application.obj
+       actionValveOpen.obj
+       actionValveClose.obj
+       actionStopProgramScan.obj
+       actionStartProgramScanPoint.obj
+       actionStartProgramScanLine.obj
+       actionSendPressureTable.obj
+       actionSearch.obj
+       actionPovorotniy.obj
+       actionMoveToPoint.obj
+       actionGateOpen.obj
+       actionGateClose.obj
+  Finished pass 2
+  kernel.vcxproj -> C:\Projects\Git\Uso\Trunk\sources\kernel\src\Release\kernel.exe
+PostBuildEvent:
+  AddImageCRC.exe  Release/kernel.exe
+  :VCEnd
+FinalizeBuildStatus:
+  Deleting file "Release\kernel.unsuccessfulbuild".
+  Touching "Release\kernel.lastbuildstate".
+Done Building Project "c:\Projects\Git\Uso\Trunk\sources\kernel\src\kernel.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.03

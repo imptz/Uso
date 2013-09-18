@@ -101,5 +101,11 @@ class IOSubsystem : public Singleton<IOSubsystem>, public ISubsystem
 		void enableGateFaultOutputs(unsigned char number);
 		void disableGateFaultOutputs(unsigned char number);
 #pragma endregion 		
+public:
+	enum BK_ZATVOR{
+		BK_ZATVOR_OPEN = 0,
+		BK_ZATVOR_CLOSE = 1,
+	};
+	void bkZatvor(int address, int action);
 };
 				
