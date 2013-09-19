@@ -48,7 +48,7 @@ void Application::createLogic()
 
 	bool searching = false;
 	for (unsigned int i = 0; i < count; i++)
-		if ((programs[i]->function == LOGIC_FUNCTION_SEARCHING) || (programs[i]->function == LOGIC_FUNCTION_SEARCHING_PENA))
+		if ((programs[i]->function == LOGIC_FUNCTION_SEARCHING) || (programs[i]->function == LOGIC_FUNCTION_SEARCHING_PENA) || (programs[i]->function == LOGIC_FUNCTION_SEARCHING_PENA_ZATVOR))
 			searching = true;
 
 	if (searching)
