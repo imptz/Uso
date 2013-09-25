@@ -324,7 +324,7 @@ void MonitoringDevice::createInitFrame()
 	unsigned int penaBakCount = pConfigData->getConfigDataStructPenaBakCount();
 	ConfigDataStructPenaBak** penaBakStruct = pConfigData->getConfigDataStructPenaBak();
 	
-	unsigned int dataLength = 10 + prCount * 5 + 1 + penaBakCount * 4; 
+	unsigned int dataLength = 10 + 1 +prCount * 5 + 1 + penaBakCount * 4; 
 	unsigned char* initData = new unsigned char[dataLength + 7];
 
 	ConfigDataStructConst* constStruct = pConfigData->getConfigDataStructConst();
@@ -344,8 +344,9 @@ void MonitoringDevice::createInitFrame()
 	const unsigned int HOUR_OFFSET = 11;
 	const unsigned int MINUTE_OFFSET = 12;
 	const unsigned int TESTING_INFO_OFFSET = 13;
-	const unsigned int PR_COUNT_OFFSET = 14;
-	const unsigned int FIRST_PR_INFO_OFFSET = 15;
+	const unsigned int BK_ZATVOR_OFFSET = 14;
+	const unsigned int PR_COUNT_OFFSET = 15;
+	const unsigned int FIRST_PR_INFO_OFFSET = 16;
 	
 	Clock::DateTime dt = Clock::getSingleton().getClock2();
 	
@@ -359,6 +360,16 @@ void MonitoringDevice::createInitFrame()
 	initData[HOUR_OFFSET] = constStruct->testingHour;
 	initData[MINUTE_OFFSET] = constStruct->testingMinute;
 	initData[TESTING_INFO_OFFSET] = constStruct->permissionTestingInfo;
+
+	initData[BK_ZATVOR_OFFSET] = 0;
+
+	unsigned int number = Config::getSingleton().getConfigData()->getPRNumberByAddress(address);
+	ConfigDataStructIOBk16** outputs = Config::getSingleton().getConfigData()->getConfigDataStructIOBk16();
+	for (unsigned int i = 0; i < Config::getSingleton().getConfigData()->getConfigDataStructIOBk16Count(); i++)
+		if (outputs[i]->outputFunctionGroup == ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_BK_ZATVOR){
+			initData[BK_ZATVOR_OFFSET] = 1;
+		}
+
 	initData[PR_COUNT_OFFSET] = prCount;
 
 	for (unsigned int i = 0; i < prCount; i++)
@@ -470,6 +481,16 @@ void MonitoringDevice::commandGetEvent(unsigned char* _pArea)
 
 					toLog(_pArea);
 					setOutputs(_pArea);
+
+					switch (_pArea[1])
+					{
+						case MESSAGE_NUMBER_BK_ZATVOR_CLOSE:
+							bkZatvor(_pArea[10], 0);
+							break;
+						case MESSAGE_NUMBER_BK_ZATVOR_OPEN:
+							bkZatvor(_pArea[10], 1);
+							break;
+					}
 				}
 
 				nextMessage(&_pArea);
@@ -644,7 +665,9 @@ bool MonitoringDevice::isLogingMessage(unsigned char* pMsg)
 		case MESSAGE_NUMBER_NIZKOE_NAPRAZHENIE_PITANIA_PLATI:
 		case MESSAGE_NUMBER_VISOKOE_NAPRAZHENIE_PITANIA_PLATI:
 		case MESSAGE_NUMBER_NAPRAZHENIE_PITANIA_PLATI_V_NORME:
-		case MESSAGE_NUMBER_BK_ZATVOR:
+		case MESSAGE_NUMBER_BK_ZATVOR_STOP:
+		case MESSAGE_NUMBER_BK_ZATVOR_CLOSE:
+		case MESSAGE_NUMBER_BK_ZATVOR_OPEN:
 			
 			result = false;
 			break;
@@ -1123,9 +1146,6 @@ void MonitoringDevice::getMessageInfo(unsigned char* pMsg, char** text, unsigned
 			*parameter1 = pMsg[MESSAGE_PAR2_OFFSET];
 			*parameter2 = pMsg[MESSAGE_PAR3_OFFSET];
 			break;
-		case MESSAGE_NUMBER_BK_ZATVOR:
-			bkZatvor(pMsg[MESSAGE_PAR2_OFFSET], pMsg[MESSAGE_PAR3_OFFSET]);
-			break;
 		default:
 //			DEBUG_PUT_METHOD("default: %i %i %i\n", pMsg[MESSAGE_CODE_OFFSET], pMsg[MESSAGE_PAR2_OFFSET], pMsg[MESSAGE_PAR3_OFFSET])
 			*text = "...";//const_cast<char*>("FIG ZNAET CHTO");
@@ -1160,6 +1180,6 @@ bool MonitoringDevice::isCommandMessage(unsigned char* _pArea){
 	return (getMessageType(_pArea) == MESSAGE_TYPE_COMMAND);
 }
 
-void MonitoringDevice::bkZatvor(unsigned char par2, unsigned char par3){
-	IOSubsystem::getSingleton().bkZatvor(par2, par3);
+void MonitoringDevice::bkZatvor(unsigned char par2, unsigned char action){
+	IOSubsystem::getSingleton().bkZatvor(par2, action);
 }

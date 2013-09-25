@@ -106,6 +106,6 @@ public:
 		BK_ZATVOR_OPEN = 0,
 		BK_ZATVOR_CLOSE = 1,
 	};
-	void bkZatvor(int address, int action);
+	void bkZatvor(int number, int action);
 };
 				
