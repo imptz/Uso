@@ -296,9 +296,13 @@ void ExtensionSystem::action()
 					if (pSendData != nullptr)
 					{
 						transferTryCount++;
-//DEBUG_PUT_METHOD("transferTryCount = %u, sendFrame = %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u\n", 
-//	transferTryCount, pSendData[0], pSendData[1], pSendData[2], pSendData[3], pSendData[4], pSendData[5], pSendData[6], pSendData[7], pSendData[8], 
-//	pSendData[9], pSendData[10], pSendData[11], pSendData[12], pSendData[13], pSendData[14], pSendData[15], pSendData[16], pSendData[17], pSendData[18], pSendData[19]);
+
+//DEBUG_PUT_METHOD("sendFrame:");
+//
+//for (unsigned int i = 0; i < pSendData[4] * 256 + pSendData[3] + 7; ++i)
+//	DEBUG_PUT("%i ", pSendData[i]);
+//
+//DEBUG_PUT("\n");
 						sendFrame(pSendData);
 					}
 					else

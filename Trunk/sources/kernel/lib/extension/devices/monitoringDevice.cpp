@@ -381,13 +381,13 @@ void MonitoringDevice::createInitFrame()
 		initData[FIRST_PR_INFO_OFFSET + i * 5 + 4] = prPositionStruct[i]->zatvorCount;
 	}
 
-	initData[FIRST_PR_INFO_OFFSET + prCount * 4] = penaBakCount;
+	initData[FIRST_PR_INFO_OFFSET + prCount * 5] = penaBakCount;
 
 	for (unsigned int i = 0; i < penaBakCount; ++i){
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 1] = penaBakStruct[i]->number;
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 1 + 1] = penaBakStruct[i]->level;
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 2 + 1] = penaBakStruct[i]->address;
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 3 + 1] = penaBakStruct[i]->numberOnDevice;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 1] = penaBakStruct[i]->number;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 1 + 1] = penaBakStruct[i]->level;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 2 + 1] = penaBakStruct[i]->address;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 3 + 1] = penaBakStruct[i]->numberOnDevice;
 	}
 
 	bool res = fifoFrame->put(&initData);
