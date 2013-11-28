@@ -19,7 +19,7 @@ enum LOGIC_FUNCTION
 struct ConfigDataStructConst
 {
 // M061112
-	static const unsigned int SIZE = 28;
+	static const unsigned int SIZE = 30;
 // M061112E
 	unsigned short year;
 	unsigned char maxPR;
@@ -165,7 +165,7 @@ struct ConfigDataStructConst
 
 struct ConfigDataStructPRPosition
 {
-	static const unsigned int SIZE = 18;
+	static const unsigned int SIZE = 19;
 	unsigned char projectNumber;
 	unsigned char address;
 	Point3<float> position;

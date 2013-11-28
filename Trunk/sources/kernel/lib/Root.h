@@ -24,6 +24,7 @@
 #include "extension\devices\tvDevice.h"
 #include "extension\devices\monitoringDevice.h"
 #include "extension\devices\rpkDevice.h"
+#include "fire\Fire.h"
 
 #include "logic\povorotniy.h"
 
@@ -50,6 +51,7 @@ SerialDebug* pSerialDebug;
 	Povorotniy* pPovorotniy;
 
 	UI* pUI;
+	Fire* pFire;
 
 	Application* pApplication;
 		
@@ -69,6 +71,11 @@ public:
 		if (Display::getSingletonPtr() == nullptr)
 			pDisplay = new Display();
 
+//		Display::getSingleton().printUInt(0.78f, 10, 10);
+//
+//char t[18] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//Display::getSingleton().print(Display::getSingleton().toStringFloat(0.767f, t), 0, 0);
+//for(;;)
 		if (TimerManager::getSingletonPtr() == nullptr)
 			pTimerManager = new TimerManager();
 
@@ -126,6 +133,9 @@ public:
 
 		if (UI::getSingletonPtr() == nullptr)
 			pUI = new UI();
+
+		if (Fire::getSingletonPtr() == nullptr)
+			pFire = new Fire();
 
 		if (Application::getSingletonPtr() == nullptr)
 			pApplication = new Application();

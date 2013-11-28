@@ -21,13 +21,14 @@ float abs(float value)
 
 float cos(float value)
 {
+	float value1 = 0.0f;
 	__asm
 	{
 		fld value
 		fcos 
-		fstp value
+		fstp value1
 	}
-	return value;
+	return value1;
 };
 
 float sin(float value)

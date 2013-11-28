@@ -12,7 +12,7 @@ ActionStartProgramScanLine::ActionStartProgramScanLine(Point2<unsigned int> _poi
 	SCAN_PROGRAM_BALLISTICS _ballistic, unsigned char _deviceAddress)
 	:	Action(_deviceAddress), phase(PHASE_COMMAND), point1(_point1), point2(_point2), nasadok(_nasadok), ballistic(_ballistic)
 {
-	DEBUG_PUT_METHOD("address = %i\n", deviceAddress)
+//	DEBUG_PUT_METHOD("address = %i\n", deviceAddress)
 }
 
 ActionStartProgramScanLine::~ActionStartProgramScanLine()
@@ -72,7 +72,7 @@ void ActionStartProgramScanLine::step()
 
 				MonitoringSubsystem::getSingleton().createAndSendMessage(IMonitoringDevice::MESSAGE_NUMBER_START_PROGRAMMI_SCANIROVANIJA, deviceAddress, par2, par3, par4);
 
-				DEBUG_PUT_METHOD("point1x = %i, point2x = %i, point1y = %i, point2y = %i\n", point1X, point2X, point1.y, point2.y)
+				DEBUG_PUT_METHOD("address = %i, point1x = %i, point2x = %i, point1y = %i, point2y = %i\n", deviceAddress, point1X, point2X, point1.y, point2.y)
 			}
 			break;
 		case PHASE_COMMAND_WAIT:

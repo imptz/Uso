@@ -19,7 +19,7 @@ bool ConfigData::setNewData(unsigned char* data, unsigned int length)
 //Display::getSingleton().printMemoryDump(reinterpret_cast<unsigned int>(data), 128, 0, 2);
 //_asm cli
 //for(;;);
-//
+
 	memcpy(buffer, data, length);
 	
 	dataSave = false;

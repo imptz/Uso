@@ -60,7 +60,7 @@ void ScannerDevice::action()
 				actionSearch = new ActionSearch*[actionCount];
 				for (unsigned int i = 0; i < actionCount; i++)
 				{
-					DEBUG_PUT_METHOD("address = %i\n", address)
+					//DEBUG_PUT_METHOD("address = %i\n", address)
 					actionSearch[i] = new ActionSearch(pChannelInfo[i].address, pChannelInfo[i].point1, pChannelInfo[i].point2, pChannelInfo[i].mode);
 				}
 
@@ -223,7 +223,7 @@ void ScannerDevice::updateFire(ChannelInfo* _pChannelInfo, unsigned int count)
 	SAFE_DELETE_ARRAY(fireFrame);
 	updateChannelsCount = count;
 	
-	DEBUG_PUT_METHOD("updateChannelsCount = %i\n", updateChannelsCount)
+	//DEBUG_PUT_METHOD("updateChannelsCount = %i\n", updateChannelsCount)
 
 	pChannelInfo = new ChannelInfo[updateChannelsCount];
 	for (unsigned int i = 0; i < updateChannelsCount; i++)

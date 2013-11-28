@@ -315,7 +315,8 @@ void MonitoringDevice::createInitFrame()
 	unsigned int penaBakCount = pConfigData->getConfigDataStructPenaBakCount();
 	ConfigDataStructPenaBak** penaBakStruct = pConfigData->getConfigDataStructPenaBak();
 	
-	unsigned int dataLength = 10 + prCount * 4 + 1 + penaBakCount * 4; 
+//	unsigned int dataLength = 10 + prCount * 4 + 1 + penaBakCount * 4; 
+	unsigned int dataLength = 10 + 1 + prCount * 5 + 1 + penaBakCount * 4;
 	unsigned char* initData = new unsigned char[dataLength + 7];
 
 	ConfigDataStructConst* constStruct = pConfigData->getConfigDataStructConst();
@@ -335,8 +336,9 @@ void MonitoringDevice::createInitFrame()
 	const unsigned int HOUR_OFFSET = 11;
 	const unsigned int MINUTE_OFFSET = 12;
 	const unsigned int TESTING_INFO_OFFSET = 13;
-	const unsigned int PR_COUNT_OFFSET = 14;
-	const unsigned int FIRST_PR_INFO_OFFSET = 15;
+	const unsigned int BK_ZATVOR_OFFSET = 14;
+	const unsigned int PR_COUNT_OFFSET = 15;
+	const unsigned int FIRST_PR_INFO_OFFSET = 16;
 	
 	Clock::DateTime dt = Clock::getSingleton().getClock2();
 	
@@ -350,25 +352,27 @@ void MonitoringDevice::createInitFrame()
 	initData[HOUR_OFFSET] = constStruct->testingHour;
 	initData[MINUTE_OFFSET] = constStruct->testingMinute;
 	initData[TESTING_INFO_OFFSET] = constStruct->permissionTestingInfo;
+	initData[BK_ZATVOR_OFFSET] = 0;
+
 	initData[PR_COUNT_OFFSET] = prCount;
 
 	for (unsigned int i = 0; i < prCount; i++)
 	{
-		initData[FIRST_PR_INFO_OFFSET + i * 4] = prPositionStruct[i]->projectNumber;
-		initData[FIRST_PR_INFO_OFFSET + i * 4 + 1] = prPositionStruct[i]->address;
-		initData[FIRST_PR_INFO_OFFSET + i * 4 + 2] = prPositionStruct[i]->networkIndexNumber;
-		initData[FIRST_PR_INFO_OFFSET + i * 4 + 3] = 0;
+		initData[FIRST_PR_INFO_OFFSET + i * 5] = prPositionStruct[i]->projectNumber;
+		initData[FIRST_PR_INFO_OFFSET + i * 5 + 1] = prPositionStruct[i]->address;
+		initData[FIRST_PR_INFO_OFFSET + i * 5 + 2] = prPositionStruct[i]->networkIndexNumber;
+		initData[FIRST_PR_INFO_OFFSET + i * 5 + 3] = 0;
+		initData[FIRST_PR_INFO_OFFSET + i * 5 + 4] = 1;
 	}
 
-	initData[FIRST_PR_INFO_OFFSET + prCount * 4] = penaBakCount;
+	initData[FIRST_PR_INFO_OFFSET + prCount * 5] = penaBakCount;
 
 	for (unsigned int i = 0; i < penaBakCount; ++i){
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 1] = penaBakStruct[i]->number;
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 1 + 1] = penaBakStruct[i]->level;
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 2 + 1] = penaBakStruct[i]->address;
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 3 + 1] = penaBakStruct[i]->numberOnDevice;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 1] = penaBakStruct[i]->number;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 1 + 1] = penaBakStruct[i]->level;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 2 + 1] = penaBakStruct[i]->address;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 3 + 1] = penaBakStruct[i]->numberOnDevice;
 	}
-
 	fifoFrame->put(&initData);
 }
 

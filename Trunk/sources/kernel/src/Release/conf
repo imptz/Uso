@@ -31,7 +31,7 @@
  <pr_position id="2" text="Положение и ориентация ПР">
   <pr sizeInBytes="19">
    <number                    value="1"       sizeInBytes="1"/>
-   <address                   value="1"       sizeInBytes="1"/>
+   <address                   value="2"       sizeInBytes="1"/>
    <x                         value="100"     sizeInBytes="2"/>
    <y                         value="100"     sizeInBytes="2"/>
    <z                         value="100"     sizeInBytes="2"/>
@@ -45,7 +45,7 @@
   </pr>
   <pr sizeInBytes="19">
    <number                    value="2"       sizeInBytes="1"/>
-   <address                   value="2"       sizeInBytes="1"/>
+   <address                   value="1"       sizeInBytes="1"/>
    <x                         value="100"     sizeInBytes="2"/>
    <y                         value="500"     sizeInBytes="2"/>
    <z                         value="100"     sizeInBytes="2"/>
@@ -55,7 +55,7 @@
    <correctionX               value="0"       sizeInBytes="2"/>
    <correctionY               value="0"       sizeInBytes="2"/>
    <correctionZ               value="0"       sizeInBytes="2"/>
-   <zatvorCount               value="2"       sizeInBytes="1"/>
+   <zatvorCount               value="1"       sizeInBytes="1"/>
   </pr>
  </pr_position>
 
@@ -63,7 +63,7 @@
   <io sizeInBytes="6">
    <address                   value="1"        sizeInBytes="1"/>
    <number                    value="1"        sizeInBytes="1"/>
-   <function                  value="10"       sizeInBytes="1"/>
+   <function                  value="1"       sizeInBytes="1"/>
    <number_pr_zatvor          value="1"        sizeInBytes="1"/>
    <input_type                value="1"        sizeInBytes="1"/>
    <number_sensor             value="1"        sizeInBytes="1"/>
@@ -71,7 +71,7 @@
   <io sizeInBytes="6">
    <address                   value="1"        sizeInBytes="1"/>
    <number                    value="2"        sizeInBytes="1"/>
-   <function                  value="10"       sizeInBytes="1"/>
+   <function                  value="1"       sizeInBytes="1"/>
    <number_pr_zatvor          value="2"        sizeInBytes="1"/>
    <input_type                value="1"        sizeInBytes="1"/>
    <number_sensor             value="2"        sizeInBytes="1"/>

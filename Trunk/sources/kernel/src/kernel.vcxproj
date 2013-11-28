@@ -199,7 +199,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -221,7 +221,7 @@
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
-    <IncludePath>C:\Projects\Git\Uso\Trunk\sources\kernel\lib\cppCode;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Ilja\Piter\Uso\Trunk\sources\kernel\lib\cppCode;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -241,7 +241,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <Optimization>Full</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>

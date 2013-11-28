@@ -1,17 +1,14 @@
 #ifndef FIRE_H
 #define FIRE_H
 
+#include "../Singleton.h"
 #include "../math/math.h"
 
-class Fire
+class Fire : public Singleton<Fire>
 {
-	private:
-		Fire();
-		virtual ~Fire() = 0
-		{
-		}
-
 	public:
+		Fire(){}
+		~Fire(){}
 		struct FireObject
 		{
 			Point3<float> pivotPoint;
@@ -42,12 +39,13 @@ class Fire
 		};
 
 	private:
-		static void calcPressureTable(unsigned char prNumber, Fire::FireObject* fire, FireScanProgram* programs, unsigned int i);
+		void calcPressureTable(unsigned char prNumber, Fire::FireObject* fire, FireScanProgram* programs, unsigned int i);
 
 	public:
-		static void calcFire(PreFire* preFires, FireObject* pFire, unsigned int preFiresCount);
-		static void calcFireNEW(PreFire* preFires, FireObject* pFire, unsigned int preFiresCount);
-		static void calcProgram(unsigned int fireCount, PreFire* localFires, Fire::FireObject* fire, Fire::FireScanProgram** programs);
+		void calcFire(PreFire* preFires, FireObject* pFire, unsigned int preFiresCount);
+		void calcFireNEW(PreFire* preFires, FireObject* pFire, unsigned int preFiresCount);
+		void calcProgram(unsigned int fireCount, PreFire* localFires, Fire::FireObject* fire, Fire::FireScanProgram** programs);
+		void getPressureTable(float length, float* res);
 };
 
 #endif

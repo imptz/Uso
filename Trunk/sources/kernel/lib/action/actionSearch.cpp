@@ -156,12 +156,13 @@ void ActionSearch::step()
 					resPoint1.y = (pFrame[7] << 8) + pFrame[8];
 					resPoint2.x = (pFrame[9] << 8) + pFrame[10];
 					resPoint2.y = (pFrame[11] << 8) + pFrame[12];
+					DEBUG_PUT_METHOD("address = %i, point1x = %i, point2x = %i, point1y = %i, point2y = %i\n", deviceAddress, resPoint1.x, resPoint2.x, resPoint1.y, resPoint2.y)
 
 //UPDATE добавлено для инверсии горизонтальной координаты ПР
 					resPoint1.x = 360 - resPoint1.x;
 					resPoint2.x = 360 - resPoint2.x;
 
-					DEBUG_PUT_METHOD("point1x = %i, point2x = %i, point1y = %i, point2y = %i\n", resPoint1.x, resPoint2.x, resPoint1.y, resPoint2.y)
+					DEBUG_PUT_METHOD("address = %i, point1x = %i, point2x = %i, point1y = %i, point2y = %i\n", deviceAddress, resPoint1.x, resPoint2.x, resPoint1.y, resPoint2.y)
 					finish();
 					break;
 			}

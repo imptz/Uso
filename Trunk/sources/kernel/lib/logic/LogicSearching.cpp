@@ -102,6 +102,11 @@ void LogicSearching::onMessage(Message message)
 				}
 				else
 				{
+					if (localFires != nullptr){
+						delete[] localFires;
+						localFires = nullptr;
+					}
+
 					fireCount = DetectionSubsystem::getSingleton().getFire(&localFires, &fire);
 					if (fireCount != 0)
 					{
@@ -264,7 +269,7 @@ void LogicSearching::action()
 		case PHASE_WAITING_CONFIRMATION_SEARCH:
 			if (timeOutWaiting == 0)
 			{
-				DEBUG_PUT_METHOD("PHASE_WAITING_CONFIRMATION_SEARCH ... timeOutWaiting == 0\n");
+//				DEBUG_PUT_METHOD("PHASE_WAITING_CONFIRMATION_SEARCH ... timeOutWaiting == 0\n");
 				timeOutWaiting = TIME_OUT_WAITING_UNDEFINED;	
 // M13112012
 				UI::getSingleton().getUsoModeControl()->setMode(UsoModeControl::USO_MODE_FULL_AUTO, UsoModeControl::USO_MODE_CONTROL_ACTOR_TIME_OUT, true);
@@ -409,7 +414,7 @@ void LogicSearching::finish(FINISH_ACTOR _finishActor)
 
 bool LogicSearching::phaseSendPressureTable_Start(unsigned int _fireCount, Fire::FireScanProgram* _programs)
 {
-	DEBUG_PUT_METHOD("_fireCount = %i\n", _fireCount);
+//	DEBUG_PUT_METHOD("_fireCount = %i\n", _fireCount);
 	actionCount = _fireCount; 
 	actionList = new Action*[actionCount];
 
@@ -441,7 +446,7 @@ bool LogicSearching::phaseSendPressureTable_Execution()
 
 bool LogicSearching::phaseStopProgram_Start()
 {
-	DEBUG_PUT_METHOD("actionCount = %i\n", listProgramIndex[0]);
+//	DEBUG_PUT_METHOD("actionCount = %i\n", listProgramIndex[0]);
 	actionCount = listProgramIndex[0]; 
 	actionList = new Action*[actionCount];
 
@@ -475,7 +480,7 @@ bool LogicSearching::phaseStopProgram_Execution()
 
 bool LogicSearching::phaseStartProgram_Start()
 {
-	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
+//	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
 	sendMessage(Message(MESSAGE_FROM_OFFSET_LOGIC, LOGIC_MESSAGE_GET_FINISH, 0, 0));
 
 	for (unsigned int i = 0; i < actionCount; i++)
@@ -484,7 +489,11 @@ bool LogicSearching::phaseStartProgram_Start()
 		{
 			Fire::FireScanProgram* prg = reinterpret_cast<ActionSendPressureTable*>(actionList[i])->getProgram();
 			SAFE_DELETE(actionList[i])
-			actionList[i] = new ActionStartProgramScanLine(prg->point1,	prg->point2, prg->nasadokPosition, SCAN_PROGRAM_BALLISTICS_ON, prg->prNumber);
+
+		DEBUG_PUT_METHOD("i = %i, prNum = %i, prg->point1.x = %i, prg->point1.y = %i, prg->point2.x = %i, prg->point2.y = %i\n", i, 
+			prg->prNumber, prg->point1.x, prg->point1.y, prg->point2.x, prg->point2.y);
+
+			actionList[i] = new ActionStartProgramScanLine(prg->point1,	prg->point2, prg->nasadokPosition, SCAN_PROGRAM_BALLISTICS_ON, prg->prNumber);// нужен адпес, передается номер.
 		}
 	}
 
@@ -514,17 +523,17 @@ bool LogicSearching::phaseStartProgram_Execution()
 
 bool LogicSearching::phaseGateOpen_Start()
 {
-	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
+//	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
 	for (unsigned int i = 0; i < actionCount; i++)
 	{
 		unsigned char deviceAddress;
 
 		unsigned int count = Config::getSingleton().getConfigData()->getConfigDataStructProgramCount();
-		ConfigDataStructProgram** programs = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
+		ConfigDataStructProgram** lprograms = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
 
 		GATE_TYPE penaZatvor = GATE_TYPE_WATER;
 
-		if ((count != 0) && (programs[0]->function == LOGIC_FUNCTION_SEARCHING_PENA_ZATVOR))
+		if ((count != 0) && (lprograms[0]->function == LOGIC_FUNCTION_SEARCHING_PENA_ZATVOR))
 			penaZatvor = GATE_TYPE_FOAM;
 
 		if ((actionList[i] != nullptr) && (actionList[i]->getState() != Action::STATE_ERROR))
@@ -580,16 +589,16 @@ bool LogicSearching::phaseGateOpen_Execution()
 
 bool LogicSearching::phaseOpenValve_Start()
 {
-	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
+//	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
 	bool res = false;
 	for (unsigned int i = 0; i < actionCount; i++)
 	{
 		unsigned char deviceAddress;
 
 		unsigned int count = Config::getSingleton().getConfigData()->getConfigDataStructProgramCount();
-		ConfigDataStructProgram** programs = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
+		ConfigDataStructProgram** lprograms = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
 
-		if ((count != 0) && (programs[0]->function == LOGIC_FUNCTION_SEARCHING_PENA)){
+		if ((count != 0) && (lprograms[0]->function == LOGIC_FUNCTION_SEARCHING_PENA)){
 			if ((actionList[i] != nullptr) && (actionList[i]->getState() != Action::STATE_ERROR))
 			{
 				deviceAddress = actionList[i]->getDeviceAddress();
@@ -640,7 +649,7 @@ bool LogicSearching::phaseOpenValve_Execution()
 
 bool LogicSearching::phaseWaitingStop_Start()
 {
-	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
+//	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
 	if (actionCount > 1)
 	{
 		for (unsigned int i = 0; i < actionCount - 1; i++)
@@ -678,7 +687,7 @@ bool LogicSearching::phaseWaitingStop_Execution()
 
 bool LogicSearching::phaseGateClose_Start()
 {
-	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
+//	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
 	IOSubsystem::getSingleton().disableAllFireAlarmOutputs();
 	IOSubsystem::getSingleton().disableAllHardwareOutputs();
 	IOSubsystem::getSingleton().disableAllPumpStationOutputs();
@@ -690,11 +699,11 @@ bool LogicSearching::phaseGateClose_Start()
 			unsigned char deviceAddress = actionList[i]->getDeviceAddress();
 
 			unsigned int count = Config::getSingleton().getConfigData()->getConfigDataStructProgramCount();
-			ConfigDataStructProgram** programs = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
+			ConfigDataStructProgram** lprograms = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
 
 			GATE_TYPE penaZatvor = GATE_TYPE_WATER;
 
-			if ((count != 0) && (programs[0]->function == LOGIC_FUNCTION_SEARCHING_PENA_ZATVOR))
+			if ((count != 0) && (lprograms[0]->function == LOGIC_FUNCTION_SEARCHING_PENA_ZATVOR))
 				penaZatvor = GATE_TYPE_FOAM;
 
 			SAFE_DELETE(actionList[i])
@@ -723,7 +732,7 @@ bool LogicSearching::phaseGateClose_Execution()
 
 bool LogicSearching::phaseCloseValve_Start()
 {
-	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
+//	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
 	bool res = false;
 	for (unsigned int i = 0; i < actionCount; i++)
 	{
@@ -733,9 +742,9 @@ bool LogicSearching::phaseCloseValve_Start()
 			SAFE_DELETE(actionList[i])
 
 			unsigned int count = Config::getSingleton().getConfigData()->getConfigDataStructProgramCount();
-			ConfigDataStructProgram** programs = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
+			ConfigDataStructProgram** lprograms = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
 
-			if ((count != 0) && (programs[0]->function == LOGIC_FUNCTION_SEARCHING_PENA)){
+			if ((count != 0) && (lprograms[0]->function == LOGIC_FUNCTION_SEARCHING_PENA)){
 				actionList[i] = new ActionValveClose(deviceAddress);
 				res = true;
 			}
@@ -763,7 +772,7 @@ bool LogicSearching::phaseCloseValve_Execution()
 
 bool LogicSearching::phaseStopProgramEnd_Start()
 {
-	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
+//	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
 	for (unsigned int i = 0; i < actionCount; i++)
 	{
 		if (actionList[i] != nullptr)
@@ -797,7 +806,7 @@ bool LogicSearching::phaseStopProgramEnd_Execution()
 	return true;
 }
 
-bool LogicSearching::calcProgram(unsigned int* channelsCount, PreFire* localFires, Fire::FireObject* fire, Fire::FireScanProgram** programs)
+bool LogicSearching::calcProgram(unsigned int* channelsCount, PreFire* localFires, Fire::FireObject* fire, Fire::FireScanProgram** _programs)
 {
 	ConfigDataStructPRPosition** prp = Config::getSingleton().getConfigData()->getConfigDataStructPRPositions();
 	
@@ -825,7 +834,7 @@ for (unsigned int i = 0; i < *channelsCount; i++)
 	if (Config::getSingleton().getConfigData()->getConfigDataStructConst()->maxPR < *channelsCount)
 		*channelsCount = Config::getSingleton().getConfigData()->getConfigDataStructConst()->maxPR;
 
-	Fire::calcProgram(*channelsCount, localFires, fire, programs);
+	Fire::getSingleton().calcProgram(*channelsCount, localFires, fire, _programs);
 
 	return true;
 }
@@ -954,10 +963,10 @@ bool LogicSearching::phaseCoolingStartProgram_Start()
 	for (unsigned int i = 0; i < listCoolingStartCount; i++)
 	{
 		unsigned char addr = Config::getSingleton().getConfigData()->getPRAddressByNumber(sp[listCoolingStartIndex[i]]->prNumber);
+
 		//actionStartList[i * 2] = new ActionStartProgramScanPoint(sp[listCoolingStartIndex[i]]->nPointProgram, addr);
-actionStartList[i * 2] = new ActionStartProgramScanLine(sp[listCoolingStartIndex[i]]->point1,
-	sp[listCoolingStartIndex[i]]->point2, sp[listCoolingStartIndex[i]]->nasadok,
-	SCAN_PROGRAM_BALLISTICS_OFF, addr);
+		actionStartList[i * 2] = new ActionStartProgramScanLine(sp[listCoolingStartIndex[i]]->point1, sp[listCoolingStartIndex[i]]->point2, sp[listCoolingStartIndex[i]]->nasadok,
+			SCAN_PROGRAM_BALLISTICS_OFF, addr);
 		actionStartList[i * 2 + 1] = new ActionGateOpen(addr);
 	}
 

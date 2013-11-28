@@ -67,14 +67,13 @@ int Logic::getActiveInitialSignal(LOGIC_FUNCTION function, LOGIC_FUNCTION functi
 		
 		if ((signal0 == IIODevice::INPUT_STATE_ON) && (signal1 == IIODevice::INPUT_STATE_ON) && (signal2 == IIODevice::INPUT_STATE_ON)) 
 		{
-DEBUG_PUT_METHOD("i = %i, pData[i]->function = %i, function = %i, function1 = %i, function2 = %i\n", 
-	i, pData[i]->function, function, function1, function2);
+//DEBUG_PUT_METHOD("i = %i, pData[i]->function = %i, function = %i, function1 = %i, function2 = %i\n", i, pData[i]->function, function, function1, function2);
 			if (((pData[i]->function == function) || (pData[i]->function == function1) || (pData[i]->function == function2)) && (!pData[i]->ignorable))
 			{
 				SAFE_DELETE_ARRAY(listProgramIndex)
 
 				listProgramIndexCount = Config::getSingleton().getConfigData()->getConfigDataStructProgramInitSignal(pData[i]->number, pData[i]->function, &listProgramIndex);
-DEBUG_PUT_METHOD("listProgramIndexCount = %i\n", listProgramIndexCount);
+//DEBUG_PUT_METHOD("listProgramIndexCount = %i\n", listProgramIndexCount);
 				if (listProgramIndexCount > 0)
 					return i;
 				else
@@ -158,7 +157,7 @@ int Logic::getConfigTimeOutWaiting()
 	if (time == 0)
 		time = TIME_OUT_WAITING_UNDEFINED;
 
-	DEBUG_PUT_METHOD("timeOut = %is\n", time);
+//	DEBUG_PUT_METHOD("timeOut = %is\n", time);
 
 	return time;
 }

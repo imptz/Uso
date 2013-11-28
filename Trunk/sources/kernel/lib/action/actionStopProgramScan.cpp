@@ -9,7 +9,7 @@ ActionStopProgramScan::ActionStopProgramScan()
 ActionStopProgramScan::ActionStopProgramScan(unsigned char _deviceAddress)
 	:	Action(_deviceAddress), phase(PHASE_COMMAND)
 {
-	DEBUG_PUT_METHOD("address = %i\n", deviceAddress)
+	//DEBUG_PUT_METHOD("address = %i\n", deviceAddress)
 }
 
 ActionStopProgramScan::~ActionStopProgramScan()

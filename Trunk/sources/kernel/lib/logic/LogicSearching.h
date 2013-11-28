@@ -82,7 +82,7 @@ class LogicSearching : public Logic
 		Fire::FireObject fire;
 		unsigned int fireCount;
 		Fire::FireScanProgram* programs;
-		bool calcProgram(unsigned int* channelsCount, PreFire* localFires, Fire::FireObject* fire, Fire::FireScanProgram** programs);
+		bool calcProgram(unsigned int* channelsCount, PreFire* localFires, Fire::FireObject* fire, Fire::FireScanProgram** _programs);
 
 		void coolingAction();
 		bool isCoolingStart;

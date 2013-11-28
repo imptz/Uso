@@ -470,7 +470,7 @@ char* Display::toStringWithoutNull(unsigned int value, char* cStr)
 char* Display::toStringFloat(float value, char* cStr)
 {
 	char* _cStr = cStr;
-	bool sign = (value < 0);
+	bool sign = (value < 0.0f);
 	if (sign)
 	{
 		cStr[0] = '-';
@@ -478,10 +478,10 @@ char* Display::toStringFloat(float value, char* cStr)
 		value *= -1;
 	}
 
-	unsigned int c = static_cast<unsigned int>(value);
-	unsigned int d = static_cast<unsigned int>((value - c) * 10000);
+	unsigned int leftNum = value;
+	unsigned int d = (value - leftNum) * 10000;
 
-	toStringDecimal(c, _cStr);
+	toStringDecimal(leftNum, _cStr);
 	while (*_cStr++ != 0) {}
 	_cStr--;
 	*_cStr = '.';

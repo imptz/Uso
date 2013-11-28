@@ -3,6 +3,7 @@
 #include "../../../Local.h"
 #include "../../devices/fv300Device.h"
 #include "../../devices/TvDevice.h"
+#include "../../../fire/Fire.h"
 
 const char* DetectionSubsystem::MISSING_DEVICE_LOG_TEXT = LOCAL_DETECTIONSYSTEM_MISSING_DEVICE_TEXT;
 
@@ -465,11 +466,23 @@ bool DetectionSubsystem::createPreFires(PreFire** preFires, unsigned int* count)
 	if (pDevices[0] == nullptr)
 		return false;
 
+	if (*preFires != nullptr)
+	{
+		delete[] (*preFires);
+		*preFires = nullptr;
+	}
+
 	unsigned char* pFireData = pDevices[0]->getFire();
+
 
 		unsigned int paramsCount = pFireData[3] + pFireData[4] * 256;
 		const unsigned int HEADER_SIZE = 5;
 		const unsigned int FIRE_AREA_SIZE = 8;
+
+	DEBUG_PUT_METHOD("pFireData  : ");
+	for (unsigned int i = 0; i < paramsCount + 7; ++i)
+		DEBUG_PUT("%i ", pFireData[i]);
+	DEBUG_PUT("\n");
 
 		unsigned int channelOffset = 6;
 
@@ -522,14 +535,20 @@ bool DetectionSubsystem::createPreFires(PreFire** preFires, unsigned int* count)
 				p7 *= 256;
 				p7 += p6;
 
-				float centerX = static_cast<float>(p1);
+				float centerX = p1;
+
+				DEBUG_PUT_METHOD("preFireIndex = %i, centerX = %f, p1 = %i\n", preFireIndex, centerX, p1);
+
 				if (centerX > 32000)
 				{
 					centerX -= 32000;
 					centerX *= -1;
 				}
 
-				float centerY = static_cast<float>(p3);
+				float centerY = p3;
+
+				DEBUG_PUT_METHOD("preFireIndex = %i, centerY = %f, p3 = %i\n", preFireIndex, centerY, p3);
+
 				if (centerY > 32000)
 				{
 					centerY -= 32000;
@@ -538,9 +557,15 @@ bool DetectionSubsystem::createPreFires(PreFire** preFires, unsigned int* count)
 
 				float h = static_cast<float>(p5);
 				float w = static_cast<float>(p7);
-			
+
+				DEBUG_PUT_METHOD("preFireIndex = %i, h = %f, w = %f\n", preFireIndex, h, w);
+
 				(*preFires)[preFireIndex].center.x = centerX;
 				(*preFires)[preFireIndex].center.y = centerY;
+
+				DEBUG_PUT_METHOD("preFireIndex = %i, (*preFires)[preFireIndex].center.x = %f, centerX = %f\n", preFireIndex, (*preFires)[preFireIndex].center.x, centerX);
+				DEBUG_PUT_METHOD("preFireIndex = %i, (*preFires)[preFireIndex].center.y = %f, centerY = %f\n", preFireIndex, (*preFires)[preFireIndex].center.y, centerY);
+
 				(*preFires)[preFireIndex].leftAngle = centerX - w / 2;
 				(*preFires)[preFireIndex].rightAngle = centerX + w / 2;
 				(*preFires)[preFireIndex].topAngle = centerY + h / 2;
@@ -566,6 +591,16 @@ bool DetectionSubsystem::createPreFires(PreFire** preFires, unsigned int* count)
 			}
 		}
 
+	DEBUG_PUT_METHOD("preFires  : i = 0, preFires[0].channel = %i, preFires[0].pivotPoint.x = %f, preFires[0].pivotPoint.y = %f, preFires[0].center.x = %f, preFires[0].center.y = %f\n", 
+			(*preFires)[0].channel, (*preFires)[0].pivotPoint.x, (*preFires)[0].pivotPoint.y, (*preFires)[0].center.x, (*preFires)[0].center.y);
+
+	DEBUG_PUT_METHOD("preFires 1: i = 1, preFires[1].channel = %i, preFires[1].pivotPoint.x = %f, preFires[1].pivotPoint.y = %f, preFires[1].center.x = %f, preFires[1].center.y = %f\n", 
+			(*preFires)[1].channel, (*preFires)[1].pivotPoint.x, (*preFires)[1].pivotPoint.y, (*preFires)[1].center.x, (*preFires)[1].center.y);
+
+	DEBUG_PUT_METHOD("pFireData 2: ");
+	for (unsigned int i = 0; i < paramsCount + 7; ++i)
+		DEBUG_PUT("%i ", pFireData[i]);
+	DEBUG_PUT("\n");
 	return true;
 }
 
@@ -625,19 +660,19 @@ unsigned int DetectionSubsystem::getFire(PreFire** outFires, Fire::FireObject* p
 {
 	unsigned int preFiresCount = 0;
 
-	if (*outFires != nullptr)
-	{
-		delete[] (*outFires);
-		*outFires = nullptr;
-	}
+	DEBUG_PUT_METHOD("1: i = 0, outFires[0].channel = %i, outFires[0].pivotPoint.x = %f, outFires[0].pivotPoint.y = %f, outFires[0].center.x = %f, outFires[0].center.y = %f\n", 
+				(*outFires)[0].channel, (*outFires)[0].pivotPoint.x, (*outFires)[0].pivotPoint.y, (*outFires)[0].center.x, (*outFires)[0].center.y);
 
 	if (!createPreFires(outFires, &preFiresCount))
 		return 0;
 
+	DEBUG_PUT_METHOD("2: i = 0, outFires[0].channel = %i, outFires[0].pivotPoint.x = %f, outFires[0].pivotPoint.y = %f, outFires[0].center.x = %f, outFires[0].center.y = %f\n", 
+				(*outFires)[0].channel, (*outFires)[0].pivotPoint.x, (*outFires)[0].pivotPoint.y, (*outFires)[0].center.x, (*outFires)[0].center.y);
+
 	correctionPreFires(*outFires, preFiresCount);
 	convertionPreFiresToObjectSpace(*outFires, preFiresCount);
 
-	Fire::calcFire(*outFires, pFire, preFiresCount);
+	Fire::getSingleton().calcFire(*outFires, pFire, preFiresCount);
 
 	return preFiresCount;
 }

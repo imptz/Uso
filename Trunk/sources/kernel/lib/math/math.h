@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../DEBUG/serialDebug.h"
+
 float sqrt(float x);
 float abs(float value);
 float cos(float value);
@@ -311,6 +313,8 @@ public:
 
 	bool isIntersect(Line& line)
 	{
+		DEBUG_PUT_METHOD("line.p1.x = %f, line.p1.y = %f, line.p2.x = %f, line.p2.y = %f\n", line.p1.x, line.p1.y, line.p2.x, line.p2.y);
+
 		// не учитывается параллельное пересечение
 		return abs(((p2.y - p1.y) * (line.p1.x - line.p2.x) - (line.p2.y - line.p1.y) * (p1.x - p2.x))) > MINIMUM_VALUE;
 	}
@@ -322,6 +326,8 @@ public:
 		float f3 = (line.p2.x - p1.x) * (p2.y - p1.y);
 		float f4 = (line.p2.y - p1.y) * (p2.x - p1.x);
 
+		DEBUG_PUT_METHOD("f1 = %f, f2 = %f, f3 = %f, f4 = %f\n", f1, f2, f3, f4);
+
 		if ((f1 == f2) && (f2 == f3) && (f3 == f4))
 			return true;
 		else
@@ -330,9 +336,12 @@ public:
 
 	Point2<float> getIntersectPoint(Line& line)
 	{
+		DEBUG_PUT_METHOD("line.p1.x = %f, line.p1.y = %f, line.p2.x = %f, line.p2.y = %f\n", line.p1.x, line.p1.y, line.p2.x, line.p2.y);
 		// не учитывается параллельное пересечение
 		float x = ((p1.x - p2.x) * (line.p2.x * line.p1.y - line.p1.x * line.p2.y) - (line.p1.x - line.p2.x) * (p2.x * p1.y - p1.x * p2.y)) / ((p2.y - p1.y) * (line.p1.x - line.p2.x) - (line.p2.y - line.p1.y) * (p1.x - p2.x));
 		float y = ((p2.x * p1.y - p1.x * p2.y) * (line.p2.y - line.p1.y) - (line.p2.x * line.p1.y - line.p1.x * line.p2.y) * (p2.y - p1.y)) / ((p2.y - p1.y) * (line.p1.x - line.p2.x) - (line.p2.y - line.p1.y) * (p1.x - p2.x));
+
+		DEBUG_PUT_METHOD("x = %f, y = %f\n", x, y);
 
 		return Point2<float>(x, y);
 	}
