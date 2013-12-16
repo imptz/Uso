@@ -132,6 +132,9 @@ char* MonitoringDevice::MESSAGE_TEXT_PENABAK_SVAZ_ON = LOCAL_MESSAGE_TEXT_PENABA
 char* MonitoringDevice::MESSAGE_TEXT_SCANER_MEHANIZM_GUT = LOCAL_MESSAGE_TEXT_SCANER_MEHANIZM_GUT;
 char* MonitoringDevice::MESSAGE_TEXT_ZATVOR_VREMA_OTKRITIA_V_NORME = LOCAL_MESSAGE_TEXT_ZATVOR_VREMA_OTKRITIA_V_NORME;
 
+char* MonitoringDevice::MESSAGE_TEXT_BLOKIROVKA_ZATVORA_ON = LOCAL_MESSAGE_TEXT_BLOKIROVKA_ZATVORA_ON;
+char* MonitoringDevice::MESSAGE_TEXT_BLOKIROVKA_ZATVORA_OFF = LOCAL_MESSAGE_TEXT_BLOKIROVKA_ZATVORA_OFF;
+
 #pragma endregion
 
 MonitoringDevice::MonitoringDevice(unsigned char _address, unsigned int _type)
@@ -212,7 +215,8 @@ void MonitoringDevice::action()
 				if (isActionTimeOut){
 //11062013
 //					if (obrivOffTest(LOCAL_MESSAGE_TEXT_EXT_SVAZ_OFF_MONITORING, address, 0)){
-					obrivOffTest(LOCAL_MESSAGE_TEXT_EXT_SVAZ_OFF_MONITORING, address, 0);						DEBUG_PUT_METHOD("PHASE_START  obrivOffTest - true\n");
+					obrivOffTest(LOCAL_MESSAGE_TEXT_EXT_SVAZ_OFF_MONITORING, address, 0);
+					//DEBUG_PUT_METHOD("PHASE_START  obrivOffTest - true\n");
 						//phase = PHASE_CONFIG;
 						//return;
 //					}
@@ -1112,6 +1116,16 @@ void MonitoringDevice::getMessageInfo(unsigned char* pMsg, char** text, unsigned
 			break;
 		case MESSAGE_NUMBER_ZATVOR_VREMA_OTKRITIA_V_NORME:
 			*text = const_cast<char*>(MESSAGE_TEXT_ZATVOR_VREMA_OTKRITIA_V_NORME);
+			*parameter1 = pMsg[MESSAGE_PAR2_OFFSET];
+			*parameter2 = pMsg[MESSAGE_PAR3_OFFSET];
+			break;
+		case MESSAGE_NUMBER_BLOKIROVKA_ZATVORA_ON:
+			*text = const_cast<char*>(MESSAGE_TEXT_BLOKIROVKA_ZATVORA_ON);
+			*parameter1 = pMsg[MESSAGE_PAR2_OFFSET];
+			*parameter2 = pMsg[MESSAGE_PAR3_OFFSET];
+			break;
+		case MESSAGE_NUMBER_BLOKIROVKA_ZATVORA_OFF:
+			*text = const_cast<char*>(MESSAGE_TEXT_BLOKIROVKA_ZATVORA_OFF);
 			*parameter1 = pMsg[MESSAGE_PAR2_OFFSET];
 			*parameter2 = pMsg[MESSAGE_PAR3_OFFSET];
 			break;

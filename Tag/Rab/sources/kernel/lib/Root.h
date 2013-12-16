@@ -101,14 +101,15 @@ public:
 
 		bool scannerDev = false;
 
-		if (Config::getSingleton().getConfigData()->isTvExistsInConfig())
+		if (Config::getSingleton().getConfigData()->isTvExistsInConfig()){
+			//DEBUG_PUT_METHOD("TV reg\n");
 			TvDevice::registerDevice();
-		else
-		{
-			if (Config::getSingleton().getConfigData()->isFv300ExistsInConfig())
+		}else{
+			if (Config::getSingleton().getConfigData()->isFv300ExistsInConfig()){
+				//DEBUG_PUT_METHOD("FV300 reg\n");
 				Fv300Device::registerDevice();
-			else
-			{
+			}else{
+				//DEBUG_PUT_METHOD("SCANNER reg\n");
 				scannerDev = true;
 				ScannerDevice::registerDevice();
 			}		

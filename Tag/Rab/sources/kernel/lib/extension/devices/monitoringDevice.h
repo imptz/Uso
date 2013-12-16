@@ -179,7 +179,8 @@ class MonitoringDevice : public IMonitoringDevice, public MessageReceiver, publi
 		static char* MESSAGE_TEXT_PENABAK_DATCHIK_ISPRAVEN;
 		static char* MESSAGE_TEXT_SCANER_MEHANIZM_GUT;
 		static char* MESSAGE_TEXT_ZATVOR_VREMA_OTKRITIA_V_NORME;
-
+		static char* MESSAGE_TEXT_BLOKIROVKA_ZATVORA_ON;
+		static char* MESSAGE_TEXT_BLOKIROVKA_ZATVORA_OFF;
 
 #pragma endregion
 

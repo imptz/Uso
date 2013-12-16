@@ -82,7 +82,7 @@ void RpkDevice::action()
 			//case PHASE_CONFIG_1:
 //11062013_
 			case PHASE_CONFIG:
-				DEBUG_PUT_METHOD("PHASE_CONFIG\n");
+				//DEBUG_PUT_METHOD("PHASE_CONFIG\n");
 				createInitFrame();
 				sendMessage(Message(MESSAGE_FROM_OFFSET_EXTENSION_SYSTEM, ExtensionSystem::EXTENSION_SYSTEM_MESSAGE_NEW_SEND_DATA, reinterpret_cast<unsigned int>(fifoFrame), ExtensionSystem::PACKING_OFF));
 				phase = PHASE_CONFIG_WAIT;
@@ -90,7 +90,7 @@ void RpkDevice::action()
 			case PHASE_INIT_WAIT:
 				if (isActionTimeOut)
 				{
-					DEBUG_PUT_METHOD("PHASE_INIT_WAIT\n");
+					//DEBUG_PUT_METHOD("PHASE_INIT_WAIT\n");
 					isActionTimeOut = false;
 					createGetInitializeFrame();
 					sendMessage(Message(MESSAGE_FROM_OFFSET_EXTENSION_SYSTEM, ExtensionSystem::EXTENSION_SYSTEM_MESSAGE_NEW_SEND_DATA, reinterpret_cast<unsigned int>(fifoFrame), ExtensionSystem::PACKING_OFF));
@@ -99,11 +99,11 @@ void RpkDevice::action()
 			case PHASE_START:
 				if (isActionTimeOut)
 				{
-					DEBUG_PUT_METHOD("PHASE_START\n");
+					//DEBUG_PUT_METHOD("PHASE_START\n");
 //11062013
 //					if (obrivOffTest(LOCAL_MESSAGE_TEXT_EXT_SVAZ_OFF_RPK, address, 0)){
 					obrivOffTest(LOCAL_MESSAGE_TEXT_EXT_SVAZ_OFF_RPK, address, 0);
-						DEBUG_PUT_METHOD("PHASE_START  obrivOffTest - true\n");
+						//DEBUG_PUT_METHOD("PHASE_START  obrivOffTest - true\n");
 						//phase = PHASE_CONFIG;
 					//	return;
 					//}
@@ -133,13 +133,13 @@ bool RpkDevice::putFrame(unsigned char* _pArea, bool isNotTransfer)
 					{
 						case COMMAND_PUT_FRAME: 		
 							index = findItemById(_pArea[5] + _pArea[6] * 256);
-							DEBUG_PUT_METHOD("COMMAND_PUT_FRAME: p0 = %i, index = %i, id = %i\n ", _pArea[0], index, _pArea[5] + _pArea[6] * 256);
+							//DEBUG_PUT_METHOD("COMMAND_PUT_FRAME: p0 = %i, index = %i, id = %i\n ", _pArea[0], index, _pArea[5] + _pArea[6] * 256);
 							if (index != -1)
 								removeItem(index);
 							break;
 						case COMMAND_GET_FRAME_BY_ID: 		
 							index = findItemById(_pArea[5] + _pArea[6] * 256);
-							DEBUG_PUT_METHOD("COMMAND_GET_FRAME_BY_ID: p0 = %i, index = %i, id = %i\n ", _pArea[0], index, _pArea[5] + _pArea[6] * 256);
+							//DEBUG_PUT_METHOD("COMMAND_GET_FRAME_BY_ID: p0 = %i, index = %i, id = %i\n ", _pArea[0], index, _pArea[5] + _pArea[6] * 256);
 							if (index != -1)
 								removeItem(index);
 							break;
@@ -158,7 +158,7 @@ bool RpkDevice::putFrame(unsigned char* _pArea, bool isNotTransfer)
 			{
 //11062013
 					case PHASE_CONFIG_0:
-						DEBUG_PUT_METHOD("PHASE_CONFIG_0   _pArea[2] == COMMAND_GET_INITIALIZE_RESULT  _pArea[5] = %u   (INITIALIZE_RESULT_OK == 1)\n", _pArea[5]);
+						//DEBUG_PUT_METHOD("PHASE_CONFIG_0   _pArea[2] == COMMAND_GET_INITIALIZE_RESULT  _pArea[5] = %u   (INITIALIZE_RESULT_OK == 1)\n", _pArea[5]);
 
 						//Õ≈ œ≈–≈ƒ¿≈“—ﬂ  ŒÕ‘»√”–¿÷»ﬂ ¬ –œ 
 
@@ -173,14 +173,14 @@ bool RpkDevice::putFrame(unsigned char* _pArea, bool isNotTransfer)
 //11062013_
 				case PHASE_CONFIG_WAIT:
 					if (_pArea[INTERNAL_FRAME_DATA_POSITION_COMMAND] == COMMAND_INIT){
-						DEBUG_PUT_METHOD("PHASE_CONFIG_WAIT_RECV _pArea[INTERNAL_FRAME_DATA_POSITION_COMMAND] = %u\n", _pArea[INTERNAL_FRAME_DATA_POSITION_COMMAND]);
+						//DEBUG_PUT_METHOD("PHASE_CONFIG_WAIT_RECV _pArea[INTERNAL_FRAME_DATA_POSITION_COMMAND] = %u\n", _pArea[INTERNAL_FRAME_DATA_POSITION_COMMAND]);
 						phase = PHASE_INIT_WAIT;
 					}
 					break;
 				case PHASE_INIT_WAIT:
 					if (_pArea[INTERNAL_FRAME_DATA_POSITION_COMMAND] == COMMAND_GET_INITIALIZE_RESULT)
 					{
-						DEBUG_PUT_METHOD("PHASE_INIT_WAIT_RECV _pArea[RPK_FRAME_DATA_OFFSET + 1] = %u  (INITIALIZE_RESULT_OK == 1)\n", _pArea[RPK_FRAME_DATA_OFFSET + 1]);
+						//DEBUG_PUT_METHOD("PHASE_INIT_WAIT_RECV _pArea[RPK_FRAME_DATA_OFFSET + 1] = %u  (INITIALIZE_RESULT_OK == 1)\n", _pArea[RPK_FRAME_DATA_OFFSET + 1]);
 						if (_pArea[RPK_FRAME_DATA_OFFSET + 1] == INITIALIZE_RESULT_OK)
 						{
 //SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING("...............................................................RpkDevice == INITIALIZE_RESULT_OK\n");

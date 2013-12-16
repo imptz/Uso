@@ -290,6 +290,7 @@ unsigned int TvDevice::getId()
 
 void TvDevice::updateFire(unsigned char* pAddress, unsigned int count, ActionMoveToPoint** actionMoveToPoint)
 {
+	DEBUG_PUT_METHOD("count = %i\n", count);
 	SAFE_DELETE_ARRAY(fireFrame);
 	updateChannels = pAddress;
 	updateChannelsCount = count;

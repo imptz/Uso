@@ -208,6 +208,7 @@ void LogicSearching::action()
 			initSignal = getActiveInitialSignal(LOGIC_FUNCTION_SEARCHING);
 			if (initSignal != -1)
 			{
+				DEBUG_PUT_METHOD("initSignal = %i\n", initSignal);
 				if (UI::getSingleton().getUsoModeControl()->getMode() != UsoModeControl::USO_MODE_TOOLS)
 				{
 					phase = PHASE_INPUT_WAITING_CONTROL;

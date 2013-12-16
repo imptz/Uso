@@ -271,6 +271,9 @@
 #define LOCAL_MESSAGE_TEXT_SCANER_MEHANIZM_GUT "Механизм открытия сканера исправен"
 #define LOCAL_MESSAGE_TEXT_ZATVOR_VREMA_OTKRITIA_V_NORME "Время открытия/закрытия затвора в норме"
 
+#define LOCAL_MESSAGE_TEXT_BLOKIROVKA_ZATVORA_ON "Блокировка затвора включена" 
+#define LOCAL_MESSAGE_TEXT_BLOKIROVKA_ZATVORA_OFF "Блокировка затвора выключена" 
+
 #endif
 
 #ifdef LOCAL_ENG
