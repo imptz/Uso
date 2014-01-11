@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\Application.cpp" />
+    <ClCompile Include="..\lib\crc16.cpp" />
+    <ClCompile Include="..\lib\crc32.cpp" />
+    <ClCompile Include="..\lib\crt.cpp" />
+    <ClCompile Include="..\lib\DEBUG\serialDebug.cpp" />
+    <ClCompile Include="..\lib\display\display.cpp" />
+    <ClCompile Include="..\lib\hdd\hdd.cpp" />
+    <ClCompile Include="..\lib\hdd\hddManager.cpp" />
+    <ClCompile Include="..\lib\interrupt\interrupt.cpp" />
+    <ClCompile Include="..\lib\low.cpp" />
+    <ClCompile Include="..\lib\memory\memory.cpp" />
+    <ClCompile Include="..\lib\message\Messages.cpp" />
+    <ClCompile Include="..\lib\process\process.cpp" />
+    <ClCompile Include="..\lib\serialport\serialport.cpp" />
+    <ClCompile Include="..\lib\string.cpp" />
+    <ClCompile Include="..\lib\systems\bk.cpp" />
+    <ClCompile Include="..\lib\systems\fire.cpp" />
+    <ClCompile Include="..\lib\systems\monitoring.cpp" />
+    <ClCompile Include="..\lib\systems\rpk.cpp" />
+    <ClCompile Include="..\lib\timer\Timer.cpp" />
+    <ClCompile Include="..\lib\touchpad\touchpad.cpp" />
+    <ClCompile Include="main.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\Application.h" />
+    <ClInclude Include="..\lib\crc16.h" />
+    <ClInclude Include="..\lib\crc32.h" />
+    <ClInclude Include="..\lib\crt.h" />
+    <ClInclude Include="..\lib\DEBUG\serialDebug.h" />
+    <ClInclude Include="..\lib\display\display.h" />
+    <ClInclude Include="..\lib\display\fonts.h" />
+    <ClInclude Include="..\lib\fifo.h" />
+    <ClInclude Include="..\lib\hdd\hdd.h" />
+    <ClInclude Include="..\lib\hdd\hddManager.h" />
+    <ClInclude Include="..\lib\id.h" />
+    <ClInclude Include="..\lib\interrupt\interrupt.h" />
+    <ClInclude Include="..\lib\Local.h" />
+    <ClInclude Include="..\lib\low.h" />
+    <ClInclude Include="..\lib\memory\memory.h" />
+    <ClInclude Include="..\lib\message\Messages.h" />
+    <ClInclude Include="..\lib\process\process.h" />
+    <ClInclude Include="..\lib\Root.h" />
+    <ClInclude Include="..\lib\serialport\serialport.h" />
+    <ClInclude Include="..\lib\Singleton.h" />
+    <ClInclude Include="..\lib\string.h" />
+    <ClInclude Include="..\lib\systems\bk.h" />
+    <ClInclude Include="..\lib\systems\fire.h" />
+    <ClInclude Include="..\lib\systems\monitoring.h" />
+    <ClInclude Include="..\lib\systems\rpk.h" />
+    <ClInclude Include="..\lib\timer\Timer.h" />
+    <ClInclude Include="..\lib\touchpad\touchpad.h" />
+    <ClInclude Include="..\lib\version.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BA17F395-EA56-4ED1-A624-AED9CAE952A2}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>kernel</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+    <IncludePath>D:\Ilja\Piter\Uso\Tag\Rab\sources\kernel\lib\cppCode;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Native</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <AllowIsolation>false</AllowIsolation>
+      <EnableUAC>false</EnableUAC>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <BaseAddress>0x100000</BaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <FixedBaseAddress>true</FixedBaseAddress>
+      <DataExecutionPrevention>false</DataExecutionPrevention>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <ShowProgress>LinkVerbose</ShowProgress>
+    </Link>
+    <PreBuildEvent>
+      <Command>VersionInc.exe ../lib/version.h</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>AddImageCRC.exe  Release/kernel.exe</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
