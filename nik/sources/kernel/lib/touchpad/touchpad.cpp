@@ -11,8 +11,7 @@ Touchpad::Touchpad()
 {
 	calibrationMode = false;
 	
-	if (!loadCalibration())
-	{
+	if (!loadCalibration()){
 		calibrationData.leftTopPointX = 0;
 		calibrationData.leftTopPointY = 0;
 		calibrationData.rightBottomPointX = 0;
@@ -35,17 +34,14 @@ Touchpad::Touchpad()
 	SerialPortManager::getSingleton().getPort(TOUCHPAD_SERIAL_PORT)->startSend();
 }
 
-Touchpad::~Touchpad()
-{
+Touchpad::~Touchpad(){
 	SerialPortManager::getSingleton().getPort(TOUCHPAD_SERIAL_PORT)->close();
 }
 
-void Touchpad::timerHandler()
-{
+void Touchpad::timerHandler(){
 	static int gTimer = 0;
 
-	if (gTimer++ > 100)
-	{
+	if (gTimer++ > 100){
 		if (penState == PEN_STATE_DOWN)
 			sendMessage(Message(TOUCHPAD_MESSAGE_FROM, TOUCHPAD_MESSAGE_PEN_UP, xPos, yPos));
 		penState = PEN_STATE_UP;
@@ -60,23 +56,19 @@ void Touchpad::timerHandler()
 
 	bool valid = false;
 	unsigned char command = 0; 
-	for (unsigned int i = 0; i < viewSize; i++)
-	{
+	for (unsigned int i = 0; i < viewSize; i++){
 		fifo->get(&command);
-		if ((command == TOUCH_COMMAND_PEN_DOWN) || (command == TOUCH_COMMAND_PEN_UP))
-		{
+		if ((command == TOUCH_COMMAND_PEN_DOWN) || (command == TOUCH_COMMAND_PEN_UP)){
 			valid = true;
 			break;
 		}
 	}
 
-	if (valid)
-	{
+	if (valid){
 		gTimer = 0;
 		unsigned char d, d1;
 
-		if (command == TOUCH_COMMAND_PEN_DOWN)
-		{
+		if (command == TOUCH_COMMAND_PEN_DOWN){
 			fifo->get(&d);
 			preXPos = d;
 			preXPos = preXPos << 7;
@@ -95,9 +87,7 @@ void Touchpad::timerHandler()
 				sendMessage(Message(TOUCHPAD_MESSAGE_FROM, TOUCHPAD_MESSAGE_PEN_DOWN, xPos, yPos));
 
 			penState = PEN_STATE_DOWN;
-		}
-		else
-		{
+		}else{
 			fifo->get(&d);
 			fifo->get(&d1);
 			preXPos = d1;
@@ -119,32 +109,26 @@ void Touchpad::timerHandler()
 	}
 }
 
-unsigned int Touchpad::get_xPos()
-{
+unsigned int Touchpad::get_xPos(){
 	return xPos;
 }
 
-unsigned int Touchpad::get_yPos()
-{
+unsigned int Touchpad::get_yPos(){
 	return yPos;
 }
 
-Touchpad::PEN_STATE Touchpad::getPenState()
-{
+Touchpad::PEN_STATE Touchpad::getPenState(){
 	return penState;
 }
-void Touchpad::setCalibrationData(float leftTopPointX, float leftTopPointY, float rightBottomPointX, float rightBottomPointY)
-{
+void Touchpad::setCalibrationData(float leftTopPointX, float leftTopPointY, float rightBottomPointX, float rightBottomPointY){
 	calibrationData.leftTopPointX = leftTopPointX;
 	calibrationData.leftTopPointY = leftTopPointY;
 	calibrationData.rightBottomPointX = rightBottomPointX;
 	calibrationData.rightBottomPointY = rightBottomPointY;
 }
 
-void Touchpad::correctCoords(int x, int y)
-{
-	if ((x >= 0) && (x < 1000) && (y >= 0) && (y < 1000))
-	{
+void Touchpad::correctCoords(int x, int y){
+	if ((x >= 0) && (x < 1000) && (y >= 0) && (y < 1000)){
 		xPos = static_cast<unsigned int>(static_cast<float>(SCREEN_WIDTH) - (static_cast<float>(x) - calibrationData.rightBottomPointX) * static_cast<float>(SCREEN_WIDTH) / 
 			(calibrationData.leftTopPointX - calibrationData.rightBottomPointX) + 4.0f);
 		yPos = static_cast<unsigned int>(static_cast<float>(SCREEN_HEIGHT) - (static_cast<float>(y) - calibrationData.rightBottomPointY) * static_cast<float>(SCREEN_HEIGHT) / 
@@ -158,30 +142,26 @@ void Touchpad::correctCoords(int x, int y)
 	//Display::getSingleton().printUInt(yPos, 13, 7, buf); 
 }
 
-void Touchpad::onMessage(Message message)
-{
+void Touchpad::onMessage(Message message){
 	if (message.from == MESSAGE_FROM_OFFSET_SERIAL_DEBUG)
 		if (message.msg == SerialDebug::SERIAL_DEBUG_MESSAGE_RECV_COMMAND)
 			switch (message.par1)
 			{
 				case SerialDebug::COMMAND_DEBUG_TOUCHPAD_CALIBRATION_ON:
-					if (!calibrationMode)
-					{
+					if (!calibrationMode){
 						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_GREEN, SerialDebug::TEXT_ATTR_BOLD, "¬ключен режим калибровки сенсорной панели\n")
 						calibrationMode = true;
 						preCalibrationData.clear();
 					}
 					break;
 				case SerialDebug::COMMAND_DEBUG_TOUCHPAD_CALIBRATION_CANCEL:
-					if (calibrationMode)
-					{
+					if (calibrationMode){
 						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_BLUE, SerialDebug::TEXT_ATTR_BOLD, "ќтменен режим калибровки сенсорной панели\n")
 						calibrationMode = false;
 					}
 					break;
 				case SerialDebug::COMMAND_DEBUG_TOUCHPAD_CALIBRATION_SAVE:
-					if (calibrationMode)
-					{
+					if (calibrationMode){
 						if (saveCalibration())
 							DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_GREEN, SerialDebug::TEXT_ATTR_BOLD, "ƒанные калибровки сенсорной панели сохранены, режим калибровки выключен\n")
 						else
@@ -191,24 +171,21 @@ void Touchpad::onMessage(Message message)
 					}
 					break;
 				case SerialDebug::COMMAND_DEBUG_TOUCHPAD_CALIBRATION_SET_LEFT_UP_POINT:
-					if (calibrationMode)
-					{
+					if (calibrationMode){
 						preCalibrationData.leftTopPointX = static_cast<float>(preXPos);
 						preCalibrationData.leftTopPointY = static_cast<float>(preYPos);
 						DEBUG_PUT_METHOD("”становлена лева€ верхн€€ точка при калибровке сенсорной панели: x = %f, y = %f\n", preCalibrationData.leftTopPointX, preCalibrationData.leftTopPointY)
 					}
 					break;
 				case SerialDebug::COMMAND_DEBUG_TOUCHPAD_CALIBRATION_SET_RIGHT_DOWN_POINT:
-					if (calibrationMode)
-					{
+					if (calibrationMode){
 						DEBUG_PUT_METHOD("”становлена права€ нижн€€ точка при калибровке сенсорной панели: x = %f, y = %f\n", preCalibrationData.rightBottomPointX, preCalibrationData.rightBottomPointY)
 						preCalibrationData.rightBottomPointX = static_cast<float>(preXPos);
 						preCalibrationData.rightBottomPointY = static_cast<float>(preYPos);
 					}
 					break;
 				case SerialDebug::COMMAND_DEBUG_TOUCHPAD_CALIBRATION_GET_DATA:
-					if (calibrationMode)
-					{
+					if (calibrationMode){
 						DEBUG_PUT("ƒанные калибровки сенсорной панели:\n")
 						DEBUG_PUT("   лева€ верхн€€ (%f, %f), права€ нижн€€ (%f, %f)\n", calibrationData.leftTopPointX, calibrationData.leftTopPointY, calibrationData.rightBottomPointX, calibrationData.rightBottomPointY)
 					}
@@ -216,23 +193,19 @@ void Touchpad::onMessage(Message message)
 			}
 }
 
-bool Touchpad::loadCalibration()
-{
-	unsigned int _id = HddManager::getSingleton().read(hddBuffer, START_SECTOR, HDD_BUFFER_SIZE / 512);
+bool Touchpad::loadCalibration(){
+	unsigned int _id = HddManager::getSingleton().read(hddBuffer, HddManager::SECTOR_OFFSET_TOUCHPAD, HDD_BUFFER_SIZE / 512);
 	
-	if (_id != HddManager::UNDEFINED_ID)
-	{
+	if (_id != HddManager::UNDEFINED_ID){
 		int count = 10000000;
-		while (HddManager::getSingleton().isTaskExecute(_id)) 
-		{
+		while (HddManager::getSingleton().isTaskExecute(_id)){
 			if (count == 0)
 				break;
 			else
 				count--;
 		}
 
-		if (count != 0)
-		{
+		if (count != 0){
 			memcpy(&calibrationData, hddBuffer, sizeof(calibrationData));
 			return true;
 		}
@@ -241,19 +214,16 @@ bool Touchpad::loadCalibration()
 	return false;
 }
 
-bool Touchpad::saveCalibration()
-{
+bool Touchpad::saveCalibration(){
 	calibrationData = preCalibrationData;
 
 	memcpy(hddBuffer, &preCalibrationData, sizeof(preCalibrationData));
 
-	unsigned int _id = HddManager::getSingleton().write(hddBuffer, START_SECTOR, HDD_BUFFER_SIZE / 512);
+	unsigned int _id = HddManager::getSingleton().write(hddBuffer, HddManager::SECTOR_OFFSET_TOUCHPAD, HDD_BUFFER_SIZE / 512);
 
-	if (_id != HddManager::UNDEFINED_ID)
-	{
+	if (_id != HddManager::UNDEFINED_ID){
 		int count = 10000000;
-		while (HddManager::getSingleton().isTaskExecute(_id)) 
-		{
+		while (HddManager::getSingleton().isTaskExecute(_id)){
 			if (count == 0)
 				break;
 			else

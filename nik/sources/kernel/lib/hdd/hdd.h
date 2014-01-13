@@ -1,8 +1,7 @@
 #ifndef HDD_H
 #define HDD_H
 
-class Hdd
-{
+class Hdd{
 public:
 	static const unsigned int SECTOR_SIZE = 512;
 
@@ -35,8 +34,7 @@ private:
 
 	static unsigned short ideBaseAddress;
 	static volatile unsigned int actionCounter;
-	enum RW_FLAG
-	{
+	enum RW_FLAG{
 		RW_FLAG_READ,
 		RW_FLAG_WRITE
 	};
@@ -44,8 +42,7 @@ private:
 public:
 	static unsigned int getActionCounter();
 private:
-	struct PRDF
-	{
+	struct PRDF{
 		unsigned int MRPBA;
 		unsigned int EOT_SIZE;
 	};

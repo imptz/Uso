@@ -1,7 +1,7 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-#include "../Singleton.h"
+#include "../singleton.h"
 
 template<class T>
 struct CPointer;
@@ -35,6 +35,9 @@ template<class T>
 class Task : public ITask{
 protected:
 	CPointer<T> ptr;
+	void setPtr(typename TFPointer<T>::FPointer _ptr){
+		ptr = _ptr;
+	}
 
 public:
 	Task(typename TFPointer<T>::FPointer _ptr = nullptr)

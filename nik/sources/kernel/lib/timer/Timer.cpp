@@ -1,4 +1,4 @@
-#include "Timer.h"
+#include "timer.h"
 #include "../low.h"
 #include "../interrupt/interrupt.h"
 
@@ -7,24 +7,20 @@ Timer::Timer(unsigned int _index, long _period, ITimer *_client)
 {
 }
 
-Timer::~Timer()
-{
+Timer::~Timer(){
 	TimerManager::getSingleton().deleteTimer(index);
 }
 
-void Timer::start()
-{
+void Timer::start(){
 	enable = true;
 }
 
-void Timer::stop()
-{
+void Timer::stop(){
 	enable = false;
 	counter = 0;
 }
 
-bool Timer::isStart()
-{
+bool Timer::isStart(){
 	return enable;
 }
 
@@ -52,19 +48,15 @@ TimerManager::TimerManager()
 	Interrupts::enablingHardwareInterrupt(0);
 }
 
-_declspec(naked) void TimerManager::staticIrqHandler()
-{
+_declspec(naked) void TimerManager::staticIrqHandler(){
  	_asm cli
 	_asm pushfd
 	_asm pushad
 
-	for (unsigned int i = 0; i < MAX_TIMERS_COUNT; i++)
-	{
-		if (timers[i] != nullptr)
-		{
+	for (unsigned int i = 0; i < MAX_TIMERS_COUNT; i++){
+		if (timers[i] != nullptr){
 			if (timers[i]->enable)
-				if (++timers[i]->counter == timers[i]->period)
-				{
+				if (++timers[i]->counter == timers[i]->period){
 					timers[i]->client->timerHandler();
 					timers[i]->counter = 0;
 				}
@@ -79,11 +71,9 @@ _declspec(naked) void TimerManager::staticIrqHandler()
 	_asm iretd
 }
 
-Timer* TimerManager::createTimer(long _period, ITimer *_client)
-{
+Timer* TimerManager::createTimer(long _period, ITimer *_client){
 	for (unsigned int i = 0; i < MAX_TIMERS_COUNT; i++)
-		if (timers[i] == nullptr)
-		{
+		if (timers[i] == nullptr){
 			timersCount++;
 			timers[i] = new Timer(i, _period, _client);
 			return timers[i];
@@ -92,29 +82,24 @@ Timer* TimerManager::createTimer(long _period, ITimer *_client)
 	return nullptr;
 }
 
-void TimerManager::deleteTimer(unsigned int index)
-{
-	if (index < MAX_TIMERS_COUNT) 
-	{
+void TimerManager::deleteTimer(unsigned int index){
+	if (index < MAX_TIMERS_COUNT){
 		timersCount--;
 		timers[index] = nullptr;
 		//TODO объект таймера не удаляется - утечка памяти
 	}
 }
 
-int TimerManager::getTimersCount()
-{
+int TimerManager::getTimersCount(){
 	return timersCount;
 }
 
 //================================================================================
 
-ITimer::ITimer(long period)
-{
+ITimer::ITimer(long period){
 	pTimer = TimerManager::getSingleton().createTimer(period, this);		
 }
 
-ITimer::~ITimer()
-{
+ITimer::~ITimer(){
 	delete pTimer;
 }

@@ -1,9 +1,3 @@
-/*! \file crt.cpp
-    \brief Замена библиотеки CRT.
-    
-    Заменяет по минимому стандартную библиотеку времени выполнения. Содержит точку входа.
-*/
-
 #include "crt.h"
 
 #pragma section(".CRT$XCA", read, write)
@@ -19,8 +13,7 @@ _PVFV __xc_z[] = {0};
 
 BEGIN_EXTERN_C
 
-void _init(_PVFV *pfbegin, _PVFV *pfend)
-{
+void _init(_PVFV *pfbegin, _PVFV *pfend){
 	while (pfbegin < pfend)
 	{
 		if (*pfbegin != 0)
@@ -37,9 +30,7 @@ EXTERN_C int _main();
 
 extern "C" unsigned int _fltused = 0;
 
-//! Точка входа.
-void mainCRTStartup()
-{
+void mainCRTStartup(){
 	_init(__xc_a, __xc_z);
     _main();
 	static const char *pStr = "mainCRTStartup exit";

@@ -4,7 +4,7 @@
 
 SystemBk::SystemBk()
 	:	Task(&SystemBk::process){
-		Process::getSingleton().addTask(this);
+	Process::getSingleton().addTask(this);
 }
 
 CPointer<SystemBk> SystemBk::process(){

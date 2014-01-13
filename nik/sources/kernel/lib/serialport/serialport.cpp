@@ -1,15 +1,12 @@
-#include "SerialPort.h"
+#include "serialPort.h"
 #include "../low.h"
 #include "../interrupt/interrupt.h"
 
-
-Fifo<unsigned char>* SerialPort::getRecvFifo()
-{
+Fifo<unsigned char>* SerialPort::getRecvFifo(){
 	return fifoRecv;
 }
 
-Fifo<unsigned char>* SerialPort::getSendFifo()
-{
+Fifo<unsigned char>* SerialPort::getSendFifo(){
 	return fifoSend;
 }
 
@@ -17,8 +14,7 @@ SerialPort::SerialPort(SERIAL_PORT_BASE_ADDRESS _baseAddress, SERIAL_PORT_IRQ _i
 	:	baseAddress(_baseAddress), irq(_irq), fifoRecv(new Fifo<unsigned char>(RECV_FIFO_SIZE)), fifoSend(new Fifo<unsigned char>(SEND_FIFO_SIZE)), pSendData(nullptr), sendDataSize(0), sendDataCount(0),
 	portSpeed(SERIAL_PORT_SPEED_57600)
 {
-	switch (baseAddress)
-	{
+	switch (baseAddress){
 		case SERIAL_PORT_BASE_ADDRESS_1:
 			SET_INT_HANDLER(Interrupts::HARDWARE_VECTOR_OFFSET + irq, SerialPortManager::irqCom1);
 			break;
@@ -41,26 +37,21 @@ SerialPort::SerialPort(SERIAL_PORT_BASE_ADDRESS _baseAddress, SERIAL_PORT_IRQ _i
 	close();
 }
 
-SerialPort::~SerialPort()
-{
+SerialPort::~SerialPort(){
 	close();
 	delete fifoSend;
 	delete fifoRecv;
 }
 
-
-void SerialPort::open()
-{
+void SerialPort::open(){
 	Interrupts::enablingHardwareInterrupt(irq);
 }
 
-void SerialPort::close()
-{
+void SerialPort::close(){
 	Interrupts::disablingHardwareInterrupt(irq);
 }
 
-void SerialPort::setSpeed(SERIAL_PORT_SPEED speed)
-{
+void SerialPort::setSpeed(SERIAL_PORT_SPEED speed){
 	portSpeed = speed;
 	_asm cli
 	outPort(baseAddress + SERIAL_PORT_REG_LCR, 0x80);
@@ -72,12 +63,10 @@ void SerialPort::setSpeed(SERIAL_PORT_SPEED speed)
 
 // если не выключить оптимизация для этого метода, то ошибки при выполнении
 #pragma optimize("", off)
-void SerialPort::irqHandlerRecv()
-{
+void SerialPort::irqHandlerRecv(){
 	unsigned char lsr = inPort(baseAddress + SERIAL_PORT_REG_LSR);
 
-	while ((lsr & SERIAL_PORT_LSR_DR) != 0)
-	{
+	while ((lsr & SERIAL_PORT_LSR_DR) != 0)	{
 		unsigned char value = inPort(baseAddress);
 		if ((lsr & (SERIAL_PORT_LSR_OE | SERIAL_PORT_LSR_FE)) == 0)
 			fifoRecv->put(reinterpret_cast<unsigned char*>(&value));
@@ -86,37 +75,29 @@ void SerialPort::irqHandlerRecv()
 	}
 }
 
-void SerialPort::irqHandlerSend()
-{
-	if (sendDataCount == sendDataSize)
-	{
+void SerialPort::irqHandlerSend(){
+	if (sendDataCount == sendDataSize)	{
 		sendActive = false;
-	}
-	else
-	{
+	}else{
 		outPort(baseAddress, pSendData[sendDataCount]);
 		sendDataCount++;
 	}
 }
 #pragma optimize("", on)
 
-bool SerialPort::isSendActive()
-{
+bool SerialPort::isSendActive(){
 	return sendActive;
 }
 
-void SerialPort::startSend()
-{
-	if (!sendActive)
-	{
+void SerialPort::startSend(){
+	if (!sendActive){
 		outPort(baseAddress, pSendData[0]);
 		sendDataCount++;
 		sendActive = true;
 	}
 }
 
-void SerialPort::setNewSendData(unsigned char* _pData, unsigned int _size)
-{
+void SerialPort::setNewSendData(unsigned char* _pData, unsigned int _size){
 	SAFE_DELETE_ARRAY(pSendData)
 	pSendData = new unsigned char[_size];
 	memcpy(pSendData, _pData, _size);
@@ -124,10 +105,8 @@ void SerialPort::setNewSendData(unsigned char* _pData, unsigned int _size)
 	sendDataSize = _size;
 }
 
-unsigned int SerialPort::getSpeed()
-{
-	switch (portSpeed)
-	{
+unsigned int SerialPort::getSpeed(){
+	switch (portSpeed){
 		case 1:
 			return 115200;
 			break;
@@ -142,15 +121,13 @@ unsigned int SerialPort::getSpeed()
 
 SerialPort* SerialPortManager::pSerialPorts[3];
 
-SerialPortManager::SerialPortManager()
-{
+SerialPortManager::SerialPortManager(){
 	pSerialPorts[0] = new SerialPort(SERIAL_PORT_BASE_ADDRESS_1, SERIAL_PORT_IRQ_1);
 	pSerialPorts[1] = new SerialPort(SERIAL_PORT_BASE_ADDRESS_2, SERIAL_PORT_IRQ_2);
 	pSerialPorts[2] = new SerialPort(SERIAL_PORT_BASE_ADDRESS_3, SERIAL_PORT_IRQ_3);
 }
 
-SerialPort* SerialPortManager::getPort(SERIAL_PORT port)
-{
+SerialPort* SerialPortManager::getPort(SERIAL_PORT port){
 	return pSerialPorts[port];
 }
 
@@ -158,16 +135,14 @@ unsigned char irqCom1_i;
 unsigned char irqCom2_i;
 unsigned char irqCom3_i;
 
-_declspec(naked) void SerialPortManager::irqCom1()
-{
+_declspec(naked) void SerialPortManager::irqCom1(){
 	_asm cli
 	_asm pushfd
 	_asm pushad
 
 	irqCom1_i = inPort(pSerialPorts[0]->baseAddress + SERIAL_PORT_REG_IIR);
 
-	while ((irqCom1_i & SERIAL_PORT_IIR_IP) == 0)
-	{
+	while ((irqCom1_i & SERIAL_PORT_IIR_IP) == 0){
 		if ((irqCom1_i & SERIAL_PORT_IIR_RDAI) != 0) 
 			pSerialPorts[0]->irqHandlerRecv();
 		if ((irqCom1_i & SERIAL_PORT_IIR_THREI) != 0) 
@@ -183,16 +158,14 @@ _declspec(naked) void SerialPortManager::irqCom1()
 	_asm iretd
 }
 
-_declspec(naked) void SerialPortManager::irqCom2()
-{
+_declspec(naked) void SerialPortManager::irqCom2(){
 	_asm cli
 	_asm pushfd
 	_asm pushad
 
 	irqCom2_i = inPort(pSerialPorts[1]->baseAddress + SERIAL_PORT_REG_IIR);
 
-	while ((irqCom2_i & SERIAL_PORT_IIR_IP) == 0)
-	{
+	while ((irqCom2_i & SERIAL_PORT_IIR_IP) == 0){
 		if ((irqCom2_i & SERIAL_PORT_IIR_RDAI) != 0) 
 			pSerialPorts[1]->irqHandlerRecv();
 		if ((irqCom2_i & SERIAL_PORT_IIR_THREI) != 0) 
@@ -208,16 +181,14 @@ _declspec(naked) void SerialPortManager::irqCom2()
 	_asm iretd
 }
 
-_declspec(naked) void SerialPortManager::irqCom3()
-{
+_declspec(naked) void SerialPortManager::irqCom3(){
 	_asm cli
 	_asm pushfd
 	_asm pushad
 
 	irqCom3_i = inPort(pSerialPorts[2]->baseAddress + SERIAL_PORT_REG_IIR);
 
-	while ((irqCom3_i & SERIAL_PORT_IIR_IP) == 0)
-	{
+	while ((irqCom3_i & SERIAL_PORT_IIR_IP) == 0){
 		if ((irqCom3_i & SERIAL_PORT_IIR_RDAI) != 0) 
 			pSerialPorts[2]->irqHandlerRecv();
 		if ((irqCom3_i & SERIAL_PORT_IIR_THREI) != 0) 

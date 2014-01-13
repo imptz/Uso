@@ -16,14 +16,12 @@ volatile unsigned char _wwr1;
 volatile unsigned char _wwr2;
 volatile unsigned char _aassww = 0;
 
-_declspec(naked) void Hdd::staticIrqHandler()
-{
+_declspec(naked) void Hdd::staticIrqHandler(){
 	_asm cli
 	_asm pushfd
 	_asm pushad
 
-	_asm
-	{
+	_asm{
 		mov dx, ideBaseAddress
 		mov al,0
 		out dx,al
@@ -45,16 +43,14 @@ _declspec(naked) void Hdd::staticIrqHandler()
 	_asm iretd
 }
 
-Hdd::Hdd()
-{
+Hdd::Hdd(){
 	actionCounter = 0;
 	rwFlag = RW_FLAG_READ;
 
 	prdf.MRPBA = reinterpret_cast<unsigned int>(buffer);
 	prdf.EOT_SIZE = PRDF_EOT;
 
-	_asm
-	{
+	_asm{
 		mov ecx, 0x51300008
 		rdmsr
 		and eax, 0xfffffff0
@@ -66,25 +62,21 @@ Hdd::Hdd()
 	Interrupts::enablingHardwareInterrupt(2);
 }
 
-Hdd::~Hdd()
-{
+Hdd::~Hdd(){
 	Interrupts::disablingHardwareInterrupt(2);
 	Interrupts::disablingHardwareInterrupt(14);
 }
 
-unsigned int Hdd::getActionCounter()
-{
+unsigned int Hdd::getActionCounter(){
 	return actionCounter;
 }
 
 /**
 ћаксимальное число читаемых секторов: 65536 / 512 = 128
 */
-bool Hdd::read(unsigned int _startSectorNumber, unsigned char _sectorsCount, unsigned char* _pData)
-{
+bool Hdd::read(unsigned int _startSectorNumber, unsigned char _sectorsCount, unsigned char* _pData){
 	actionCounter++;
-	if (actionCounter > 1)
-	{
+	if (actionCounter > 1){
 		actionCounter--;
 		return false;
 	}
@@ -92,8 +84,7 @@ bool Hdd::read(unsigned int _startSectorNumber, unsigned char _sectorsCount, uns
 	pData = _pData;
 	sectorsCount = _sectorsCount;
 
-	if ((_sectorsCount == 0) ||(_sectorsCount > MAX_SECTOR_COUNT))
-	{
+	if ((_sectorsCount == 0) ||(_sectorsCount > MAX_SECTOR_COUNT)){
 		actionCounter--;
 		return false;
 	}
@@ -107,8 +98,7 @@ bool Hdd::read(unsigned int _startSectorNumber, unsigned char _sectorsCount, uns
 
 	PRDF* pPrdf = &prdf;
 
-	 _asm 
-	 {
+	 _asm{
 		mov dx, IDE_DEVICE_CONTROL_R
 		mov al,0x00
 		out dx,al
@@ -173,17 +163,14 @@ L2:
 /**
 ћаксимальное число записываемых секторов: 65536 / 512 = 128
 */
-bool Hdd::write(unsigned int _startSectorNumber, unsigned char _sectorsCount, unsigned char* _pData)
-{
+bool Hdd::write(unsigned int _startSectorNumber, unsigned char _sectorsCount, unsigned char* _pData){
 	actionCounter++;
-	if (actionCounter > 1)
-	{
+	if (actionCounter > 1){
 		actionCounter--;
 		return false;
 	}
 
-	if ((_sectorsCount == 0) || (_sectorsCount > MAX_SECTOR_COUNT))
-	{
+	if ((_sectorsCount == 0) || (_sectorsCount > MAX_SECTOR_COUNT)){
 		actionCounter--;
 		return false;
 	}
@@ -199,8 +186,7 @@ bool Hdd::write(unsigned int _startSectorNumber, unsigned char _sectorsCount, un
 
 	memcpy(buffer, _pData, _sectorsCount * 512);
 
-	 _asm 
-	 {
+	 _asm{
 		mov dx, IDE_DEVICE_CONTROL_R
 		mov al,0x00
 		out dx,al

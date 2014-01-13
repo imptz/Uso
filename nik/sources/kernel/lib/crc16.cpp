@@ -1,6 +1,3 @@
-/*! \file crc16.cpp
-    \brief Содержит функции рассчета CRC16    
-*/
 #include "crc16.h"
 
 const unsigned char CRC_HI[] = 
@@ -55,20 +52,12 @@ const unsigned char CRC_LO[] =
 	0x41, 0x81, 0x80, 0x40
 };
 
-//! Рассчитывает и возвращает CRC16 строки
-/*!
-	@param data - указатель на строку
-	@param length - длина строки
-	@return CRC16
-*/
-unsigned short Crc16::calcCRC16(unsigned char *data, int length)
-{
+unsigned short Crc16::calcCRC16(unsigned char *data, int length){
 	unsigned char crc_hi = 0xFF;
 	unsigned char crc_lo = 0xFF;
 	int i;
 
-	while(length--) 
-	{
+	while(length--){
 		i = crc_lo ^ *data++;
 		crc_lo = crc_hi ^ CRC_HI[i];
 		crc_hi = CRC_LO[i];

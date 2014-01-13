@@ -1,7 +1,6 @@
 #include "display.h"
 
-void Display::modifyCharTable1()
-{
+void Display::modifyCharTable1(){
 	outPort(REGISTERS_VGA_SEQUENCER_INDEX, 0);
 	outPort(REGISTERS_VGA_SEQUENCER_DATA, 1);
 	outPort(REGISTERS_VGA_SEQUENCER_INDEX, 0);
@@ -40,8 +39,7 @@ void Display::modifyCharTable1()
 	outPort(REGISTERS_VGA_SEQUENCER_DATA, pmask);
 
 	unsigned int pFont = FONT_AREA_ADDRESS;
-	for (int j = 0; j < 256; j++)
-	{
+	for (int j = 0; j < 256; j++){
 		for (int i = 0; i < 16; i++)
 			*reinterpret_cast<unsigned char*>(pFont++) = HV8X16_Z[j * 16 + i];
 
@@ -64,8 +62,7 @@ void Display::modifyCharTable1()
 	outPort(REGISTERS_VGA_GRAPHICS_CONTROLLER_DATA, gc6);
 }
 
-void Display::modifyCharTable()
-{
+void Display::modifyCharTable(){
 	outPort(REGISTERS_VGA_SEQUENCER_INDEX, 0);
 	outPort(REGISTERS_VGA_SEQUENCER_DATA, 1);
 	outPort(REGISTERS_VGA_SEQUENCER_INDEX, 0);
@@ -82,8 +79,7 @@ void Display::modifyCharTable()
 	outPort(REGISTERS_VGA_GRAPHICS_CONTROLLER_DATA, 4);
 
 	unsigned int pFont = FONT_AREA_ADDRESS;
-	for (int j = 0; j < 256; j++)
-	{
+	for (int j = 0; j < 256; j++){
 		for (int i = 0; i < 32; i++)
 			*reinterpret_cast<unsigned char*>(pFont++) = HV8X16_Z[j * 16 + i];
 
@@ -106,21 +102,18 @@ void Display::modifyCharTable()
 	outPort(REGISTERS_VGA_GRAPHICS_CONTROLLER_DATA, 0x0e);
 }
 
-void Display::disableCursor()
-{
+void Display::disableCursor(){
 	outPort(REGISTERS_VGA_CRTC_INDEX, 0x0a);
 	outPort(REGISTERS_VGA_CRTC_DATA, 0x20);	
 }
 
-Display::Display()
-{
+Display::Display(){
 	modifyCharTable();
 	disableCursor();
 	clearScreen();
 }
 
-void Display::clearScreen()
-{
+void Display::clearScreen(){
 	unsigned short *t = reinterpret_cast<unsigned short*>(VIDEO_BASE_ADDRESS);
 	unsigned int size = 80 * 25;
 	unsigned short cl = BACKGROUND_COLOR;
@@ -128,16 +121,13 @@ void Display::clearScreen()
 	cl += BACKGROUND_COLOR;
 	cl = cl << 8;
 
-	while (size-- > 0) 
-	{
+	while (size-- > 0){
 		*t++ = static_cast<unsigned short>(cl);
 	}
 }
 
-void Display::print(const char* pStr, int x, int y, bool blinking)
-{
-	_asm
-	{
+void Display::print(const char* pStr, int x, int y, bool blinking){
+	_asm{
 		_asm	pushfd
 		_asm	pushad
 	}
@@ -150,8 +140,7 @@ void Display::print(const char* pStr, int x, int y, bool blinking)
 	color += CHAR_COLOR;
 	color = color << 8;
 
-	_asm
-	{
+	_asm{
 		mov     esi,pStr
 		mov	    edi,vOffset
 		mov     eax,color
@@ -168,8 +157,7 @@ _printString_22:
 	}
 }
 
-void Display::printChar(unsigned char _char, unsigned int x, unsigned int y, COLOR color, bool blinking)
-{
+void Display::printChar(unsigned char _char, unsigned int x, unsigned int y, COLOR color, bool blinking){
 	unsigned int vOffset = VIDEO_BASE_ADDRESS +  y * 160 + x * 2;
 	unsigned int _color =  blinking;
 	_color = _color << 3;
@@ -180,16 +168,14 @@ void Display::printChar(unsigned char _char, unsigned int x, unsigned int y, COL
 	*reinterpret_cast<unsigned short*>(vOffset) = _color + _char;
 }
 
-char Display::toChar(unsigned char value)
-{
+char Display::toChar(unsigned char value){
 	if (value < 10)
 		return value + 48;
 	else
 		return value + 87;
 }
 
-char* Display::toString2Num(unsigned char value, char* cStr)
-{
+char* Display::toString2Num(unsigned char value, char* cStr){
 	unsigned char n1;
 
 	cStr[0] = 0;
@@ -205,8 +191,7 @@ char* Display::toString2Num(unsigned char value, char* cStr)
 	return cStr;
 }
 
-char* Display::toString2Num3(unsigned char value, char* cStr)
-{
+char* Display::toString2Num3(unsigned char value, char* cStr){
 	unsigned char n1;
 	unsigned char n2;
 
@@ -221,18 +206,14 @@ char* Display::toString2Num3(unsigned char value, char* cStr)
 	value -= (n2 * 10);
 
 	unsigned char index = 0;
-	if (n1 != 0)
-	{
+	if (n1 != 0){
 		cStr[index++] = n1 + 48;
-	}
-	else
+	}else
 		cStr[index++] = ' ';
 
-	if (n2 != 0)
-	{
+	if (n2 != 0){
 		cStr[index++] = n2 + 48;
-	}
-	else
+	}else
 		cStr[index++] = ' ';
 
 	cStr[2] = value + 48;
@@ -240,8 +221,7 @@ char* Display::toString2Num3(unsigned char value, char* cStr)
 	return cStr;
 }
 
-char* Display::toString2NumHex(unsigned char value, char* cStr)
-{
+char* Display::toString2NumHex(unsigned char value, char* cStr){
 	unsigned char n1;
 
 	cStr[0] = 0;
@@ -257,8 +237,7 @@ char* Display::toString2NumHex(unsigned char value, char* cStr)
 	return cStr;
 }
 
-char* Display::toString4Num(int value, char* cStr)
-{
+char* Display::toString4Num(int value, char* cStr){
 	unsigned char n0, n1, n2;
 
 	cStr[0] = 0;
@@ -284,8 +263,7 @@ char* Display::toString4Num(int value, char* cStr)
 	return cStr;
 }
 
-char* Display::toString3Num(unsigned char value, char* cStr)
-{
+char* Display::toString3Num(unsigned char value, char* cStr){
 	unsigned char n0, n1;
 
 	cStr[0] = 0;
@@ -306,8 +284,7 @@ char* Display::toString3Num(unsigned char value, char* cStr)
 	return cStr;
 }
 
-char* Display::toString(unsigned char value, char* cStr)
-{
+char* Display::toString(unsigned char value, char* cStr){
 	cStr[0] = toChar(((value & 0xf0) >> 4));
 	cStr[1] = toChar((value & 0x0f));
 	cStr[2] = 0;
@@ -315,8 +292,7 @@ char* Display::toString(unsigned char value, char* cStr)
 	return cStr;
 }
 
-char* Display::toString(unsigned int value, char* cStr)
-{
+char* Display::toString(unsigned int value, char* cStr){
 	cStr[0] = toChar(((value & 0xf0000000) >> 28));
 	cStr[1] = toChar(((value & 0x0f000000) >> 24));
 	cStr[2] = toChar(((value & 0x00f00000) >> 20));
@@ -330,8 +306,7 @@ char* Display::toString(unsigned int value, char* cStr)
 	return cStr;
 }
 
-char* Display::toStringDecimal(unsigned int value, char* cStr)
-{
+char* Display::toStringDecimal(unsigned int value, char* cStr){
 	int position = 0;
 	unsigned char num = value / 1000000000;
 	
@@ -393,8 +368,7 @@ char* Display::toStringDecimal(unsigned int value, char* cStr)
 	return cStr;
 }
 
-char* Display::toStringDecimalSigned(int value, char* cStr)
-{
+char* Display::toStringDecimalSigned(int value, char* cStr){
 	if (value >= 0)
 		return toStringDecimal(value, cStr);
 
@@ -405,8 +379,7 @@ char* Display::toStringDecimalSigned(int value, char* cStr)
 	return --cStr;
 }
 
-char* Display::toStringWithoutNull(unsigned int value, char* cStr)
-{
+char* Display::toStringWithoutNull(unsigned int value, char* cStr){
 	int position = 0;
 	char num = value / 1000000000;
 	if (num != 0)
@@ -467,12 +440,10 @@ char* Display::toStringWithoutNull(unsigned int value, char* cStr)
 	return cStr;
 }
 
-char* Display::toStringFloat(float value, char* cStr)
-{
+char* Display::toStringFloat(float value, char* cStr){
 	char* _cStr = cStr;
 	bool sign = (value < 0);
-	if (sign)
-	{
+	if (sign){
 		cStr[0] = '-';
 		_cStr++;
 		value *= -1;
@@ -490,8 +461,7 @@ char* Display::toStringFloat(float value, char* cStr)
 	char* __cStr = _cStr;
 
 	while (*__cStr++ != 0) {}
-	while (__cStr != _cStr) 
-	{
+	while (__cStr != _cStr){
 		if ((*(__cStr - 1) == '0') && (*(__cStr - 2) != '.'))
 			*(__cStr - 1) = 0;
 
@@ -501,8 +471,7 @@ char* Display::toStringFloat(float value, char* cStr)
 	return cStr;
 }
 
-char* Display::toStringTime(unsigned int value, char* cStr)
-{
+char* Display::toStringTime(unsigned int value, char* cStr){
 	cStr[0] = toChar(((value & 0x00f00000) >> 20));
 	cStr[1] = toChar(((value & 0x000f0000) >> 16));
 	cStr[2] = ':';
@@ -516,8 +485,7 @@ char* Display::toStringTime(unsigned int value, char* cStr)
 	return cStr;
 }
 
-char* Display::toStringDate(unsigned int value, char* cStr)
-{
+char* Display::toStringDate(unsigned int value, char* cStr){
 	cStr[0] = toChar(((value & 0x000000f0) >> 4));
 	cStr[1] = toChar((value & 0x0000000f));
 	cStr[2] = '.';
@@ -531,19 +499,16 @@ char* Display::toStringDate(unsigned int value, char* cStr)
 	return cStr;
 }
 
-void Display::printUInt(unsigned int value, unsigned int x, unsigned int y, bool blinking)
-{
+void Display::printUInt(unsigned int value, unsigned int x, unsigned int y, bool blinking){
 	char cStr[12];
 	print(toString(value, cStr), x, y, blinking);
 }
 
-void Display::printUInt(unsigned int value, unsigned int x, unsigned int y, char* cStr, bool blinking)
-{
+void Display::printUInt(unsigned int value, unsigned int x, unsigned int y, char* cStr, bool blinking){
 	print(toString(value, cStr), x, y, blinking);
 }
 
-void Display::printMemoryDump(unsigned int address, unsigned int count, unsigned int x, unsigned int y)
-{
+void Display::printMemoryDump(unsigned int address, unsigned int count, unsigned int x, unsigned int y){
 	char cStr[12];
 	for (unsigned i = 0; i < count / 16; i++)
 		for (unsigned j = 0; j < 16; j++)
@@ -553,12 +518,10 @@ void Display::printMemoryDump(unsigned int address, unsigned int count, unsigned
 		print(toString(*reinterpret_cast<unsigned char*>(address++), cStr), x + i * 4, y + count / 16);
 }
 
-void Display::printCharTable(unsigned int x, unsigned int y)
-{
+void Display::printCharTable(unsigned int x, unsigned int y){
 	char sym[2] = {0, 0};
 	for (unsigned char i = 0; i < 8; i++)
-		for (unsigned char j = 0; j < 32; j++)
-		{
+		for (unsigned char j = 0; j < 32; j++){
 			sym[0] = i * 32 + j;
 			print(sym, x + j * 1, y + i);
 		}

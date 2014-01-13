@@ -1,29 +1,18 @@
 #pragma once
 
-#include "timer\Timer.h"
-#include "message\Messages.h"
+#include "timer\timer.h"
+#include "message\messages.h"
 
-class Application : public ITimer, public Singleton<Application>, public MessageReceiver, public MessageSender
-{
+class Application : public ITimer, public Singleton<Application>, public MessageReceiver, public MessageSender{
 private:
-        static const unsigned int TIMER_PERIOD = 10000; /*!< Период вызова метода обработчика таймера */
-        virtual void timerHandler(); /*!< Обработчик таймера */
-		void createLogic(); 
+	static const unsigned int TIMER_PERIOD = 10000;
+	virtual void timerHandler();
+	void createLogic(); 
 
 public:
-		//! Конструктор
-        Application();
-
-		//! Деструктор
-		~Application();
-
-		//! Основной метод приложения
-		/*!
-			Ожидает готовности подсистемы расширения УСО. Вызывает метод создания логики УСО. Содержит бесконечный цикл обработки сообщений.
-		*/
-        void start();
-
-		//! Обработчик сообщений Application
-		virtual void onMessage(Message message);
+	Application();
+	~Application();
+	void start();
+	virtual void onMessage(Message message);
 };
 

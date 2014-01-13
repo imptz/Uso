@@ -41,13 +41,16 @@
     <Filter Include="lib\systems">
       <UniqueIdentifier>{7470019a-b1c7-4ae5-b967-40a1fd6e8ae5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib\config">
+      <UniqueIdentifier>{2b312e0b-a393-43a8-b067-ab7a0cd8c3df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\math">
+      <UniqueIdentifier>{105386c5-e962-400e-83f9-51248bcf9ff8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\Application.cpp">
-      <Filter>lib</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\crc16.cpp">
       <Filter>lib</Filter>
@@ -67,14 +70,8 @@
     <ClCompile Include="..\lib\touchpad\touchpad.cpp">
       <Filter>lib\touchpad</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\timer\Timer.cpp">
-      <Filter>lib\timer</Filter>
-    </ClCompile>
     <ClCompile Include="..\lib\serialport\serialport.cpp">
       <Filter>lib\serialport</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\message\Messages.cpp">
-      <Filter>lib\messages</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\memory\memory.cpp">
       <Filter>lib\memory</Filter>
@@ -109,11 +106,29 @@
     <ClCompile Include="..\lib\systems\rpk.cpp">
       <Filter>lib\systems</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\systems\system.cpp">
+      <Filter>lib\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\systems\panel.cpp">
+      <Filter>lib\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\config\config.cpp">
+      <Filter>lib\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\application.cpp">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\timer\timer.cpp">
+      <Filter>lib\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\message\messages.cpp">
+      <Filter>lib\messages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\math\math.cpp">
+      <Filter>lib\math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lib\Application.h">
-      <Filter>lib</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\crc16.h">
       <Filter>lib</Filter>
     </ClInclude>
@@ -126,19 +141,7 @@
     <ClInclude Include="..\lib\fifo.h">
       <Filter>lib</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\id.h">
-      <Filter>lib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\Local.h">
-      <Filter>lib</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\low.h">
-      <Filter>lib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\Root.h">
-      <Filter>lib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\Singleton.h">
       <Filter>lib</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\string.h">
@@ -147,14 +150,8 @@
     <ClInclude Include="..\lib\touchpad\touchpad.h">
       <Filter>lib\touchpad</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\timer\Timer.h">
-      <Filter>lib\timer</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\serialport\serialport.h">
       <Filter>lib\serialport</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\message\Messages.h">
-      <Filter>lib\messages</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\memory\memory.h">
       <Filter>lib\memory</Filter>
@@ -194,6 +191,39 @@
     </ClInclude>
     <ClInclude Include="..\lib\systems\rpk.h">
       <Filter>lib\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\systems\system.h">
+      <Filter>lib\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\systems\panel.h">
+      <Filter>lib\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\config\configData.h">
+      <Filter>lib\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\config\config.h">
+      <Filter>lib\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\singleton.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\root.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\local.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\application.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\timer\timer.h">
+      <Filter>lib\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\message\messages.h">
+      <Filter>lib\messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\math\math.h">
+      <Filter>lib\math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

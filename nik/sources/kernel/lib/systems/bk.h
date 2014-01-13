@@ -1,10 +1,9 @@
 #ifndef BK_H
 #define BK_H
 
-#include "../Singleton.h"
-#include "../process/process.h"
+#include "system.h"
 
-class SystemBk : public Task<SystemBk>, public Singleton<SystemBk>{
+class SystemBk : public System, public Task<SystemBk>, public Singleton<SystemBk>{
 public:
 	SystemBk();
 	CPointer<SystemBk> process();

@@ -1,15 +1,6 @@
-/*! \file low.h
-    \brief Содержит различные низкоуровневые функции и макросы.    
-*/
 #include "low.h"
 
-/**
-* Пишет один байт в порт ввода-вывода.
-* @param port номер порта.
-* @param value байт для записи в порт.
-*/
-void outPort(unsigned short port, unsigned char value)
-{
+void outPort(unsigned short port, unsigned char value){
 	_asm pushfd
 	_asm push eax
 	_asm push edx
@@ -21,13 +12,7 @@ void outPort(unsigned short port, unsigned char value)
 	_asm popfd
 }
 
-/**
-* Читает один байт из порта ввода-вывода.
-* @param port номер порта.
-* @return прочитанный байт
-*/
-unsigned char inPort(unsigned short port)
-{
+unsigned char inPort(unsigned short port){
 	unsigned char value;
 
 	_asm pushfd
@@ -43,19 +28,11 @@ unsigned char inPort(unsigned short port)
 	return value;
 }
 
-/**
-* Функция-заглушка.
-*/
-extern "C" int __cdecl _purecall(void)
-{
+extern "C" int __cdecl _purecall(void){
     return 0;
 }
 
-/**
-* Функция-заглушка.
-*/
-extern "C" _declspec(naked) void _chkstk()
-{
+extern "C" _declspec(naked) void _chkstk(){
 	_asm ret 0
 }
 

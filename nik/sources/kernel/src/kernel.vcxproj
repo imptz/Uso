@@ -11,7 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\lib\Application.cpp" />
+    <ClCompile Include="..\lib\application.cpp" />
+    <ClCompile Include="..\lib\config\config.cpp" />
     <ClCompile Include="..\lib\crc16.cpp" />
     <ClCompile Include="..\lib\crc32.cpp" />
     <ClCompile Include="..\lib\crt.cpp" />
@@ -21,23 +22,28 @@
     <ClCompile Include="..\lib\hdd\hddManager.cpp" />
     <ClCompile Include="..\lib\interrupt\interrupt.cpp" />
     <ClCompile Include="..\lib\low.cpp" />
+    <ClCompile Include="..\lib\math\math.cpp" />
     <ClCompile Include="..\lib\memory\memory.cpp" />
-    <ClCompile Include="..\lib\message\Messages.cpp" />
+    <ClCompile Include="..\lib\message\messages.cpp" />
     <ClCompile Include="..\lib\process\process.cpp" />
     <ClCompile Include="..\lib\serialport\serialport.cpp" />
     <ClCompile Include="..\lib\string.cpp" />
     <ClCompile Include="..\lib\systems\bk.cpp" />
     <ClCompile Include="..\lib\systems\fire.cpp" />
     <ClCompile Include="..\lib\systems\monitoring.cpp" />
+    <ClCompile Include="..\lib\systems\panel.cpp" />
     <ClCompile Include="..\lib\systems\rpk.cpp" />
-    <ClCompile Include="..\lib\timer\Timer.cpp" />
+    <ClCompile Include="..\lib\systems\system.cpp" />
+    <ClCompile Include="..\lib\timer\timer.cpp" />
     <ClCompile Include="..\lib\touchpad\touchpad.cpp" />
     <ClCompile Include="main.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lib\Application.h" />
+    <ClInclude Include="..\lib\application.h" />
+    <ClInclude Include="..\lib\config\config.h" />
+    <ClInclude Include="..\lib\config\configData.h" />
     <ClInclude Include="..\lib\crc16.h" />
     <ClInclude Include="..\lib\crc32.h" />
     <ClInclude Include="..\lib\crt.h" />
@@ -47,22 +53,24 @@
     <ClInclude Include="..\lib\fifo.h" />
     <ClInclude Include="..\lib\hdd\hdd.h" />
     <ClInclude Include="..\lib\hdd\hddManager.h" />
-    <ClInclude Include="..\lib\id.h" />
     <ClInclude Include="..\lib\interrupt\interrupt.h" />
-    <ClInclude Include="..\lib\Local.h" />
+    <ClInclude Include="..\lib\local.h" />
     <ClInclude Include="..\lib\low.h" />
+    <ClInclude Include="..\lib\math\math.h" />
     <ClInclude Include="..\lib\memory\memory.h" />
-    <ClInclude Include="..\lib\message\Messages.h" />
+    <ClInclude Include="..\lib\message\messages.h" />
     <ClInclude Include="..\lib\process\process.h" />
-    <ClInclude Include="..\lib\Root.h" />
+    <ClInclude Include="..\lib\root.h" />
     <ClInclude Include="..\lib\serialport\serialport.h" />
-    <ClInclude Include="..\lib\Singleton.h" />
+    <ClInclude Include="..\lib\singleton.h" />
     <ClInclude Include="..\lib\string.h" />
     <ClInclude Include="..\lib\systems\bk.h" />
     <ClInclude Include="..\lib\systems\fire.h" />
     <ClInclude Include="..\lib\systems\monitoring.h" />
+    <ClInclude Include="..\lib\systems\panel.h" />
     <ClInclude Include="..\lib\systems\rpk.h" />
-    <ClInclude Include="..\lib\timer\Timer.h" />
+    <ClInclude Include="..\lib\systems\system.h" />
+    <ClInclude Include="..\lib\timer\timer.h" />
     <ClInclude Include="..\lib\touchpad\touchpad.h" />
     <ClInclude Include="..\lib\version.h" />
   </ItemGroup>
@@ -121,7 +129,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>false</FunctionLevelLinking>

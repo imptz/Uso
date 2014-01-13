@@ -1,22 +1,6 @@
-/*! \file crc32.cpp
-    \brief Содержит функции рассчета CRC32    
-*/
-
 #include "crc32.h"
 
-//! Рассчитывает и возвращает CRC32 строки
-/*!
-	@param data - указатель на строку
-	@param length - длина строки
-	@return CRC32
-
-	Пример использования:
-
-		char* str = {"123456789"};
-		unsigned int result = calcCRC32(str, 9);
-*/
-unsigned int calcCRC32(unsigned char *data, int length) 
-{ 
+unsigned int calcCRC32(unsigned char *data, int length){ 
 static unsigned long table[] = {
  0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
  0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
@@ -103,8 +87,7 @@ static unsigned long table[] = {
  int tableIndex; 
  unsigned char ch; 
  int i;
- for (i = 0; i < length + 4; i++) 
- { 
+ for (i = 0; i < length + 4; i++){ 
   tableIndex = (result >> 24) & 0xFF; 
   if (i < length) ch = data[i]; 
   else ch = 0x0; 

@@ -13,27 +13,21 @@ SerialDebug::SerialDebug()
 	serialPort->open();
 }
 
-SerialDebug::~SerialDebug()
-{
+SerialDebug::~SerialDebug(){
 	serialPort->close();
 }
 
-void SerialDebug::timerHandler()
-{
-	if (!silentDebugOn)
-	{
-		if (!serialPort->isSendActive() && !fifo->isEmpty())
-		{
+void SerialDebug::timerHandler(){
+	if (!silentDebugOn){
+		if (!serialPort->isSendActive() && !fifo->isEmpty()){
 			serialPort->setNewSendData(fifo);
 			serialPort->startSend();
 		}
 	}
 
-	if (debugInput)
-	{
+	if (debugInput){
 		Fifo<unsigned char>* rFifo = serialPort->getRecvFifo();
-		if (!rFifo->isEmpty())
-		{
+		if (!rFifo->isEmpty()){
 			unsigned char ch;
 			if (rFifo->get(&ch) != 0)
 				debugCommand(ch);
@@ -52,39 +46,32 @@ f			float							-392.0972
 
 */
 
-void SerialDebug::put(char* str, ...)
-{
+void SerialDebug::put(char* str, ...){
 	if (!debugOn)
 		return;
 
 	va_list args;
 	va_start(args, str);
 
-	while (*str != 0)
-	{
-		if (*str == '%') 
-		{
+	while (*str != 0){
+		if (*str == '%'){
 			++str;
 			
 			if (*str == 0) 
 				break;
 
-			if (*str == 's') 
-			{
+			if (*str == 's'){
 				char *substr = va_arg(args, char*);
 		
-				if (substr != nullptr) 
-				{
-					while (*substr != 0) 
-					{
+				if (substr != nullptr){
+					while (*substr != 0){
 						fifo->put(*substr);
 						++substr;
 					}
 				}
 			}
 			else 
-				if (*str == 'u') 
-				{
+				if (*str == 'u'){
 					unsigned int value = va_arg(args, unsigned int);
 					char _str[11] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 							
@@ -93,44 +80,41 @@ void SerialDebug::put(char* str, ...)
 					while (*_pstr != 0)
 						fifo->put(*_pstr++);
 				}
-			else 
-				if (*str == 'x') 
-				{
-					unsigned int value = va_arg(args, unsigned int);
-					char _str[9];
-		
-					Display::getSingleton().toString(value, _str);
-
-					fifo->put('0');
-					fifo->put('x');
-
-					for (unsigned int i = 0; i < 8; ++i)
-						fifo->put(_str[i]);
-				}
 				else 
-					if (*str == 'i') 
-					{
-						int value = va_arg(args, int);
-						char _str[12] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-							
-						char* _pstr = Display::getSingleton().toStringDecimalSigned(value, _str);
+					if (*str == 'x'){
+						unsigned int value = va_arg(args, unsigned int);
+						char _str[9];
+		
+						Display::getSingleton().toString(value, _str);
 
-						while (*_pstr != 0)
-							fifo->put(*_pstr++);
+						fifo->put('0');
+						fifo->put('x');
+
+						for (unsigned int i = 0; i < 8; ++i)
+							fifo->put(_str[i]);
 					}
 					else 
-						if (*str == 'f') 
-						{
-							float value = static_cast<float>(va_arg(args, double));
-							char _str[18] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+						if (*str == 'i'){
+							int value = va_arg(args, int);
+							char _str[12] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 							
-							char* _pstr = Display::getSingleton().toStringFloat(value, _str);
+							char* _pstr = Display::getSingleton().toStringDecimalSigned(value, _str);
 
 							while (*_pstr != 0)
 								fifo->put(*_pstr++);
 						}
 						else 
-							fifo->put(*str); 
+							if (*str == 'f'){
+								float value = static_cast<float>(va_arg(args, double));
+								char _str[18] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+							
+								char* _pstr = Display::getSingleton().toStringFloat(value, _str);
+
+								while (*_pstr != 0)
+									fifo->put(*_pstr++);
+							}
+							else 
+								fifo->put(*str); 
 		}
 		else 
 			fifo->put(*str); 
@@ -141,29 +125,21 @@ void SerialDebug::put(char* str, ...)
 	va_end(args);
 }
 
-void SerialDebug::debugCommand(unsigned char command)
-{
-	switch (command)
-	{
+void SerialDebug::debugCommand(unsigned char command){
+	switch (command){
 		case CTRL_KEY('d'): // включение/выключение отладочных сообщений
-			if (debugOn)
-			{
+			if (debugOn){
 				DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_CYAN, SerialDebug::TEXT_ATTR_BOLD, "Вывод отладочных сообщений выключен.\n");
 				debugOn = false;
-			}
-			else
-			{
+			}else{
 				debugOn = true;
 				DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_CYAN, SerialDebug::TEXT_ATTR_BOLD, "Вывод отладочных сообщений включен.\n");
 			}
 			break;
 		case 'D': // включение/выключение тихого режима отладочных сообщений (сообщения не отправляются на терминал, но запоминаются в буфере)
-			if (silentDebugOn)
-			{
+			if (silentDebugOn){
 				silentDebugOn = false;
-			}
-			else
-			{
+			}else{
 				silentDebugOn = true;
 			}
 			break;
@@ -283,7 +259,6 @@ void SerialDebug::debugCommand(unsigned char command)
 	}
 }
 
-bool SerialDebug::isOn()
-{
+bool SerialDebug::isOn(){
 	return debugOn;
 }

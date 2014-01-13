@@ -56,22 +56,19 @@ _asm \
 } \
 Interrupts::setIdtItem(num, interrupts_funcOffset);
 
-class Interrupts
-{
+class Interrupts{
 private:
 	static const unsigned int IDT_ADDRESS = 0x00002000;
 	static const unsigned int IDT_REG_ADDRESS = 0x00003000;
 	static const unsigned int IDT_DESCRIPTOR_SIZE = 8;
 	static const unsigned int IDT_SIZE = 256 * IDT_DESCRIPTOR_SIZE;
 
-	static void createIdt()
-	{
+	static void createIdt(){
 		memset(reinterpret_cast<unsigned char*>(IDT_ADDRESS), static_cast<unsigned char>(0), IDT_SIZE);
 
 		*(reinterpret_cast<unsigned short*>(IDT_REG_ADDRESS)) = IDT_SIZE - 1;
 		*(reinterpret_cast<unsigned int*>(IDT_REG_ADDRESS + 2)) = IDT_ADDRESS;
-		_asm
-		{
+		_asm{
 			mov eax, IDT_REG_ADDRESS
 			lidt fword ptr [eax]
 		}	
@@ -81,8 +78,7 @@ public:
 	/*
 	/	этот метод НЕ ДОЛЖЕН вызываться напрямую, т.к. offset вычисляется относительный. Следует использовать макрос SET_INT_HANDLER
 	*/
-	static void setIdtItem(int index, unsigned int offset) 
-	{
+	static void setIdtItem(int index, unsigned int offset){
 		const unsigned int IDT_DESCRIPTOR_FLAGS = 0x00008e00;
 		const unsigned int IDT_SEGMENT_SELECTOR = 0x00080000;
 
@@ -94,10 +90,8 @@ public:
 	}
 
 private:
-	static void relocationHardwareInterrupts()
-	{
-		_asm
-		{
+	static void relocationHardwareInterrupts(){
+		_asm{
 			mov    al, 0x11
 			out    0x20, al
 			out    0xA0, al        
@@ -130,8 +124,7 @@ private:
 	}
 
 public:
-	static void initInterrupts()
-	{
+	static void initInterrupts(){
 		createIdt();
 	
 		SET_INT_HANDLER(0, defaultProcessorInterruptHandler0)
@@ -193,18 +186,14 @@ public:
 
 	static const unsigned int HARDWARE_VECTOR_OFFSET = 32;
 
-	static void enablingHardwareInterrupt(int intNumber)
-	{
+	static void enablingHardwareInterrupt(int intNumber){
 		unsigned char num;
-		if (intNumber < 8)
-		{
+		if (intNumber < 8){
 			num = ~(1 << intNumber);
 			_asm in		al,0x21
 			_asm and	al,num
 			_asm out    0x21, al 
-		}
-		else
-		{
+		}else{
 			num = ~(1 << (intNumber - 8));
 			_asm in		al,0xa1
 			_asm and	al,num
@@ -212,18 +201,14 @@ public:
 		}
 	}
 
-	static void disablingHardwareInterrupt(int intNumber)
-	{
+	static void disablingHardwareInterrupt(int intNumber){
 		unsigned char num;
-		if (intNumber < 8)
-		{
+		if (intNumber < 8){
 			num = 1 << intNumber;
 			_asm in		al,0x21
 			_asm or		al,num
 			_asm out    0x21, al 
-		}
-		else
-		{
+		}else{
 			num = 1 << (intNumber - 8);
 			_asm in		al,0xa1
 			_asm or		al,num
