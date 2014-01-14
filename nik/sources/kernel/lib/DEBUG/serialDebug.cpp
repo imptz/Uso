@@ -256,9 +256,25 @@ void SerialDebug::debugCommand(unsigned char command){
 			DEBUG_PUT_COLOR(COLOR_BLUE, "   CTRL + k  -  сброс всех входов в неопределенное состояние\n")
 			DEBUG_PUT_COLOR(COLOR_BLUE, "          h  -  вывод справки\n")
 			break;
+		case '=':
+			sendMessage(Message(MESSAGE_FROM_OFFSET_SERIAL_DEBUG, COMMAND_DEBUG_TEST_CONFIG_UPDATE, 1, 0));
+			break;
+		case CTRL_KEY('='):
+			sendMessage(Message(MESSAGE_FROM_OFFSET_SERIAL_DEBUG, COMMAND_DEBUG_TEST_CONFIG_UPDATE, 0, 0));
+			break;
 	}
 }
 
 bool SerialDebug::isOn(){
 	return debugOn;
+}
+
+void SerialDebug::on(){
+	debugInput = true;
+	debugOn = true;
+}
+
+void SerialDebug::off(){
+	debugInput = false;
+	debugOn = false;
 }

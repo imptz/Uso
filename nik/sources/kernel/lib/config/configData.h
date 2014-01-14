@@ -3,6 +3,8 @@
 
 #include "../math/math.h"
 
+
+
 enum LOGIC_FUNCTION{
 	LOGIC_FUNCTION_SEARCHING = 0,
 	LOGIC_FUNCTION_COOLING_LINE = 1,
@@ -133,6 +135,8 @@ struct ConfigData_penabak{
 };
 
 struct ConfigData{
+	static const unsigned int VERSION = 1;
+
 	static const unsigned int DATA_VALID_TRUE = 1;
 	static const unsigned int DATA_VALID_FALSE = 0;
 	unsigned int dataValid;

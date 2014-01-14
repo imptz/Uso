@@ -2,13 +2,19 @@
 #include "../crc32.h"
 #include "../debug/serialDebug.h"
 #include "../hdd/hddManager.h"
+#include "../debug/serialDebug.h"
+
+const SERIAL_PORT Config::UPDATE_SERIAL_PORT = SERIAL_PORT_1;
+const SERIAL_PORT_SPEED Config::SERIAL_PORT_UPDATE_SPEED = SERIAL_PORT_SPEED_57600;
 
 Config::Config()
-	:	Task(&Config::processStop), pConfigData(new ConfigData), hddBuffer(nullptr), hddTaskId(HddManager::UNDEFINED_ID), fReadWrite(false)
+	:	Task(&Config::processStop), pConfigData(new ConfigData), hddBuffer(nullptr), hddTaskId(HddManager::UNDEFINED_ID), fReadWrite(false), fUpdate(false), 
+	serialPort(SerialPortManager::getSingleton().getPort(UPDATE_SERIAL_PORT))
 {
 	Process::getSingleton().addTask(this);
+	serialPort->open();
 	SerialDebug::getSingleton().addReceiver(this);
-}
+	}
 
 Config::~Config(){
 	delete pConfigData;
@@ -51,7 +57,6 @@ bool Config::writeConfigDataToHdd(){
 	if (hddTaskId != HddManager::UNDEFINED_ID){
 		setPtr(&Config::processWriteToHdd);
 	}else{
-		SAFE_DELETE_ARRAY(hddBuffer)
 		return false;
 	}
 
@@ -66,7 +71,16 @@ CPointer<Config> Config::processStop(){
 CPointer<Config> Config::processReadFromHdd(){
 	if(!HddManager::getSingleton().isTaskExecute(hddTaskId)){
 		memcpy(pConfigData, hddBuffer, sizeof(ConfigData));
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_READ_FROM_HDD_COMPLETE, MESSAGE_CONFIG_HDD_COMPLETE_OK, 0));
+
+		unsigned int crc = calcDataCrc();
+		if(pConfigData->dataCrc == crc){
+			pConfigData->dataValid = true;
+			sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_READ_COMPLETE, MESSAGE_CONFIG_HDD_COMPLETE_OK, 0));
+		}else{
+			pConfigData->dataValid = false;
+			sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_READ_COMPLETE, MESSAGE_CONFIG_HDD_COMPLETE_FAILED, 0));
+		}
+
 		fReadWrite = false;
 		return &Config::processStop;
 	}
@@ -76,12 +90,82 @@ CPointer<Config> Config::processReadFromHdd(){
 
 CPointer<Config> Config::processWriteToHdd(){
 	if(!HddManager::getSingleton().isTaskExecute(hddTaskId)){
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_WRITE_TO_HDD_COMPLETE, MESSAGE_CONFIG_HDD_COMPLETE_OK, 0));
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_WRITE_COMPLETE, MESSAGE_CONFIG_HDD_COMPLETE_OK, 0));
 		fReadWrite = false;
 		return &Config::processStop;
 	}
 
 	return &Config::processWriteToHdd;
+}
+
+bool Config::readConfig(){
+	return readConfigDataFromHdd();
+}
+
+bool Config::writeConfig(){
+	pConfigData->dataCrc = calcDataCrc();
+	return writeConfigDataToHdd();
+}
+
+bool Config::update(){
+	if(fReadWrite || fUpdate)
+		return false;
+
+	fUpdate = true;
+	SerialDebug::getSingleton().off();
+	serialPort->getRecvFifo()->clear();
+	setPtr(&Config::processUpdateConnection);
+
+	return true;
+}
+
+void Config::cancelUpdate(){
+	if(fUpdate){
+		fUpdate = false;
+		setPtr(&Config::processStop);
+		SerialDebug::getSingleton().on();
+	}
+}
+
+CPointer<Config> Config::processUpdateConnection(){
+	if (serialPort->getRecvFifo()->getDataSize() >= 4){
+		unsigned int data[2];
+		serialPort->getRecvFifo()->get(reinterpret_cast<unsigned char*>(&data[1]), 4);
+		if ((data[1] & 0x0000ffff) == ConfigData::VERSION){
+			data[0] = CONNECT_ANSWER_CODE;
+			unsigned int yr = data[1] & 0xffff0000;
+			data[1] = yr + ConfigData::VERSION;
+			serialPort->setNewSendData(reinterpret_cast<unsigned char*>(&data[0]), 8);
+			serialPort->startSend();
+
+			return &Config::processUpdateD;
+		}else{
+			data[0] = DOWNLOAD_RESULT_FAULT;
+			unsigned int yr = data[1] & 0xffff0000;
+			data[1] = yr + ConfigData::VERSION;
+			serialPort->setNewSendData(reinterpret_cast<unsigned char*>(&data[0]), 8);
+			serialPort->startSend();
+			return &Config::processUpdateFailedConnection;
+		}
+	}
+
+	return &Config::processUpdateConnection;
+}
+
+CPointer<Config> Config::processUpdateD(){
+	cancelUpdate();
+	sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_UPDATE_COMPLETE, MESSAGE_CONFIG_UPDATE_COMPLETE_OK, 0));
+	return &Config::processStop;
+}
+
+CPointer<Config> Config::processUpdateFailedConnection(){
+	if (!serialPort->isSendActive()){
+		cancelUpdate();
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_UPDATE_COMPLETE, MESSAGE_CONFIG_UPDATE_COMPLETE_FAILED, MESSAGE_CONFIG_UPDATE_FAILED_CODE_CONNECTION));
+		return &Config::processStop;
+	}
+
+	return &Config::processUpdateFailedConnection;
 }
 
 void Config::onMessage(Message message){
@@ -174,7 +258,9 @@ void Config::onMessage(Message message){
 						//	DEBUG_PUT("   адрес контроллера: %u\n", pConfigData->getConfigDataStructPenaBak()[i]->address)
 						//	DEBUG_PUT("   номер входа:       %u\n\n", pConfigData->getConfigDataStructPenaBak()[i]->numberOnDevice)
 						//}
-					break;
+						break;
+					case SerialDebug::COMMAND_DEBUG_CONFIG:
+						break;
 				}
 			break;
 		}
