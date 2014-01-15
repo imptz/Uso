@@ -27,19 +27,33 @@ private:
 	static const unsigned int DISCONNECT_CODE = 0x8e94ac13;
 	static const unsigned int DOWNLOAD_RESULT_OK = 0x00000000;
 	static const unsigned int DOWNLOAD_RESULT_FAULT = 0xffffffff;
+	
+	static const unsigned int LENGTH_SIZE = 4;
+	static const unsigned int CRC_SIZE = 4;
 
+	unsigned int totalSize;
+	unsigned int loadSize;
+	unsigned int loadProgress;
+	
+	unsigned int errorCode;
+
+	unsigned char* loadBuffer;
 
 	virtual void onMessage(Message message);
 	unsigned int calcDataCrc();
 	bool readConfigDataFromHdd();
 	bool writeConfigDataToHdd();
+	unsigned int getLoadProgress();
 
 public:
 	static const unsigned int MESSAGE_CONFIG_HDD_COMPLETE_OK = 0;
 	static const unsigned int MESSAGE_CONFIG_HDD_COMPLETE_FAILED = 1;
 	static const unsigned int MESSAGE_CONFIG_UPDATE_COMPLETE_OK = 0;
 	static const unsigned int MESSAGE_CONFIG_UPDATE_COMPLETE_FAILED = 1;
-	static const unsigned int MESSAGE_CONFIG_UPDATE_FAILED_CODE_CONNECTION = 1;
+	static const unsigned int MESSAGE_CONFIG_UPDATE_FAILED_CODE_CONNECTION_VERSION = 1;
+	static const unsigned int MESSAGE_CONFIG_UPDATE_FAILED_CODE_TOTAL_SIZE = 2;
+	static const unsigned int MESSAGE_CONFIG_UPDATE_FAILED_CODE_CRC = 3;
+	static const unsigned int MESSAGE_CONFIG_UPDATE_FAILED_CODE_CONSTANTS_SIZE = 4;
 
 	Config();
 	~Config();
@@ -48,8 +62,12 @@ public:
 	CPointer<Config> processReadFromHdd();
 	CPointer<Config> processWriteToHdd();
 	CPointer<Config> processUpdateConnection();
-	CPointer<Config> processUpdateD();
+	CPointer<Config> processUpdateGetLength();
+	CPointer<Config> processUpdateLoadData();
+	CPointer<Config> processUpdateApply();
 	CPointer<Config> processUpdateFailedConnection();
+	
+	CPointer<Config> processUpdateD();
 
 	ConfigData* getConfigData();
 	bool readConfig();
@@ -57,4 +75,6 @@ public:
 
 	bool update();
 	void cancelUpdate();
+
+	bool updateApply();
 };

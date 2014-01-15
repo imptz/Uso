@@ -9,7 +9,7 @@ const SERIAL_PORT_SPEED Config::SERIAL_PORT_UPDATE_SPEED = SERIAL_PORT_SPEED_576
 
 Config::Config()
 	:	Task(&Config::processStop), pConfigData(new ConfigData), hddBuffer(nullptr), hddTaskId(HddManager::UNDEFINED_ID), fReadWrite(false), fUpdate(false), 
-	serialPort(SerialPortManager::getSingleton().getPort(UPDATE_SERIAL_PORT))
+	serialPort(SerialPortManager::getSingleton().getPort(UPDATE_SERIAL_PORT)), loadProgress(0), errorCode(0), loadBuffer(nullptr)
 {
 	Process::getSingleton().addTask(this);
 	serialPort->open();
@@ -27,6 +27,10 @@ ConfigData* Config::getConfigData(){
 unsigned int Config::calcDataCrc(){
 	unsigned int headSize = sizeof(pConfigData->dataCrc) + sizeof(pConfigData->dataValid);
 	return calcCRC32(reinterpret_cast<unsigned char*>(pConfigData) + headSize, sizeof(ConfigData) - headSize);
+}
+
+unsigned int Config::getLoadProgress(){
+	return loadProgress;
 }
 
 bool Config::readConfigDataFromHdd(){
@@ -111,6 +115,7 @@ bool Config::update(){
 	if(fReadWrite || fUpdate)
 		return false;
 
+	errorCode = 0;
 	fUpdate = true;
 	SerialDebug::getSingleton().off();
 	serialPort->getRecvFifo()->clear();
@@ -122,6 +127,7 @@ bool Config::update(){
 void Config::cancelUpdate(){
 	if(fUpdate){
 		fUpdate = false;
+		SAFE_DELETE_ARRAY(loadBuffer)
 		setPtr(&Config::processStop);
 		SerialDebug::getSingleton().on();
 	}
@@ -138,13 +144,16 @@ CPointer<Config> Config::processUpdateConnection(){
 			serialPort->setNewSendData(reinterpret_cast<unsigned char*>(&data[0]), 8);
 			serialPort->startSend();
 
-			return &Config::processUpdateD;
+			totalSize = 0;
+			return &Config::processUpdateGetLength;
 		}else{
 			data[0] = DOWNLOAD_RESULT_FAULT;
 			unsigned int yr = data[1] & 0xffff0000;
 			data[1] = yr + ConfigData::VERSION;
 			serialPort->setNewSendData(reinterpret_cast<unsigned char*>(&data[0]), 8);
 			serialPort->startSend();
+
+			errorCode = MESSAGE_CONFIG_UPDATE_FAILED_CODE_CONNECTION_VERSION;
 			return &Config::processUpdateFailedConnection;
 		}
 	}
@@ -152,16 +161,77 @@ CPointer<Config> Config::processUpdateConnection(){
 	return &Config::processUpdateConnection;
 }
 
-CPointer<Config> Config::processUpdateD(){
+CPointer<Config> Config::processUpdateGetLength(){
+	static const unsigned int LENGTH_SIZE = 4;
+	static const unsigned int CRC_SIZE = 4;
+	static const unsigned int MAX_LOAD_SIZE = sizeof(ConfigData) + 6 * 10 + CRC_SIZE;
+
+	if (serialPort->getRecvFifo()->getDataSize() >= LENGTH_SIZE){
+		serialPort->getRecvFifo()->get(reinterpret_cast<unsigned char*>(&totalSize), LENGTH_SIZE);
+
+		totalSize += CRC_SIZE;
+
+		if (totalSize <= MAX_LOAD_SIZE){
+			loadSize = 0;
+			SAFE_DELETE_ARRAY(loadBuffer)
+			loadBuffer = new unsigned char[totalSize];
+
+			return &Config::processUpdateLoadData;
+		}else{
+			errorCode = MESSAGE_CONFIG_UPDATE_FAILED_CODE_TOTAL_SIZE;
+			return &Config::processUpdateFailedConnection;
+		}
+	}
+
+	return &Config::processUpdateGetLength;
+}
+
+CPointer<Config> Config::processUpdateLoadData(){
+	unsigned int blockSize = serialPort->getRecvFifo()->getDataSize();
+	if (loadSize + blockSize > totalSize)
+		blockSize = totalSize - loadSize;
+
+	blockSize = serialPort->getRecvFifo()->get(&loadBuffer[loadSize], blockSize);
+	loadSize += blockSize;
+	loadProgress = (loadSize * 100) / totalSize;
+
+	if (loadSize == totalSize){
+		if (calcCRC32(loadBuffer, totalSize - CRC_SIZE) == *reinterpret_cast<unsigned int*>(&loadBuffer[loadSize - CRC_SIZE])){
+			unsigned int data[2];
+			data[0] = DISCONNECT_CODE;
+			data[1] = DOWNLOAD_RESULT_OK;
+			serialPort->setNewSendData(reinterpret_cast<unsigned char*>(&data[0]), 8);
+			serialPort->startSend();
+			return &Config::processUpdateApply;
+		}else{
+			unsigned int data[2];
+			data[0] = DISCONNECT_CODE;
+			data[1] = DOWNLOAD_RESULT_FAULT;
+			serialPort->setNewSendData(reinterpret_cast<unsigned char*>(&data[0]), 8);
+			serialPort->startSend();
+			errorCode = MESSAGE_CONFIG_UPDATE_FAILED_CODE_CRC;
+			return &Config::processUpdateFailedConnection;
+		}
+	}
+
+	return &Config::processUpdateLoadData;
+}
+
+CPointer<Config> Config::processUpdateApply(){
+	if(updateApply())
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_UPDATE_COMPLETE, MESSAGE_CONFIG_UPDATE_COMPLETE_OK, 0));
+	else{
+		return &Config::processUpdateFailedConnection;
+	}
+
 	cancelUpdate();
-	sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_UPDATE_COMPLETE, MESSAGE_CONFIG_UPDATE_COMPLETE_OK, 0));
 	return &Config::processStop;
 }
 
 CPointer<Config> Config::processUpdateFailedConnection(){
 	if (!serialPort->isSendActive()){
 		cancelUpdate();
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_UPDATE_COMPLETE, MESSAGE_CONFIG_UPDATE_COMPLETE_FAILED, MESSAGE_CONFIG_UPDATE_FAILED_CODE_CONNECTION));
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_UPDATE_COMPLETE, MESSAGE_CONFIG_UPDATE_COMPLETE_FAILED, errorCode));
 		return &Config::processStop;
 	}
 
@@ -265,4 +335,14 @@ void Config::onMessage(Message message){
 			break;
 		}
 	}
+}
+
+bool Config::updateApply(){
+	ConfigData* pNewConfigData = new ConfigData;
+
+
+
+
+	errorCode = MESSAGE_CONFIG_UPDATE_FAILED_CODE_CONSTANTS_SIZE;
+	return false;
 }
