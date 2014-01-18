@@ -18,8 +18,18 @@ Application::~Application(){
 }
 
 void Application::start(){
+	Display::getSingleton().print(LOCAL_MESSAGE_TEXT_INITIALIZATION, 33, 7, true);
+	Display::getSingleton().printUInt(sizeof(ConfigData), 0, 0);
+
 	SerialDebug::getSingleton().addReceiver(this);
 	Config::getSingleton().addReceiver(this);
+
+	memset(Config::getSingleton().getConfigData(), 0x6c, sizeof(ConfigData));
+
+	if(Config::getSingleton().writeConfig())
+		Display::getSingleton().print("start writeConfigDataToHdd OK", 0, 2);
+	else
+		Display::getSingleton().print("start writeConfigDataToHdd FAILED", 0, 2);
 
 	for(;;){
 		MessageReceiver::messagesProccess();

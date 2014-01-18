@@ -3,8 +3,6 @@
 
 #include "../math/math.h"
 
-
-
 enum LOGIC_FUNCTION{
 	LOGIC_FUNCTION_SEARCHING = 0,
 	LOGIC_FUNCTION_COOLING_LINE = 1,
@@ -15,6 +13,9 @@ enum LOGIC_FUNCTION{
 };
 
 struct ConfigData_constants{
+	static const unsigned short BLOCK_CODE = 0;
+	static const unsigned int BLOCK_SIZE = 30;
+
 	unsigned char maxPR;
 	unsigned char timeOutBeforeStart;
 	unsigned int timeOutBeforeFinish;
@@ -40,7 +41,10 @@ struct ConfigData_constants{
 	bool delayAfterReset;
 };
 
-struct ConfigData_pRPosition{
+struct ConfigData_prPosition{
+	static const unsigned short BLOCK_CODE = 1;
+	static const unsigned int BLOCK_SIZE = 19;
+
 	unsigned char projectNumber;
 	unsigned char address;
 	Point3<float> position;
@@ -50,6 +54,9 @@ struct ConfigData_pRPosition{
 };
 
 struct ConfigData_ioBk{
+	static const unsigned short BLOCK_CODE = 2;
+	static const unsigned int BLOCK_SIZE = 6;
+
 	unsigned char bkAddress;
 	unsigned char numberOnDevice;
 
@@ -79,12 +86,18 @@ struct ConfigData_ioBk{
 };
 
 struct ConfigData_ioSerial{
+	static const unsigned short BLOCK_CODE = 3;
+	static const unsigned int BLOCK_SIZE = 3;
+
 	unsigned char address;
 	unsigned char normalState;
 	unsigned char projectNumber;
 };
 
 struct ConfigData_initSignal{
+	static const unsigned short BLOCK_CODE = 4;
+	static const unsigned int BLOCK_SIZE = 5;
+
 	LOGIC_FUNCTION function;
 	unsigned short number;
 	unsigned int firstInputNumber;
@@ -94,6 +107,9 @@ struct ConfigData_initSignal{
 };
 
 struct ConfigData_program{
+	static const unsigned short BLOCK_CODE = 5;
+	static const unsigned int BLOCK_SIZE = 15;
+
 	unsigned int initSignalNumber; 
 	unsigned char prNumber;
 	LOGIC_FUNCTION function;
@@ -104,6 +120,9 @@ struct ConfigData_program{
 };
 
 struct ConfigData_fv300{
+	static const unsigned short BLOCK_CODE = 6;
+	static const unsigned int BLOCK_SIZE = 13;
+
 	unsigned char address;
 	unsigned char prNumber;
 	unsigned char projectNumber;
@@ -112,6 +131,9 @@ struct ConfigData_fv300{
 };
 
 struct ConfigData_trajectory{
+	static const unsigned short BLOCK_CODE = 7;
+	static const unsigned int BLOCK_SIZE = 12;
+
 	unsigned char prNumber;
 	unsigned char trajectoryNumber;
 	unsigned short pointNumber;
@@ -121,6 +143,9 @@ struct ConfigData_trajectory{
 };
 
 struct ConfigData_pressure{
+	static const unsigned short BLOCK_CODE = 8;
+	static const unsigned int BLOCK_SIZE = 5;
+
 	unsigned char prNumber;
 	unsigned short arNumber;
 	unsigned char pressure;
@@ -128,6 +153,9 @@ struct ConfigData_pressure{
 };
 
 struct ConfigData_penabak{
+	static const unsigned short BLOCK_CODE = 9;
+	static const unsigned int BLOCK_SIZE = 4;
+
 	unsigned char number;
 	unsigned char level;
 	unsigned char address;
@@ -148,7 +176,7 @@ struct ConfigData{
 
 	static const unsigned int PR_POSITIONS_SIZE = 32;
 	unsigned int prPositions_count;
-	ConfigData_pRPosition pRPositions[PR_POSITIONS_SIZE];
+	ConfigData_prPosition prPositions[PR_POSITIONS_SIZE];
 
 	static const unsigned int IOBK_SIZE = 16 * 20;
 	unsigned int ioBk_count;
@@ -180,7 +208,7 @@ struct ConfigData{
 
 	static const unsigned int PENABAK_SIZE = 512;
 	unsigned int penabak_count;
-	ConfigData_penabak ppenabak[PENABAK_SIZE];
+	ConfigData_penabak penabak[PENABAK_SIZE];
 };
 
 #endif

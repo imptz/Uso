@@ -50,10 +50,24 @@ public:
 	static const unsigned int MESSAGE_CONFIG_HDD_COMPLETE_FAILED = 1;
 	static const unsigned int MESSAGE_CONFIG_UPDATE_COMPLETE_OK = 0;
 	static const unsigned int MESSAGE_CONFIG_UPDATE_COMPLETE_FAILED = 1;
-	static const unsigned int MESSAGE_CONFIG_UPDATE_FAILED_CODE_CONNECTION_VERSION = 1;
-	static const unsigned int MESSAGE_CONFIG_UPDATE_FAILED_CODE_TOTAL_SIZE = 2;
-	static const unsigned int MESSAGE_CONFIG_UPDATE_FAILED_CODE_CRC = 3;
-	static const unsigned int MESSAGE_CONFIG_UPDATE_FAILED_CODE_CONSTANTS_SIZE = 4;
+	
+	static const unsigned int UPDATE_FAILED_CODE_CONNECTION_VERSION = 1;
+	static const unsigned int UPDATE_FAILED_CODE_TOTAL_SIZE = 2;
+	static const unsigned int UPDATE_FAILED_CODE_CRC = 3;
+	static const unsigned int UPDATE_FAILED_CODE_BLOCK_CODE = 4;
+	static const unsigned int UPDATE_FAILED_CODE_CONSTANTS_SIZE = 5;
+	static const unsigned int UPDATE_FAILED_CODE_PR_POSITIONS_SIZE = 6;
+	static const unsigned int UPDATE_FAILED_CODE_IOBK_SIZE = 7;
+	static const unsigned int UPDATE_FAILED_CODE_IOBK_OUTPUT_FUNCTION_GROUP_UNKNOWN = 8;
+	static const unsigned int UPDATE_FAILED_CODE_IOBK_INPUT_FUNCTION_GROUP_UNKNOWN = 9;
+	static const unsigned int UPDATE_FAILED_CODE_IOSERIAL_SIZE = 10;
+	static const unsigned int UPDATE_FAILED_CODE_INIT_SIGNAL_SIZE = 11;
+	static const unsigned int UPDATE_FAILED_CODE_PROGRAM_SIZE = 12;
+	static const unsigned int UPDATE_FAILED_CODE_IOBK_PROGRAM_FUNCTION_UNKNOWN = 13;
+	static const unsigned int UPDATE_FAILED_CODE_FV300_SIZE = 14;
+	static const unsigned int UPDATE_FAILED_CODE_TRAJECTORY_SIZE = 15;
+	static const unsigned int UPDATE_FAILED_CODE_PRESSURE_SIZE = 16;
+	static const unsigned int UPDATE_FAILED_CODE_PENABAK_SIZE = 17;
 
 	Config();
 	~Config();
@@ -76,5 +90,17 @@ public:
 	bool update();
 	void cancelUpdate();
 
-	bool updateApply();
+	unsigned char getCharFromLoadData(unsigned char **loadData);
+	unsigned char getShortFromLoadData(unsigned char **loadData);
+	unsigned int updateApply();
+	bool applyConstants(unsigned char** loadData, ConfigData* pNewConfigData);
+	bool applyPrPosition(unsigned char** loadData, ConfigData* pNewConfigData);
+	bool applyIoBk(unsigned char** loadData, ConfigData* pNewConfigData);
+	bool applyIoSerial(unsigned char** loadData, ConfigData* pNewConfigData);
+	bool applyInitSignal(unsigned char** loadData, ConfigData* pNewConfigData);
+	bool applyProgram(unsigned char** loadData, ConfigData* pNewConfigData);
+	bool applyFv300(unsigned char** loadData, ConfigData* pNewConfigData);
+	bool applyTrajectory(unsigned char** loadData, ConfigData* pNewConfigData);
+	bool applyPressure(unsigned char** loadData, ConfigData* pNewConfigData);
+	bool applyPenabak(unsigned char** loadData, ConfigData* pNewConfigData);
 };
