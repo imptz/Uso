@@ -38,7 +38,7 @@ struct ConfigData_constants{
 	bool requestUserBeforeSearch;
 	bool autoPrToZero;
 	int timeRepeatSearch;
-	bool delayAfterReset;
+	int delayAfterReset;
 };
 
 struct ConfigData_prPosition{
@@ -51,6 +51,7 @@ struct ConfigData_prPosition{
 	Point2<float> orientation;
 	unsigned char networkIndexNumber;
 	Point3<float> axis;
+	unsigned char zatvorCount;
 };
 
 struct ConfigData_ioBk{

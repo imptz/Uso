@@ -68,6 +68,7 @@ public:
 	static const unsigned int UPDATE_FAILED_CODE_TRAJECTORY_SIZE = 15;
 	static const unsigned int UPDATE_FAILED_CODE_PRESSURE_SIZE = 16;
 	static const unsigned int UPDATE_FAILED_CODE_PENABAK_SIZE = 17;
+	static const unsigned int UPDATE_FAILED_CODE_SAVE = 18;
 
 	Config();
 	~Config();
@@ -78,7 +79,7 @@ public:
 	CPointer<Config> processUpdateConnection();
 	CPointer<Config> processUpdateGetLength();
 	CPointer<Config> processUpdateLoadData();
-	CPointer<Config> processUpdateApply();
+	CPointer<Config> processUpdateSave();
 	CPointer<Config> processUpdateFailedConnection();
 	
 	CPointer<Config> processUpdateD();
@@ -91,7 +92,7 @@ public:
 	void cancelUpdate();
 
 	unsigned char getCharFromLoadData(unsigned char **loadData);
-	unsigned char getShortFromLoadData(unsigned char **loadData);
+	unsigned short getShortFromLoadData(unsigned char **loadData);
 	unsigned int updateApply();
 	bool applyConstants(unsigned char** loadData, ConfigData* pNewConfigData);
 	bool applyPrPosition(unsigned char** loadData, ConfigData* pNewConfigData);
@@ -103,4 +104,7 @@ public:
 	bool applyTrajectory(unsigned char** loadData, ConfigData* pNewConfigData);
 	bool applyPressure(unsigned char** loadData, ConfigData* pNewConfigData);
 	bool applyPenabak(unsigned char** loadData, ConfigData* pNewConfigData);
+
+	//void saveConfig(pNewConfigData)
+	void printConfig();
 };

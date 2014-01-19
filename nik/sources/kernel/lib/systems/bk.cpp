@@ -8,9 +8,5 @@ SystemBk::SystemBk()
 }
 
 CPointer<SystemBk> SystemBk::process(){
-	static int p = 0;
-
-	Display::getSingleton().printUInt(p++, 10, 10);
-
 	return &SystemBk::process;
 }

@@ -21,6 +21,8 @@ void Application::start(){
 	SerialDebug::getSingleton().addReceiver(this);
 	Config::getSingleton().addReceiver(this);
 
+	Config::getSingleton().readConfig();
+
 	for(;;){
 		MessageReceiver::messagesProccess();
 		Process::getSingleton().step();
@@ -33,48 +35,27 @@ void Application::onMessage(Message message){
 	switch(message.from){
 		case MESSAGE_FROM_OFFSET_CONFIG:
 			switch(message.msg){
-				case MESSAGE_CONFIG_WRITE_COMPLETE:
-					Display::getSingleton().print("complete writeConfigDataToHdd", 0, 3);
-					switch (message.par1){
-						case Config::MESSAGE_CONFIG_HDD_COMPLETE_OK:
-							Display::getSingleton().print(" OK", 31, 3);
-							memset(Config::getSingleton().getConfigData(), 0x3b, sizeof(ConfigData));
-							if(Config::getSingleton().readConfig())
-								Display::getSingleton().print("start readConfigDataFromHdd OK", 0, 4);
-							else
-								Display::getSingleton().print("start readConfigDataFromHdd FAILED", 0, 4);
-							break;
-						case Config::MESSAGE_CONFIG_HDD_COMPLETE_FAILED:
-							Display::getSingleton().print(" FAILED", 31, 3);
-							break;
-					}
-					break;
 				case MESSAGE_CONFIG_READ_COMPLETE:
-					Display::getSingleton().print("complete readConfigDataFromHdd", 0, 5);
+					Display::getSingleton().print("complete readConfigDataFromHdd", 0, 22);
 					switch (message.par1){
 						case Config::MESSAGE_CONFIG_HDD_COMPLETE_OK:
-							Display::getSingleton().print(" OK", 31, 5);
-							Display::getSingleton().print(" verify  ", 39, 5);
-							if(Config::getSingleton().getConfigData()->dataValid)
-								Display::getSingleton().print(" OK  ", 48, 5);
-							else
-								Display::getSingleton().print(" FAILED  ", 48, 5);
+							Display::getSingleton().print(" OK", 31, 22);
 							break;
 						case Config::MESSAGE_CONFIG_HDD_COMPLETE_FAILED:
-							Display::getSingleton().print(" FAILED", 31, 5);
+							Display::getSingleton().print(" FAILED", 31, 22);
 							break;
 					}
 					break;
 				case MESSAGE_CONFIG_UPDATE_COMPLETE:
-					Display::getSingleton().print("                                ", 0, 15);
-					Display::getSingleton().print("MESSAGE_CONFIG_UPDATE_COMPLETE ", 0, 16);
+					Display::getSingleton().print("                                ", 0, 23);
+					Display::getSingleton().print("MESSAGE_CONFIG_UPDATE_COMPLETE ", 0, 24);
 					switch (message.par1){
 						case Config::MESSAGE_CONFIG_UPDATE_COMPLETE_OK:
-							Display::getSingleton().print("OK", 31, 16);
+							Display::getSingleton().print("OK", 31, 24);
 							break;
 						case Config::MESSAGE_CONFIG_UPDATE_COMPLETE_FAILED:
-							Display::getSingleton().print("FAILED ", 31, 16);
-							Display::getSingleton().printUInt(message.par2, 38, 16);
+							Display::getSingleton().print("FAILED ", 31, 24);
+							Display::getSingleton().printUInt(message.par2, 38, 24);
 							break;
 					}
 					break;
@@ -88,8 +69,8 @@ void Application::onMessage(Message message){
 							Config::getSingleton().cancelUpdate();
 							break;
 						case 1:
-							Display::getSingleton().print("                                                             ", 0, 16);
-							Display::getSingleton().print("COMMAND_DEBUG_TEST_CONFIG_UPDATE", 0, 15);
+							Display::getSingleton().print("                                                             ", 0, 24);
+							Display::getSingleton().print("COMMAND_DEBUG_TEST_CONFIG_UPDATE", 0, 23);
 							Config::getSingleton().update();
 							break;
 					}
