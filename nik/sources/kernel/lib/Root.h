@@ -11,7 +11,11 @@
 #include "message\messages.h"
 #include "process\process.h"
 #include "systems\bk.h"
-#include "systems\panel.h"
+#include "systems\pws.h"
+#include "log\Log.h"
+#include "clock\clock.h"
+#include "config\Config.h"
+#include "controls\UI.h"
 
 class Root : public Singleton<Root>{
 private:
@@ -25,6 +29,10 @@ private:
 	Process* pProcess;
 	SystemPanel* pSystemPanel;
 	SystemBk* pSystemBk;
+	Log* pLog;
+	Clock* pClock;
+	Config* pConfig;
+	UI* pUI;
 
 	Application* pApplication;
 		
@@ -55,11 +63,19 @@ public:
 
 		if (SystemPanel::getSingletonPtr() == nullptr)
 			pSystemPanel = new SystemPanel();
-
-		if (SystemBk::getSingletonPtr() == nullptr)
-			pSystemBk = new SystemBk();
-
 		_asm sti
+
+		if (Log::getSingletonPtr() == nullptr)
+			pLog = new Log();
+
+		if (Clock::getSingletonPtr() == nullptr)
+			pClock = new Clock();
+
+		if (Config::getSingletonPtr() == nullptr)
+			pConfig = new Config();
+
+		if (UI::getSingletonPtr() == nullptr)
+			pUI = new UI();
 
 		if (Application::getSingletonPtr() == nullptr)
 			pApplication = new Application();

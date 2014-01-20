@@ -89,7 +89,7 @@
 #define LOCAL_TOOLS_UPDATE_PC_LOAD_DATA_TEXT   "Получение данных:     %"
 #define LOCAL_TOOLS_UPDATE_PC_PROCESS_TEXT     "Обновление конфигурации"
 #define LOCAL_TOOLS_UPDATE_PC_FINISH_TEXT      "Обновление конфигурации завершено успешно"
-#define LOCAL_TOOLS_UPDATE_PC_ERROR_TEXT       "   Ошибка обновления   "
+#define LOCAL_TOOLS_UPDATE_PC_ERROR_TEXT       "   Ошибка обновления (  )"
 #define LOCAL_TOOLS_UPDATE_PC_MESSAGE_FINISH_TEXT "Конфигурация обновлена"
 
 #define LOCAL_TOOLS_UPDATE_FR_EXIT_BUTTON_TEXT "Выход"

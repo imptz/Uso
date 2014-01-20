@@ -2,7 +2,6 @@
 #include "../crc32.h"
 #include "../debug/serialDebug.h"
 #include "../hdd/hddManager.h"
-#include "../debug/serialDebug.h"
 
 const SERIAL_PORT Config::UPDATE_SERIAL_PORT = SERIAL_PORT_1;
 const SERIAL_PORT_SPEED Config::SERIAL_PORT_UPDATE_SPEED = SERIAL_PORT_SPEED_57600;
@@ -135,6 +134,7 @@ void Config::cancelUpdate(){
 
 CPointer<Config> Config::processUpdateConnection(){
 	if (serialPort->getRecvFifo()->getDataSize() >= 4){
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_UPDATE_START, 0, 0));
 		unsigned int data[2];
 		serialPort->getRecvFifo()->get(reinterpret_cast<unsigned char*>(&data[1]), 4);
 		if ((data[1] & 0x0000ffff) == ConfigData::VERSION){
@@ -295,14 +295,14 @@ unsigned int Config::updateApply(){
 
 	while(errorCode == 0){
 
-Display::getSingleton().printUInt(loadSize, 50, ggg);
-Display::getSingleton().printUInt(reinterpret_cast<unsigned int>(loadBuffer), 40, ggg);
-Display::getSingleton().printUInt(reinterpret_cast<unsigned int>(loadData), 10, ggg);
+//Display::getSingleton().printUInt(loadSize, 50, ggg);
+//Display::getSingleton().printUInt(reinterpret_cast<unsigned int>(loadBuffer), 40, ggg);
+//Display::getSingleton().printUInt(reinterpret_cast<unsigned int>(loadData), 10, ggg);
 		unsigned short blockCode = getShortFromLoadData(&loadData);
 
-Display::getSingleton().printUInt(*reinterpret_cast<unsigned int*>(loadData), 20, ggg);
-Display::getSingleton().printUInt(blockCode, 30, ggg++);
-Display::getSingleton().printMemoryDump(reinterpret_cast<unsigned int>(loadData), 64, 0, 19);
+//Display::getSingleton().printUInt(*reinterpret_cast<unsigned int*>(loadData), 20, ggg);
+//Display::getSingleton().printUInt(blockCode, 30, ggg++);
+//Display::getSingleton().printMemoryDump(reinterpret_cast<unsigned int>(loadData), 64, 0, 19);
 
 		switch(blockCode){
 			case ConfigData_constants::BLOCK_CODE:
@@ -337,8 +337,8 @@ Display::getSingleton().printMemoryDump(reinterpret_cast<unsigned int>(loadData)
 				break;
 			default:
 				errorCode = UPDATE_FAILED_CODE_BLOCK_CODE;
-				Display::getSingleton().print("errorCode = UPDATE_FAILED_CODE_BLOCK_CODE", 0, 0);
-				Display::getSingleton().printUInt(blockCode, 0, 1);
+				//Display::getSingleton().print("errorCode = UPDATE_FAILED_CODE_BLOCK_CODE", 0, 0);
+				//Display::getSingleton().printUInt(blockCode, 0, 1);
 				break;
 		}
 
@@ -538,7 +538,7 @@ bool Config::applyIoSerial(unsigned char** loadData, ConfigData* pNewConfigData)
 	unsigned int blockSize = (*reinterpret_cast<unsigned int*>(*loadData));
 	(*loadData) += 4;
 
-Display::getSingleton().printUInt(blockSize, 50, 20);
+//Display::getSingleton().printUInt(blockSize, 50, 20);
 
 	if(blockSize > ConfigData_ioSerial::BLOCK_SIZE * ConfigData::IOSERIAL_SIZE){
 		errorCode = UPDATE_FAILED_CODE_IOSERIAL_SIZE;
@@ -604,7 +604,7 @@ bool Config::applyProgram(unsigned char** loadData, ConfigData* pNewConfigData){
 					pNewConfigData->programs[i].function = LOGIC_FUNCTION_SEARCHING_PENA;
 					break;
 				default:
-					errorCode = UPDATE_FAILED_CODE_IOBK_PROGRAM_FUNCTION_UNKNOWN;
+					errorCode = UPDATE_FAILED_CODE_PROGRAM_FUNCTION_UNKNOWN;
 					return false;
 					break;
 			}

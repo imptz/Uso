@@ -47,6 +47,15 @@
     <Filter Include="lib\math">
       <UniqueIdentifier>{105386c5-e962-400e-83f9-51248bcf9ff8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib\log">
+      <UniqueIdentifier>{280bcb35-bcca-4211-b3bb-5a5f9b15f756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\clock">
+      <UniqueIdentifier>{18b56d29-fe64-44c7-aa5f-226ab89ca143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\controls">
+      <UniqueIdentifier>{ff62a133-0bbc-4c3e-87f5-a687e0e56d35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -109,9 +118,6 @@
     <ClCompile Include="..\lib\systems\system.cpp">
       <Filter>lib\systems</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\systems\panel.cpp">
-      <Filter>lib\systems</Filter>
-    </ClCompile>
     <ClCompile Include="..\lib\config\config.cpp">
       <Filter>lib\config</Filter>
     </ClCompile>
@@ -126,6 +132,78 @@
     </ClCompile>
     <ClCompile Include="..\lib\math\math.cpp">
       <Filter>lib\math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\log\log.cpp">
+      <Filter>lib\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\clock\clock.cpp">
+      <Filter>lib\clock</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\systems\pws.cpp">
+      <Filter>lib\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\button.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\clockControl.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\control.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\desktop.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\infoPanel.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\list.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\logControl.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\mainConfirmation.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\mainFinish.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\mainInfo.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\mainTabControl.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\tabControl.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\toolsDate.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\toolsJustirovka.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\toolsLog.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\toolsOff.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\toolsTabControl.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\toolsUpdate.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\toolsUpdateFR.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\toolsUpdatePC.cpp">
+      <Filter>lib\controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\controls\usoModeControl.cpp">
+      <Filter>lib\controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -195,9 +273,6 @@
     <ClInclude Include="..\lib\systems\system.h">
       <Filter>lib\systems</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\systems\panel.h">
-      <Filter>lib\systems</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\config\configData.h">
       <Filter>lib\config</Filter>
     </ClInclude>
@@ -224,6 +299,90 @@
     </ClInclude>
     <ClInclude Include="..\lib\math\math.h">
       <Filter>lib\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\log\log.h">
+      <Filter>lib\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\clock\clock.h">
+      <Filter>lib\clock</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\systems\pws.h">
+      <Filter>lib\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\button.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\clockControl.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\control.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\desktop.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\infoPanel.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\label.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\list.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\logControl.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\mainConfirmation.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\mainFinish.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\mainInfo.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\mainTabControl.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\panel.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\tabControl.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\toolsDate.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\toolsJustirovka.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\toolsLog.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\toolsOff.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\toolsTabControl.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\toolsUpdate.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\toolsUpdateFR.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\toolsUpdatePC.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\ui.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\usoModeControl.h">
+      <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\controls\window.h">
+      <Filter>lib\controls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

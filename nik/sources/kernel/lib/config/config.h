@@ -43,7 +43,6 @@ private:
 	unsigned int calcDataCrc();
 	bool readConfigDataFromHdd();
 	bool writeConfigDataToHdd();
-	unsigned int getLoadProgress();
 
 public:
 	static const unsigned int MESSAGE_CONFIG_HDD_COMPLETE_OK = 0;
@@ -63,7 +62,7 @@ public:
 	static const unsigned int UPDATE_FAILED_CODE_IOSERIAL_SIZE = 10;
 	static const unsigned int UPDATE_FAILED_CODE_INIT_SIGNAL_SIZE = 11;
 	static const unsigned int UPDATE_FAILED_CODE_PROGRAM_SIZE = 12;
-	static const unsigned int UPDATE_FAILED_CODE_IOBK_PROGRAM_FUNCTION_UNKNOWN = 13;
+	static const unsigned int UPDATE_FAILED_CODE_PROGRAM_FUNCTION_UNKNOWN = 13;
 	static const unsigned int UPDATE_FAILED_CODE_FV300_SIZE = 14;
 	static const unsigned int UPDATE_FAILED_CODE_TRAJECTORY_SIZE = 15;
 	static const unsigned int UPDATE_FAILED_CODE_PRESSURE_SIZE = 16;
@@ -85,6 +84,7 @@ public:
 	CPointer<Config> processUpdateD();
 
 	ConfigData* getConfigData();
+	unsigned int getLoadProgress();
 	bool readConfig();
 	bool writeConfig();
 

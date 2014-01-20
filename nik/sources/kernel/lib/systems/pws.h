@@ -1,5 +1,5 @@
-#ifndef PANEL_H
-#define PANEL_H
+#ifndef PWS_H
+#define PWS_H
 
 #include "system.h"
 

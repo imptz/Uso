@@ -1,4 +1,4 @@
-#include "panel.h"
+#include "pws.h"
 
 #include "../display/display.h"
 
