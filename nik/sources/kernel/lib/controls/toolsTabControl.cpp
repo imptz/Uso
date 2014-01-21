@@ -61,42 +61,42 @@ void ToolsTabControl::draw(){
 }
 
 void ToolsTabControl::onMessage(Message message){
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + cancelButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, TOOLS_TAB_CONTROL_MESSAGE_EXIT, 0, 0));
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + cancelButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_TOOLS_TAB_CONTROL_EXIT, 0, 0));
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + dateButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + dateButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 		tab->setActiveTab(DATE_TAB);
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + logButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + logButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 		tab->setActiveTab(LOG_TAB);
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + offButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + offButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 		tab->setActiveTab(OFF_TAB);
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + updateButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + updateButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 		tab->setActiveTab(UPDATE_TAB);
 
-//	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + detectionResetButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+//	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + detectionResetButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 //		DetectionSubsystem::getSingleton().resetDiveces();
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + justirovkaButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + justirovkaButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 		tab->setActiveTab(JUSTIROVKA_TAB);
 
-//	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + povorotniyButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+//	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + povorotniyButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 //		Povorotniy::getSingleton().start();
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsLog->getId()) && (message.msg == ToolsLog::TOOLS_LOG_MESSAGE_EXIT))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsLog->getId()) && (message.msg == MESSAGE_TOOLS_LOG_EXIT))
 		tab->setActiveTab(MAIN_TAB);
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsDate->getId()) && (message.msg == ToolsDate::TOOLS_DATE_MESSAGE_EXIT))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsDate->getId()) && (message.msg == MESSAGE_TOOLS_DATE_EXIT))
 		tab->setActiveTab(MAIN_TAB);
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsOff->getId()) && (message.msg == ToolsOff::TOOLS_OFF_MESSAGE_EXIT))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsOff->getId()) && (message.msg == MESSAGE_TOOLS_OFF_EXIT))
 		tab->setActiveTab(MAIN_TAB);
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsUpdate->getId()) && (message.msg == ToolsUpdate::TOOLS_UPDATE_MESSAGE_EXIT))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsUpdate->getId()) && (message.msg == MESSAGE_TOOLS_UPDATE_EXIT))
 		tab->setActiveTab(MAIN_TAB);
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsJustirovka->getId()) && (message.msg == ToolsJustirovka::TOOLS_JUSTIROVKA_MESSAGE_EXIT))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsJustirovka->getId()) && (message.msg == MESSAGE_TOOLS_JUSTIROVKA_EXIT))
 		tab->setActiveTab(MAIN_TAB);
 }

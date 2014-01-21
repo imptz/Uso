@@ -31,10 +31,6 @@ public:
 	void setOwner(MainConfirmation::CONFIRMATION_OWNER _owner);
 	void activateFinishTab();
 	void activateMainTab();
-	
-	enum MAIN_TAB_MESSAGE{
-		MAIN_TAB_MESSAGE_SET_MAIN_TAB = 14
-	};
 };
 
 #endif

@@ -30,11 +30,6 @@ public:
 	virtual ~ToolsUpdateFR();
 	virtual void draw();
 	virtual void onMessage(Message message);
-
-	enum TOOLS_UPDATE_FR_MESSAGE{
-		TOOLS_UPDATE_FR_MESSAGE_EXIT = 45
-	};
-
 	void startUpdate();
 };
 

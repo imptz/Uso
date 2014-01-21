@@ -36,10 +36,6 @@ public:
 	virtual void draw();
 	virtual void onMessage(Message message);
 
-	enum TOOLS_OFF_MESSAGE{
-		TOOLS_OFF_MESSAGE_EXIT = 18
-	};
-
 	enum TOOLS_OFF_ACTOR{
 		TOOLS_OFF_ACTOR_USER = 0,
 		TOOLS_OFF_ACTOR_SYSTEM = 1

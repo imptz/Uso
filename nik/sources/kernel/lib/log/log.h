@@ -148,11 +148,6 @@ private:
 	virtual void timerHandler();
 
 public:
-	enum LOG_MESSAGE{
-		LOG_MESSAGE_NEW_RECORD = 32,
-		LOG_MESSAGE_CLEAR = 33
-	};
-
 	Log();
 	virtual ~Log();
 	void add(LOG_MESSAGE_FROM _from, LOG_MESSAGE_TYPE _type, char* _str, int n1, int n2);

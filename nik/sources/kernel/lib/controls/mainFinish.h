@@ -28,11 +28,6 @@ public:
 	virtual void draw();
 	virtual void onMessage(Message message);
 
-	enum FINISH_MESSAGE{
-		FINISH_MESSAGE_RESULT = 13,
-		FINISH_MESSAGE_LABEL = 39
-	};
-
 	enum FINISH_MESSAGE_PARAM{
 		FINISH_MESSAGE_PARAM_START, 
 		FINISH_MESSAGE_PARAM_FINISH

@@ -27,10 +27,6 @@ public:
 	virtual ~ToolsLog();
 	virtual void draw();
 	virtual void onMessage(Message message);
-
-	enum TOOLS_LOG_MESSAGE{
-		TOOLS_LOG_MESSAGE_EXIT = 17
-	};
 };
 
 #endif

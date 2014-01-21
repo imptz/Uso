@@ -48,18 +48,18 @@ void Button::onMessage(Message message){
 	if(visible){
 		switch(message.from){
 			case Touchpad::TOUCHPAD_MESSAGE_FROM:
-				if(message.msg == Touchpad::TOUCHPAD_MESSAGE_PEN_DOWN){
+				if(message.msg == MESSAGE_TOUCHPAD_PEN_DOWN){
 					if(inControlCoords(message.par1, message.par2)){
 						downCounter = 1;
 						state = BUTTON_STATE_DOWN;
-						sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, BUTTON_MESSAGE_DOWN, 0, 0));
+						sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_BUTTON_DOWN, 0, 0));
 						draw();
 					}
 				}else
-					if(message.msg == Touchpad::TOUCHPAD_MESSAGE_PEN_UP){
+					if(message.msg == MESSAGE_TOUCHPAD_PEN_UP){
 						downCounter = 0;
 						if(state == BUTTON_STATE_DOWN){
-							sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, BUTTON_MESSAGE_UP, 0, 0));
+							sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_BUTTON_UP, 0, 0));
 							hold = false;
 						}
 
@@ -79,9 +79,9 @@ void Button::timerHandler(){
 			else{
 				if(!hold){
 					hold = true;
-					sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, BUTTON_MESSAGE_HOLD, 0, 0));
+					sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_BUTTON_HOLD, 0, 0));
 				}
-				sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, BUTTON_MESSAGE_DOWN, 0, 0));
+				sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_BUTTON_DOWN, 0, 0));
 			}
 		}
 	}

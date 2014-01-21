@@ -164,7 +164,7 @@ struct ConfigData_penabak{
 };
 
 struct ConfigData{
-	static const unsigned int VERSION = 1;
+	static const unsigned int VERSION = 5;
 
 	static const unsigned int DATA_VALID_TRUE = 1;
 	static const unsigned int DATA_VALID_FALSE = 0;

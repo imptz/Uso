@@ -50,10 +50,6 @@ public:
 	virtual ~ToolsDate();
 	virtual void draw();
 	virtual void onMessage(Message message);
-
-	enum TOOLS_DATE_MESSAGE{
-		TOOLS_DATE_MESSAGE_EXIT = 16
-	};
 };
 
 #endif

@@ -7,10 +7,6 @@
 
 class MainConfirmation : public Control{
 public:
-	enum CONFIRMATION_MESSAGE{
-		CONFIRMATION_MESSAGE_RESULT = 12
-	};
-
 	enum CONFIRMATION_RESULT{
 		CONFIRMATION_RESULT_YES = 0,
 		CONFIRMATION_RESULT_NO = 1

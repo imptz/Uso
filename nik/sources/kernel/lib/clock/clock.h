@@ -87,10 +87,6 @@ public:
 	void setDay(unsigned char value);
 	void setMonth(unsigned char value);
 	void setYear(unsigned char value);
-
-	enum CLOCK_MESSAGE{
-		CLOCK_MESSAGE_TICK = 3
-	};
 };
 
 #endif

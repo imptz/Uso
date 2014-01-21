@@ -29,7 +29,7 @@ void ClockControl::draw(){
 }
 
 void ClockControl::onMessage(Message message){
-	if ((message.from == MESSAGE_FROM_OFFSET_CLOCK) && (message.msg == Clock::CLOCK_MESSAGE_TICK)){
+	if ((message.from == MESSAGE_FROM_OFFSET_CLOCK) && (message.msg == MESSAGE_CLOCK_TICK)){
 		setDateTimeString(message.par2, message.par1);
 		draw();
 	}

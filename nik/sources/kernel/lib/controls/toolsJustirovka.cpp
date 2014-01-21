@@ -105,48 +105,48 @@ void ToolsJustirovka::clear(){
 void ToolsJustirovka::exit(){
 	proccess = false;
 	clear();
-	sendMessage(Message(id, TOOLS_JUSTIROVKA_MESSAGE_EXIT, 0, 0));
+	sendMessage(Message(id, MESSAGE_TOOLS_JUSTIROVKA_EXIT, 0, 0));
 }
 
 void ToolsJustirovka::onMessage(Message message){
-	if ((message.from == exitButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+	if ((message.from == exitButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 		exit();
 
 	if (!proccess){
-		if ((message.from == actionButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == actionButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			start();
 
-		if ((message.from == clearButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == clearButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			clear();
 
-		if ((message.from == button0->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button0->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(0);
 
-		if ((message.from == button1->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button1->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(1);
 
-		if ((message.from == button2->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button2->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(2);
 
-		if ((message.from == button3->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button3->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(3);
 
-		if ((message.from == button4->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button4->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(4);
 
-		if ((message.from == button5->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button5->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(5);
 
-		if ((message.from == button6->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button6->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(6);
 
-		if ((message.from == button7->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button7->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(7);
 
-		if ((message.from == button8->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button8->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(8);
 
-		if ((message.from == button9->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+		if ((message.from == button9->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 			set(9);
 	}
 	

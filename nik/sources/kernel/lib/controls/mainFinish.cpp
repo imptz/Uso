@@ -42,10 +42,10 @@ void MainFinish::draw(){
 }
 
 void MainFinish::onMessage(Message message){
-	if ((message.from == finishButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, FINISH_MESSAGE_RESULT, FINISH_RESULT_FINISH, 0));
+	if ((message.from == finishButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_MAIN_FINISH_RESULT, FINISH_RESULT_FINISH, 0));
 
-	if (message.msg == FINISH_MESSAGE_LABEL){
+	if (message.msg == MESSAGE_MAIN_FINISH_LABEL){
 		if (message.par1 == FINISH_MESSAGE_PARAM_START){
 			finishButton->setVisible(true);
 			finishLabel->setVisible(false);

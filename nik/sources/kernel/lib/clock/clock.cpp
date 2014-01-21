@@ -102,5 +102,5 @@ void Clock::timerHandler(){
 	p2 |= dt.month;
 	p2 = p2 << 8;
 	p2 |= dt.day;
-	sendMessage(Message(MESSAGE_FROM_OFFSET_CLOCK, CLOCK_MESSAGE_TICK, p1, p2));
+	sendMessage(Message(MESSAGE_FROM_OFFSET_CLOCK, MESSAGE_CLOCK_TICK, p1, p2));
 }

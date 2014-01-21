@@ -29,18 +29,18 @@ void MainTabControl::draw(){
 }
 
 void MainTabControl::onMessage(Message message){
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + mainConfirmation->getId()) && (message.msg == MainConfirmation::CONFIRMATION_MESSAGE_RESULT)){
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + mainConfirmation->getId()) && (message.msg == MESSAGE_MAIN_CONFIRMATION_RESULT)){
 		tab->setActiveTab(INFO_TAB);
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MainConfirmation::CONFIRMATION_MESSAGE_RESULT, message.par1, message.par2));
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_MAIN_CONFIRMATION_RESULT, message.par1, message.par2));
 	}
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + mainFinish->getId()) && (message.msg == MainFinish::FINISH_MESSAGE_RESULT)){
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + mainFinish->getId()) && (message.msg == MESSAGE_MAIN_FINISH_RESULT)){
 		tab->setActiveTab(INFO_TAB);
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MainFinish::FINISH_MESSAGE_RESULT, 0, 0));
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_MAIN_FINISH_RESULT, 0, 0));
 	}
 
-	if ((message.from == MESSAGE_FROM_OFFSET_APPLICATION) && (message.msg == MainFinish::FINISH_MESSAGE_LABEL)){
-		sendMessage(Message(MESSAGE_FROM_OFFSET_APPLICATION, MainFinish::FINISH_MESSAGE_LABEL, message.par1, 0));
+	if ((message.from == MESSAGE_FROM_OFFSET_APPLICATION) && (message.msg == MESSAGE_MAIN_FINISH_LABEL)){
+		sendMessage(Message(MESSAGE_FROM_OFFSET_APPLICATION, MESSAGE_MAIN_FINISH_LABEL, message.par1, 0));
 	}
 }
 

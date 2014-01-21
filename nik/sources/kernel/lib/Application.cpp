@@ -66,21 +66,6 @@ void Application::onMessage(Message message){
 		//			break;
 		//	}
 			break;
-		case MESSAGE_FROM_OFFSET_SERIAL_DEBUG:
-			switch (message.msg){
-				case SerialDebug::COMMAND_DEBUG_TEST_CONFIG_UPDATE:
-					switch (message.par1){
-						case 0:
-							Config::getSingleton().cancelUpdate();
-							break;
-						case 1:
-							Display::getSingleton().print("                                                             ", 0, 24);
-							Display::getSingleton().print("COMMAND_DEBUG_TEST_CONFIG_UPDATE", 0, 23);
-							Config::getSingleton().update();
-							break;
-					}
-			}
-			break;
 	}
 }
 

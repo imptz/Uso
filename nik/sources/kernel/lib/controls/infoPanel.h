@@ -30,10 +30,6 @@ public:
 	virtual void draw();
 	virtual void onMessage(Message message);
 
-	enum INFO_PANEL_MESSAGE{
-		INFO_PANEL_MESSAGE_NEW_USO_MODE = 11
-	};
-
 	UsoModeControl* getUsoModeControl();
 };
 

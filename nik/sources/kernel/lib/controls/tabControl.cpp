@@ -41,7 +41,7 @@ void TabControl::setActiveTab(int index, bool redraw){
 
 	visibleControlIndex = index;
 	controls[index]->setVisible(true);
-	sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, TAB_CONTROL_MESSAGE_SET_ACTIVE, index, 0));
+	sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_TAB_CONTROL_SET_ACTIVE, index, 0));
 
 	if (redraw)
 		draw();

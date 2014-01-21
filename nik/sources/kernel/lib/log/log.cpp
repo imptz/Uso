@@ -70,7 +70,7 @@ void Log::add(LOG_MESSAGE_FROM _from, LOG_MESSAGE_TYPE _type, char* _str, int n1
 			header.isFull = true;
 		}
 
-		sendMessage(Message(MESSAGE_FROM_OFFSET_LOG, LOG_MESSAGE_NEW_RECORD, getMessagesCount(), 0));
+		sendMessage(Message(MESSAGE_FROM_OFFSET_LOG, MESSAGE_LOG_NEW_RECORD, getMessagesCount(), 0));
 
 		if (writeCounter == 0)
 			writeCounter++;
@@ -158,7 +158,7 @@ void Log::clear(){
 	header.writeMessageNumber = 0;
 	writeCounter++;
 	add(LOG_MESSAGE_FROM_LOG, LOG_MESSAGE_TYPE_SYSTEM, LOG_CREATE_MESSAGE, 0, LOG_CREATED_CODE_CLEAR);
-	sendMessage(Message(MESSAGE_FROM_OFFSET_LOG, LOG_MESSAGE_CLEAR, getMessagesCount(), 0));
+	sendMessage(Message(MESSAGE_FROM_OFFSET_LOG, MESSAGE_LOG_CLEAR, getMessagesCount(), 0));
 }
 
 void Log::setShutdown(){

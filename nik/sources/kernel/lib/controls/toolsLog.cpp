@@ -24,12 +24,12 @@ void ToolsLog::draw(){
 }
 
 void ToolsLog::onMessage(Message message){
-	if ((message.from == exitButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP)){
+	if ((message.from == exitButton->getId()) && (message.msg == MESSAGE_BUTTON_UP)){
 		statusLabel->setText("", true);
-		sendMessage(Message(id, MESSAGE_FROM_OFFSET_CONTROLS + TOOLS_LOG_MESSAGE_EXIT, 0, 0));
+		sendMessage(Message(id, MESSAGE_FROM_OFFSET_CONTROLS + MESSAGE_TOOLS_LOG_EXIT, 0, 0));
 	}
 
-	if ((message.from == clearButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP)){
+	if ((message.from == clearButton->getId()) && (message.msg == MESSAGE_BUTTON_UP)){
 		Log::getSingleton().clear();
 		statusLabel->setBlinking(true);
 		statusLabel->setText(const_cast<char*>(CLEAR_LABEL_TEXT), true);

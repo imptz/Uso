@@ -34,22 +34,22 @@ void ToolsUpdate::draw(){
 }
 
 void ToolsUpdate::onMessage(Message message){
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + exitButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, TOOLS_UPDATE_MESSAGE_EXIT, 0, 0));
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + exitButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_TOOLS_UPDATE_EXIT, 0, 0));
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + pcButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP)){
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + pcButton->getId()) && (message.msg == MESSAGE_BUTTON_UP)){
 		toolsUpdatePC->startUpdate();
 		tab->setActiveTab(PC_TAB);
 	}
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + frButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP)){
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + frButton->getId()) && (message.msg == MESSAGE_BUTTON_UP)){
 		toolsUpdateFR->startUpdate();
 		tab->setActiveTab(FR_TAB);
 	}
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsUpdatePC->getId()) && (message.msg == ToolsUpdatePC::TOOLS_UPDATE_PC_MESSAGE_EXIT))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsUpdatePC->getId()) && (message.msg == MESSAGE_TOOLS_UPDATE_PC_EXIT))
 		tab->setActiveTab(MAIN_TAB);
 
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsUpdateFR->getId()) && (message.msg == ToolsUpdateFR::TOOLS_UPDATE_FR_MESSAGE_EXIT))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsUpdateFR->getId()) && (message.msg == MESSAGE_TOOLS_UPDATE_FR_EXIT))
 		tab->setActiveTab(MAIN_TAB);
 }

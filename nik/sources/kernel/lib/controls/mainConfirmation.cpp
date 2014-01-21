@@ -25,11 +25,11 @@ void MainConfirmation::draw(){
 }
 
 void MainConfirmation::onMessage(Message message){
-	if ((message.from == yesButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, CONFIRMATION_MESSAGE_RESULT, CONFIRMATION_RESULT_YES, owner));
+	if ((message.from == yesButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_MAIN_CONFIRMATION_RESULT, CONFIRMATION_RESULT_YES, owner));
 
-	if ((message.from == noButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
-		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, CONFIRMATION_MESSAGE_RESULT, CONFIRMATION_RESULT_NO, owner));
+	if ((message.from == noButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_MAIN_CONFIRMATION_RESULT, CONFIRMATION_RESULT_NO, owner));
 }
 
 void MainConfirmation::setConfirmationText(char* text){

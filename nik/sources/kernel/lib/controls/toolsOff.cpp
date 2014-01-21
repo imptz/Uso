@@ -29,13 +29,13 @@ void ToolsOff::draw(){
 }
 
 void ToolsOff::onMessage(Message message){
-	if ((message.from == exitButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
-		sendMessage(Message(id, MESSAGE_FROM_OFFSET_CONTROLS + TOOLS_OFF_MESSAGE_EXIT, 0, 0));
+	if ((message.from == exitButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
+		sendMessage(Message(id, MESSAGE_FROM_OFFSET_CONTROLS + MESSAGE_TOOLS_OFF_EXIT, 0, 0));
 
-	if ((message.from == offButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+	if ((message.from == offButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 		poweroff();
 
-	if ((message.from == rebootButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP))
+	if ((message.from == rebootButton->getId()) && (message.msg == MESSAGE_BUTTON_UP))
 		reboot();
 }
 

@@ -43,7 +43,7 @@ void Touchpad::timerHandler(){
 
 	if (gTimer++ > 100){
 		if (penState == PEN_STATE_DOWN)
-			sendMessage(Message(TOUCHPAD_MESSAGE_FROM, TOUCHPAD_MESSAGE_PEN_UP, xPos, yPos));
+			sendMessage(Message(TOUCHPAD_MESSAGE_FROM, MESSAGE_TOUCHPAD_PEN_UP, xPos, yPos));
 		penState = PEN_STATE_UP;
 		gTimer = 0;
 	}
@@ -84,7 +84,7 @@ void Touchpad::timerHandler(){
 			correctCoords(preXPos, preYPos);
 
 			if (penState == PEN_STATE_UP)
-				sendMessage(Message(TOUCHPAD_MESSAGE_FROM, TOUCHPAD_MESSAGE_PEN_DOWN, xPos, yPos));
+				sendMessage(Message(TOUCHPAD_MESSAGE_FROM, MESSAGE_TOUCHPAD_PEN_DOWN, xPos, yPos));
 
 			penState = PEN_STATE_DOWN;
 		}else{
@@ -102,7 +102,7 @@ void Touchpad::timerHandler(){
 			correctCoords(preXPos, preYPos);
 
 			if (penState == PEN_STATE_DOWN)
-				sendMessage(Message(TOUCHPAD_MESSAGE_FROM, TOUCHPAD_MESSAGE_PEN_UP, xPos, yPos));
+				sendMessage(Message(TOUCHPAD_MESSAGE_FROM, MESSAGE_TOUCHPAD_PEN_UP, xPos, yPos));
 
 			penState = PEN_STATE_UP;
 		}
@@ -144,7 +144,7 @@ void Touchpad::correctCoords(int x, int y){
 
 void Touchpad::onMessage(Message message){
 	if (message.from == MESSAGE_FROM_OFFSET_SERIAL_DEBUG)
-		if (message.msg == SerialDebug::SERIAL_DEBUG_MESSAGE_RECV_COMMAND)
+		if (message.msg == MESSAGE_SERIAL_DEBUG_RECV_COMMAND)
 			switch (message.par1)
 			{
 				case SerialDebug::COMMAND_DEBUG_TOUCHPAD_CALIBRATION_ON:

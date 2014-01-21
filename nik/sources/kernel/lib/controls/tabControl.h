@@ -20,11 +20,6 @@ public:
 	Panel* getTabPanel(int index);
 	void setActiveTab(int index, bool redraw = true);
 	virtual void setVisible(bool _visible, bool childVisible = true);
-
-	enum TAB_CONTROL_MESSAGE{
-		TAB_CONTROL_MESSAGE_SET_ACTIVE = 15
-	};
-
 };
 
 #endif

@@ -35,11 +35,6 @@ public:
 	virtual ~ToolsUpdatePC();
 	virtual void draw();
 	virtual void onMessage(Message message);
-
-	enum TOOLS_UPDATE_PC_MESSAGE{
-		TOOLS_UPDATE_PC_MESSAGE_EXIT = 21
-	};
-
 	void startUpdate();
 };
 

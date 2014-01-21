@@ -53,10 +53,6 @@ public:
 	virtual ~ToolsTabControl();
 	virtual void draw();
 	virtual void onMessage(Message message);
-
-	enum TOOLS_TAB_CONTROL_MESSAGE{
-		TOOLS_TAB_CONTROL_MESSAGE_EXIT = 19
-	};
 };
 
 #endif

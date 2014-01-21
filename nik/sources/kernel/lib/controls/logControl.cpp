@@ -36,19 +36,19 @@ void LogControl::draw(){
 }
 
 void LogControl::onMessage(Message message){
-	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + upButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_DOWN))
+	if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + upButton->getId()) && (message.msg == MESSAGE_BUTTON_DOWN))
 		onUp();
 	else
-		if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + downButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_DOWN))
+		if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + downButton->getId()) && (message.msg == MESSAGE_BUTTON_DOWN))
 			onDown();
 		else
-			if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + lastButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_DOWN))
+			if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + lastButton->getId()) && (message.msg == MESSAGE_BUTTON_DOWN))
 				onLast();
 			else
-				if ((message.from == MESSAGE_FROM_OFFSET_LOG) && (message.msg == Log::LOG_MESSAGE_NEW_RECORD))
+				if ((message.from == MESSAGE_FROM_OFFSET_LOG) && (message.msg == MESSAGE_LOG_NEW_RECORD))
 					onLast();
 				else
-					if ((message.from == MESSAGE_FROM_OFFSET_LOG) && (message.msg == Log::LOG_MESSAGE_CLEAR))
+					if ((message.from == MESSAGE_FROM_OFFSET_LOG) && (message.msg == MESSAGE_LOG_CLEAR))
 						onClear();
 }
 

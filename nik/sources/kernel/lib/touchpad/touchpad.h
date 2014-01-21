@@ -34,11 +34,6 @@ private:
 
 public:
 	static const int TOUCHPAD_MESSAGE_FROM = MESSAGE_FROM_OFFSET_SYSTEM + 1;
-
-	enum TOUCHPAD_MESSAGE{
-		TOUCHPAD_MESSAGE_PEN_UP = 37,
-		TOUCHPAD_MESSAGE_PEN_DOWN = 38
-	};
 		
 public:
 	Touchpad();

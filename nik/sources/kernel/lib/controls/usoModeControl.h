@@ -45,10 +45,6 @@ public:
 		USO_MODE_CONTROL_ACTOR_TIME_OUT = 3
 	};
 
-	enum USO_MODE_CONTROL_MESSAGE{
-		USO_MODE_CONTROL_MESSAGE_NEW_MODE = 22
-	};
-
 	USO_MODE getMode();
 	void setMode(USO_MODE _mode, USO_MODE_CONTROL_ACTOR actor, bool forced = false);
 	UsoModeControl(unsigned int _positionX, unsigned int _positionY, MessageReceiver* _messageReceiver = nullptr);

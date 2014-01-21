@@ -60,8 +60,4 @@ public:
 	virtual ~ToolsJustirovka();
 	virtual void draw();
 	virtual void onMessage(Message message);
-
-	enum TOOLS_JUSTIROVKA_MESSAGE{
-		TOOLS_JUSTIROVKA_MESSAGE_EXIT = 44
-	};
 };

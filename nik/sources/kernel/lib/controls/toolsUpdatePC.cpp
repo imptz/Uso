@@ -54,11 +54,11 @@ void ToolsUpdatePC::draw(){
 }
 
 void ToolsUpdatePC::onMessage(Message message){
-	if ((message.from == exitButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_UP)){
+	if ((message.from == exitButton->getId()) && (message.msg == MESSAGE_BUTTON_UP)){
 		pTimer->stop();
 		Config::getSingleton().cancelUpdate();
 		updatePhase = -1;
-		sendMessage(Message(id, MESSAGE_FROM_OFFSET_CONTROLS + TOOLS_UPDATE_PC_MESSAGE_EXIT, 0, 0));
+		sendMessage(Message(id, MESSAGE_FROM_OFFSET_CONTROLS + MESSAGE_TOOLS_UPDATE_PC_EXIT, 0, 0));
 		SerialDebug::getSingleton().enableDebugInput();
 	}
 
@@ -74,7 +74,7 @@ void ToolsUpdatePC::onMessage(Message message){
 			draw();
 			SerialDebug::getSingleton().enableDebugInput();
 		}else{
-			errorCode = message.par1;
+			errorCode = message.par2;
 			pTimer->stop();
 			Display::getSingleton().print("                                                                      ", positionX + 1, positionY + 1);
 			updatePhase = 3;

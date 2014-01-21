@@ -33,14 +33,6 @@ public:
 	BUTTON_STATE getState();
 	virtual void draw();
 	virtual void onMessage(Message message);
-
-	enum BUTTON_MESSAGE{
-		BUTTON_MESSAGE_UP = 7,
-		BUTTON_MESSAGE_DOWN = 8,
-		BUTTON_MESSAGE_PRESS = 9,
-		BUTTON_MESSAGE_HOLD = 10
-	};
-
 	void setName(char* _name, bool redraw = false);
 };
 

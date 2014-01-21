@@ -208,7 +208,7 @@ CPointer<Config> Config::processUpdateLoadData(){
 			}else{
 				unsigned int data[2];
 				data[0] = DISCONNECT_CODE;
-				data[1] = DOWNLOAD_RESULT_FAULT;
+				data[1] = errorCode;
 				serialPort->setNewSendData(reinterpret_cast<unsigned char*>(&data[0]), 8);
 				serialPort->startSend();
 				return &Config::processUpdateFailedConnection;
@@ -253,7 +253,7 @@ CPointer<Config> Config::processUpdateFailedConnection(){
 void Config::onMessage(Message message){
 	if (message.from == MESSAGE_FROM_OFFSET_SERIAL_DEBUG){
 		switch (message.msg){
-			case SerialDebug::SERIAL_DEBUG_MESSAGE_RECV_COMMAND:
+			case MESSAGE_SERIAL_DEBUG_RECV_COMMAND:
 				switch (message.par1){
 					case SerialDebug::COMMAND_GET_SETTINGS:
 						printConfig();
@@ -291,7 +291,7 @@ unsigned int Config::updateApply(){
 	ConfigData* pNewConfigData = new ConfigData;
 	memset(pNewConfigData, 0, sizeof(ConfigData));
 
-	static int ggg = 0;
+//	static int ggg = 0;
 
 	while(errorCode == 0){
 

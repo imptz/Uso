@@ -38,9 +38,4 @@ public:
 	virtual ~ToolsUpdate();
 	virtual void draw();
 	virtual void onMessage(Message message);
-
-	enum TOOLS_UPDATE_MESSAGE
-	{
-		TOOLS_UPDATE_MESSAGE_EXIT = 20
-	};
 };
