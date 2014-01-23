@@ -38,7 +38,7 @@ bool Config::readConfigDataFromHdd(){
 
 	SAFE_DELETE_ARRAY(hddBuffer)
 	hddBuffer = new unsigned char[sizeof(ConfigData)];
-	hddTaskId = HddManager::getSingleton().read(hddBuffer, HddManager::SECTOR_OFFSET_CONFIG, sizeof(ConfigData) / 512 + 1);
+	hddTaskId = HddManager::getSingleton().read(hddBuffer, SECTOR_OFFSET_CONFIG, sizeof(ConfigData) / 512 + 1);
 	
 	if (hddTaskId != HddManager::UNDEFINED_ID){
 		setPtr(&Config::processReadFromHdd);
@@ -55,7 +55,7 @@ bool Config::writeConfigDataToHdd(){
 	if(fReadWrite)
 		return false;
 
-	hddTaskId = HddManager::getSingleton().write(reinterpret_cast<unsigned char*>(pConfigData), HddManager::SECTOR_OFFSET_CONFIG, sizeof(ConfigData) / 512 + 1);
+	hddTaskId = HddManager::getSingleton().write(reinterpret_cast<unsigned char*>(pConfigData), SECTOR_OFFSET_CONFIG, sizeof(ConfigData) / 512 + 1);
 	
 	if (hddTaskId != HddManager::UNDEFINED_ID){
 		setPtr(&Config::processWriteToHdd);

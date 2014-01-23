@@ -194,7 +194,7 @@ void Touchpad::onMessage(Message message){
 }
 
 bool Touchpad::loadCalibration(){
-	unsigned int _id = HddManager::getSingleton().read(hddBuffer, HddManager::SECTOR_OFFSET_TOUCHPAD, HDD_BUFFER_SIZE / 512);
+	unsigned int _id = HddManager::getSingleton().read(hddBuffer, SECTOR_OFFSET_TOUCHPAD, HDD_BUFFER_SIZE / 512);
 	
 	if (_id != HddManager::UNDEFINED_ID){
 		int count = 10000000;
@@ -219,7 +219,7 @@ bool Touchpad::saveCalibration(){
 
 	memcpy(hddBuffer, &preCalibrationData, sizeof(preCalibrationData));
 
-	unsigned int _id = HddManager::getSingleton().write(hddBuffer, HddManager::SECTOR_OFFSET_TOUCHPAD, HDD_BUFFER_SIZE / 512);
+	unsigned int _id = HddManager::getSingleton().write(hddBuffer, SECTOR_OFFSET_TOUCHPAD, HDD_BUFFER_SIZE / 512);
 
 	if (_id != HddManager::UNDEFINED_ID){
 		int count = 10000000;

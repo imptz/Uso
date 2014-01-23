@@ -6,10 +6,17 @@
 class UsoModeControl : public Control{
 public:
 	enum USO_MODE{
+		USO_MODE_NULL,
 		USO_MODE_FULL_AUTO,
 		USO_MODE_HALF_AUTO,
-		USO_MODE_TOOLS,
-		USO_MODE_PREV
+		USO_MODE_REMOTE
+	};
+
+	enum USO_MODE_CONTROL_ACTOR{
+		USO_MODE_CONTROL_ACTOR_USER = 0,
+		USO_MODE_CONTROL_ACTOR_TOOLS = 1,
+		USO_MODE_CONTROL_ACTOR_BOOT = 2, 
+		USO_MODE_CONTROL_ACTOR_TIME_OUT = 3
 	};
 
 private:
@@ -20,40 +27,38 @@ private:
 	static const int POSITION_OFFSET_TOOLS = 25;
 	static char* USO_MODE_SET_MESSAGE_FULL_AUTO;
 	static char* USO_MODE_SET_MESSAGE_HALF_AUTO;
-	static char* USO_MODE_SET_MESSAGE_TOOLS;
-	static const unsigned int START_SECTOR = 30000;
+	static char* USO_MODE_SET_MESSAGE_REMOTE;
+	static char* USO_MODE_SET_MESSAGE_TOOLS_ON;
+	static char* USO_MODE_SET_MESSAGE_TOOLS_OFF;
 	static const unsigned int BUFFER_SIZE = 512; 
 
 	Button *modeButton;
 	Button *toolsButton;
-	USO_MODE mode;
-	USO_MODE prevMode;
 	static char* modeFullAutoText;
 	static char* modeHalfAutoText;
+	static char* modeRemoteText;
 	static char* modeToolsText;
 	unsigned char* buffer;
-	bool lockMode;
-	bool enabled;
+
+	USO_MODE mode;
+	bool fLock;
+	bool inTools;
 
 	UsoModeControl();
+	void setMode(USO_MODE _mode, USO_MODE_CONTROL_ACTOR actor);
+	void change_cycle();
 
 public:
-	enum USO_MODE_CONTROL_ACTOR{
-		USO_MODE_CONTROL_ACTOR_USER = 0,
-		USO_MODE_CONTROL_ACTOR_TOOLS = 1,
-		USO_MODE_CONTROL_ACTOR_BOOT = 2, 
-		USO_MODE_CONTROL_ACTOR_TIME_OUT = 3
-	};
-
-	USO_MODE getMode();
-	void setMode(USO_MODE _mode, USO_MODE_CONTROL_ACTOR actor, bool forced = false);
 	UsoModeControl(unsigned int _positionX, unsigned int _positionY, MessageReceiver* _messageReceiver = nullptr);
 	virtual ~UsoModeControl();
+
 	virtual void draw();
 	virtual void onMessage(Message message);
-	bool lock();
+	void change_tools();
+	void change_toRemote();
+	void change_fromRemote();
+	void lock();
 	void unLock();
-	void setEnabled(bool value);
 };
 
 #endif

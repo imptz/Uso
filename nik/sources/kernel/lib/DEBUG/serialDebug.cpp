@@ -1,6 +1,7 @@
 #include "serialDebug.h"
 #include "../display/display.h"
 #include "../string.h"
+#include "../controls/ui.h"
 
 const SERIAL_PORT_SPEED SerialDebug::PORT_SPEED = SERIAL_PORT_SPEED_57600;
 const SERIAL_PORT SerialDebug::PORT_NAME = SERIAL_PORT_1;
@@ -255,6 +256,12 @@ void SerialDebug::debugCommand(unsigned char command){
 			DEBUG_PUT_COLOR(COLOR_BLUE, "       1..9  -  вкл.выкл входа БК16 номер 1..9\n")
 			DEBUG_PUT_COLOR(COLOR_BLUE, "   CTRL + k  -  сброс всех входов в неопределенное состояние\n")
 			DEBUG_PUT_COLOR(COLOR_BLUE, "          h  -  вывод справки\n")
+			break;
+		case '=':
+			UI::getSingleton().getUsoModeControl()->change_toRemote();
+			break;
+		case '+':
+			UI::getSingleton().getUsoModeControl()->change_fromRemote();
 			break;
 	}
 }

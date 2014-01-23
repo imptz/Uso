@@ -5,6 +5,12 @@
 #include "../timer/timer.h"
 #include "hdd.h"
 
+enum SECTOR_OFFSET{
+	SECTOR_OFFSET_USO_MODE = 30000,
+	SECTOR_OFFSET_TOUCHPAD = 40000,
+	SECTOR_OFFSET_CONFIG = 50000
+};
+
 class HddManager : public Singleton<HddManager>, public ITimer{
 private:
     static const unsigned int TIMER_PERIOD = 1;
@@ -56,13 +62,6 @@ private:
 
 	PHASE phase;
 	unsigned int activeTaskIndex;
-
-public:
-	enum SECTOR_OFFSET{
-		SECTOR_OFFSET_TOUCHPAD = 40000,
-		SECTOR_OFFSET_CONFIG = 50000
-	};
-
 };
 
 #endif

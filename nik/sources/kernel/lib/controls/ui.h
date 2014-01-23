@@ -41,13 +41,12 @@ public:
 	~UI(){}
 
 	virtual void onMessage(Message message){
-		if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + infoPanel->getId()) && (message.msg == MESSAGE_INFO_PANEL_NEW_USO_MODE)){
-			if (message.par2 == UsoModeControl::USO_MODE_TOOLS)
-				tabControl->setActiveTab(1);
+		if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + infoPanel->getId()) && (message.msg == MESSAGE_USO_MODE_CONTROL_TO_TOOLS)){
+			tabControl->setActiveTab(1);
 		}
 
 		if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + toolsTabControl->getId()) && (message.msg == MESSAGE_TOOLS_TAB_CONTROL_EXIT)){
-			infoPanel->getUsoModeControl()->setMode(UsoModeControl::USO_MODE_PREV, UsoModeControl::USO_MODE_CONTROL_ACTOR_TOOLS);
+			infoPanel->getUsoModeControl()->change_tools();
 			tabControl->setActiveTab(0);
 		}
 	}

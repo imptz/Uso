@@ -26,7 +26,6 @@ void Application::start(){
 	Config::getSingleton().addReceiver(this);
 
 	Config::getSingleton().readConfig();
-	UI::getSingleton().getUsoModeControl()->setEnabled(true);
 
 	for(;;){
 		MessageReceiver::messagesProccess();
