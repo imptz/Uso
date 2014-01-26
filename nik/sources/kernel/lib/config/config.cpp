@@ -78,6 +78,7 @@ CPointer<Config> Config::processReadFromHdd(){
 		unsigned int crc = calcDataCrc();
 		if(pConfigData->dataCrc == crc){
 			pConfigData->dataValid = true;
+			initConfigAfterLoad();
 			sendMessage(Message(MESSAGE_FROM_OFFSET_CONFIG, MESSAGE_CONFIG_READ_COMPLETE, MESSAGE_CONFIG_HDD_COMPLETE_OK, 0));
 		}else{
 			pConfigData->dataValid = false;
@@ -590,18 +591,19 @@ bool Config::applyProgram(unsigned char** loadData, ConfigData* pNewConfigData){
 			pNewConfigData->programs[i].prNumber = getCharFromLoadData(loadData);
 
 			unsigned int progFunction = getCharFromLoadData(loadData);
+			pNewConfigData->programs[i].function = 0;
 			switch (progFunction){
 				case 0:
-					pNewConfigData->programs[i].function = LOGIC_FUNCTION_SEARCHING;
+					pNewConfigData->programs[i].function |= LOGIC_FUNCTION_SEARCHING;
 					break;
 				case 1:
-					pNewConfigData->programs[i].function = LOGIC_FUNCTION_COOLING_LINE;
+					pNewConfigData->programs[i].function |= LOGIC_FUNCTION_COOLING_LINE;
 					break;
 				case 2:
-					pNewConfigData->programs[i].function = LOGIC_FUNCTION_COOLING_POINT;
+					pNewConfigData->programs[i].function |= LOGIC_FUNCTION_COOLING_POINT;
 					break;
 				case 3:
-					pNewConfigData->programs[i].function = LOGIC_FUNCTION_SEARCHING_PENA;
+					pNewConfigData->programs[i].function |= LOGIC_FUNCTION_SEARCHING_PENA;
 					break;
 				default:
 					errorCode = UPDATE_FAILED_CODE_PROGRAM_FUNCTION_UNKNOWN;
@@ -827,4 +829,28 @@ void Config::printConfig(){
 		DEBUG_PUT("   адрес контроллера:    %u\n", pConfigData->penabak[i].address)
 		DEBUG_PUT("   номер входа на плате: %u\n\n", pConfigData->penabak[i].numberOnDevice)
 	}
+}
+
+void Config::initConfigAfterLoad(){
+	for (unsigned int i = 0; i < pConfigData->INIT_SIGNALS_SIZE; ++i){
+		pConfigData->initSignal[i].ignorable = false;
+		pConfigData->initSignal[i].function = LOGIC_FUNCTION_UNDEFINED;
+	}
+
+	for (unsigned int i = 0; i < pConfigData->programs_count; ++i){
+		unsigned int initSignalNumber = pConfigData->programs[i].initSignalNumber;
+		int initSignalIndex = getInitSignalIndexByNumber(initSignalNumber);
+
+		if(initSignalNumber != -1)
+			pConfigData->initSignal[initSignalNumber].function |= pConfigData->programs[i].function;
+	}
+}
+
+int Config::getInitSignalIndexByNumber(unsigned int number){
+	for (unsigned int i = 0; i < pConfigData->INIT_SIGNALS_SIZE; ++i){
+		if(pConfigData->initSignal[i].number == number)
+			return i;
+	}
+
+	return -1;
 }

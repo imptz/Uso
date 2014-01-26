@@ -10,12 +10,13 @@
 #include "application.h"
 #include "message\messages.h"
 #include "process\process.h"
-#include "systems\bk.h"
+#include "systems\io.h"
 #include "systems\pws.h"
 #include "log\Log.h"
 #include "clock\clock.h"
 #include "config\Config.h"
 #include "controls\UI.h"
+#include "logic\logic.h"
 
 class Root : public Singleton<Root>{
 private:
@@ -28,11 +29,12 @@ private:
 	SerialDebug* pSerialDebug;
 	Process* pProcess;
 	SystemPanel* pSystemPanel;
-	SystemBk* pSystemBk;
+	SystemIo* pSystemIo;
 	Log* pLog;
 	Clock* pClock;
 	Config* pConfig;
 	UI* pUI;
+	Logic* pLogic;
 
 	Application* pApplication;
 		
@@ -63,6 +65,7 @@ public:
 
 		if (SystemPanel::getSingletonPtr() == nullptr)
 			pSystemPanel = new SystemPanel();
+
 		_asm sti
 
 		if (Log::getSingletonPtr() == nullptr)
@@ -77,13 +80,23 @@ public:
 		if (UI::getSingletonPtr() == nullptr)
 			pUI = new UI();
 
+		if (Logic::getSingletonPtr() == nullptr)
+			pLogic = new Logic();
+
 		if (Application::getSingletonPtr() == nullptr)
 			pApplication = new Application();
 	}
 
 	~Root(){
 		SAFE_DELETE(pApplication)
-		SAFE_DELETE(pSystemBk)
+
+		SAFE_DELETE(pLogic)
+		SAFE_DELETE(pUI)
+		SAFE_DELETE(pConfig)
+		SAFE_DELETE(pClock)
+		SAFE_DELETE(pLog)
+			
+		SAFE_DELETE(pSystemIo)
 		SAFE_DELETE(pSystemPanel)
 		SAFE_DELETE(pProcess)
 		delete pSerialDebug;

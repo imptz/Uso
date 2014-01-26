@@ -59,6 +59,8 @@ public:
 	void change_fromRemote();
 	void lock();
 	void unLock();
+	USO_MODE getMode();
+	bool isInTools();
 };
 
 #endif

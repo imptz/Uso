@@ -3,14 +3,11 @@
 
 #include "../math/math.h"
 
-enum LOGIC_FUNCTION{
-	LOGIC_FUNCTION_SEARCHING = 0,
-	LOGIC_FUNCTION_COOLING_LINE = 1,
-	LOGIC_FUNCTION_COOLING_POINT = 2,
-	LOGIC_FUNCTION_SEARCHING_PENA = 3,
-	LOGIC_FUNCTION_UNDEFINED = 100000,
-	LOGIC_FUNCTION_ALL = LOGIC_FUNCTION_UNDEFINED + 1
-};
+const unsigned int LOGIC_FUNCTION_SEARCHING = 1;
+const unsigned int LOGIC_FUNCTION_COOLING_LINE = 2;
+const unsigned int LOGIC_FUNCTION_COOLING_POINT = 4;
+const unsigned int LOGIC_FUNCTION_SEARCHING_PENA = 8;
+const unsigned int LOGIC_FUNCTION_UNDEFINED = 0;
 
 struct ConfigData_constants{
 	static const unsigned short BLOCK_CODE = 0;
@@ -99,7 +96,7 @@ struct ConfigData_initSignal{
 	static const unsigned short BLOCK_CODE = 4;
 	static const unsigned int BLOCK_SIZE = 5;
 
-	LOGIC_FUNCTION function;
+	unsigned int function;
 	unsigned short number;
 	unsigned int firstInputNumber;
 	unsigned int secondInputNumber;
@@ -113,7 +110,7 @@ struct ConfigData_program{
 
 	unsigned int initSignalNumber; 
 	unsigned char prNumber;
-	LOGIC_FUNCTION function;
+	unsigned int function;
 	Point2<unsigned int> point1;
 	Point2<unsigned int> point2;
 	unsigned short nPointProgram;

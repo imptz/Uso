@@ -1,6 +1,8 @@
 #include "toolsUpdate.h"
 #include "../local.h"
 
+#include "ui.h"
+
 const char* ToolsUpdate::EXIT_BUTTON_TEXT = LOCAL_TOOLS_UPDATE_EXIT_BUTTON_TEXT;
 const char* ToolsUpdate::PC_BUTTON_TEXT = LOCAL_TOOLS_UPDATE_PC_BUTTON_TEXT;
 const char* ToolsUpdate::FR_BUTTON_TEXT = LOCAL_TOOLS_UPDATE_FR_BUTTON_TEXT;

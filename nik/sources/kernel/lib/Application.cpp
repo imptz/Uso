@@ -8,6 +8,7 @@
 #include "config\config.h"
 #include "message\messages.h"
 #include "controls\ui.h"
+#include "logic\logic.h"
 
 Application::Application()
 	:	ITimer(TIMER_PERIOD)
@@ -26,6 +27,8 @@ void Application::start(){
 	Config::getSingleton().addReceiver(this);
 
 	Config::getSingleton().readConfig();
+
+	Logic::getSingleton().up();
 
 	for(;;){
 		MessageReceiver::messagesProccess();

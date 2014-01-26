@@ -2,6 +2,7 @@
 #include "../display/display.h"
 #include "../string.h"
 #include "../controls/ui.h"
+#include "../logic/logic.h"
 
 const SERIAL_PORT_SPEED SerialDebug::PORT_SPEED = SERIAL_PORT_SPEED_57600;
 const SERIAL_PORT SerialDebug::PORT_NAME = SERIAL_PORT_1;
@@ -258,10 +259,7 @@ void SerialDebug::debugCommand(unsigned char command){
 			DEBUG_PUT_COLOR(COLOR_BLUE, "          h  -  вывод справки\n")
 			break;
 		case '=':
-			UI::getSingleton().getUsoModeControl()->change_toRemote();
-			break;
-		case '+':
-			UI::getSingleton().getUsoModeControl()->change_fromRemote();
+			
 			break;
 	}
 }

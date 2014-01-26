@@ -43,6 +43,7 @@ private:
 	unsigned int calcDataCrc();
 	bool readConfigDataFromHdd();
 	bool writeConfigDataToHdd();
+	void initConfigAfterLoad();
 
 public:
 	static const unsigned int MESSAGE_CONFIG_HDD_COMPLETE_OK = 0;
@@ -107,4 +108,6 @@ public:
 
 	//void saveConfig(pNewConfigData)
 	void printConfig();
+
+	int getInitSignalIndexByNumber(unsigned int number);
 };

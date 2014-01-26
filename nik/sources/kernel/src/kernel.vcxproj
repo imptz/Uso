@@ -43,6 +43,7 @@
     <ClCompile Include="..\lib\hdd\hdd.cpp" />
     <ClCompile Include="..\lib\hdd\hddManager.cpp" />
     <ClCompile Include="..\lib\interrupt\interrupt.cpp" />
+    <ClCompile Include="..\lib\logic\logic.cpp" />
     <ClCompile Include="..\lib\log\log.cpp" />
     <ClCompile Include="..\lib\low.cpp" />
     <ClCompile Include="..\lib\math\math.cpp" />
@@ -51,7 +52,7 @@
     <ClCompile Include="..\lib\process\process.cpp" />
     <ClCompile Include="..\lib\serialport\serialport.cpp" />
     <ClCompile Include="..\lib\string.cpp" />
-    <ClCompile Include="..\lib\systems\bk.cpp" />
+    <ClCompile Include="..\lib\systems\io.cpp" />
     <ClCompile Include="..\lib\systems\fire.cpp" />
     <ClCompile Include="..\lib\systems\monitoring.cpp" />
     <ClCompile Include="..\lib\systems\pws.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="..\lib\hdd\hddManager.h" />
     <ClInclude Include="..\lib\interrupt\interrupt.h" />
     <ClInclude Include="..\lib\local.h" />
+    <ClInclude Include="..\lib\logic\logic.h" />
     <ClInclude Include="..\lib\log\log.h" />
     <ClInclude Include="..\lib\low.h" />
     <ClInclude Include="..\lib\math\math.h" />
@@ -114,7 +116,7 @@
     <ClInclude Include="..\lib\serialport\serialport.h" />
     <ClInclude Include="..\lib\singleton.h" />
     <ClInclude Include="..\lib\string.h" />
-    <ClInclude Include="..\lib\systems\bk.h" />
+    <ClInclude Include="..\lib\systems\io.h" />
     <ClInclude Include="..\lib\systems\fire.h" />
     <ClInclude Include="..\lib\systems\monitoring.h" />
     <ClInclude Include="..\lib\systems\pws.h" />

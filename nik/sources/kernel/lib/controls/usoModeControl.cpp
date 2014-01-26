@@ -85,14 +85,10 @@ void UsoModeControl::setMode(USO_MODE _mode, USO_MODE_CONTROL_ACTOR actor){
 			break;
 	}
 
-Display::getSingleton().print("message.msg == MESSAGE_USO_MODE 11", 0, 0, true);
 	memcpy(buffer, &mode, sizeof(mode));
-Display::getSingleton().print("message.msg == MESSAGE_USO_MODE 22", 0, 0, true);
 	unsigned int _id = HddManager::getSingleton().write(buffer, SECTOR_OFFSET_USO_MODE, BUFFER_SIZE / 512);
-Display::getSingleton().print("message.msg == MESSAGE_USO_MODE 33", 0, 0, true);
 	while (HddManager::getSingleton().isTaskExecute(_id)) {}
 
-Display::getSingleton().print("message.msg == MESSAGE_USO_MODE 44", 0, 0, true);
 	sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_USO_MODE_CONTROL_NEW_MODE, 0, 0));
 	
 	draw();
@@ -143,4 +139,12 @@ void UsoModeControl::change_toRemote(){
 
 void UsoModeControl::change_fromRemote(){
 	setMode(USO_MODE_FULL_AUTO, USO_MODE_CONTROL_ACTOR_USER);
+}
+
+UsoModeControl::USO_MODE UsoModeControl::getMode(){
+	return mode;
+}
+
+bool UsoModeControl::isInTools(){
+	return inTools;
 }

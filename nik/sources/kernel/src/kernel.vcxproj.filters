@@ -56,6 +56,9 @@
     <Filter Include="lib\controls">
       <UniqueIdentifier>{ff62a133-0bbc-4c3e-87f5-a687e0e56d35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib\logic">
+      <UniqueIdentifier>{e3e273df-2a77-413c-ae09-4069e4220f0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -102,9 +105,6 @@
     </ClCompile>
     <ClCompile Include="..\lib\process\process.cpp">
       <Filter>lib\process</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\systems\bk.cpp">
-      <Filter>lib\systems</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\systems\fire.cpp">
       <Filter>lib\systems</Filter>
@@ -205,6 +205,12 @@
     <ClCompile Include="..\lib\controls\usoModeControl.cpp">
       <Filter>lib\controls</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\logic\logic.cpp">
+      <Filter>lib\logic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\systems\io.cpp">
+      <Filter>lib\systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\crc16.h">
@@ -257,9 +263,6 @@
     </ClInclude>
     <ClInclude Include="..\lib\process\process.h">
       <Filter>lib\process</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\systems\bk.h">
-      <Filter>lib\systems</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\systems\fire.h">
       <Filter>lib\systems</Filter>
@@ -383,6 +386,12 @@
     </ClInclude>
     <ClInclude Include="..\lib\controls\window.h">
       <Filter>lib\controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\logic\logic.h">
+      <Filter>lib\logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\systems\io.h">
+      <Filter>lib\systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
