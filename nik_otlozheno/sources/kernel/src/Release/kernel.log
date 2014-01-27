@@ -1,0 +1,1237 @@
+﻿Build started 27.01.2014 11:35:40.
+Project "C:\Projects\Git\Uso\nik\sources\kernel\src\kernel.vcxproj" on node 2 (rebuild target(s)).
+_PrepareForClean:
+  Deleting file "Release\kernel.lastbuildstate".
+InitializeBuildStatus:
+  Creating "Release\kernel.unsuccessfulbuild" because "AlwaysCreate" was specified.
+PreBuildEvent:
+  VersionInc.exe ../lib/version.h
+  :VCEnd
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /MP /O2 /Oi /Oy- /Gm- /MT /GS- /Gy- /fp:fast /fp:except- /Zc:wchar_t /Zc:forScope /GR- /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\lib\application.cpp ..\lib\clock\clock.cpp ..\lib\config\config.cpp ..\lib\controls\button.cpp ..\lib\controls\clockControl.cpp ..\lib\controls\control.cpp ..\lib\controls\desktop.cpp ..\lib\controls\infoPanel.cpp ..\lib\controls\list.cpp ..\lib\controls\logControl.cpp ..\lib\controls\mainConfirmation.cpp ..\lib\controls\mainFinish.cpp ..\lib\controls\mainInfo.cpp ..\lib\controls\mainTabControl.cpp ..\lib\controls\tabControl.cpp ..\lib\controls\toolsDate.cpp ..\lib\controls\toolsJustirovka.cpp ..\lib\controls\toolsLog.cpp ..\lib\controls\toolsOff.cpp ..\lib\controls\toolsTabControl.cpp ..\lib\controls\toolsUpdate.cpp ..\lib\controls\toolsUpdateFR.cpp ..\lib\controls\toolsUpdatePC.cpp ..\lib\controls\usoModeControl.cpp ..\lib\crc16.cpp ..\lib\crc32.cpp ..\lib\crt.cpp ..\lib\DEBUG\serialDebug.cpp ..\lib\display\display.cpp ..\lib\hdd\hdd.cpp ..\lib\hdd\hddManager.cpp ..\lib\interrupt\interrupt.cpp ..\lib\logic\logic.cpp ..\lib\log\log.cpp ..\lib\low.cpp ..\lib\math\math.cpp ..\lib\memory\memory.cpp ..\lib\message\messages.cpp ..\lib\process\process.cpp ..\lib\serialport\serialport.cpp ..\lib\string.cpp ..\lib\systems\io.cpp ..\lib\systems\fire.cpp ..\lib\systems\monitoring.cpp ..\lib\systems\pws.cpp ..\lib\systems\rpk.cpp ..\lib\systems\system.cpp ..\lib\timer\timer.cpp ..\lib\touchpad\touchpad.cpp main.cpp
+  application.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+..\lib\application.cpp(47): warning C4101: 'pcd' : unreferenced local variable
+..\lib\application.cpp(46): warning C4101: 'fTest' : unreferenced local variable
+  clock.cpp
+  config.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+..\lib\config\config.cpp(372): warning C4018: '>=' : signed/unsigned mismatch
+..\lib\config\config.cpp(420): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+..\lib\config\config.cpp(422): warning C4800: 'unsigned short' : forcing value to bool 'true' or 'false' (performance warning)
+..\lib\config\config.cpp(423): warning C4800: 'unsigned short' : forcing value to bool 'true' or 'false' (performance warning)
+..\lib\config\config.cpp(470): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+..\lib\config\config.cpp(481): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+..\lib\config\config.cpp(673): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+..\lib\config\config.cpp(868): warning C4189: 'initSignalIndex' : local variable is initialized but not referenced
+  button.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+  clockControl.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+  control.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  desktop.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+..\lib\controls\desktop.cpp(16): warning C4100: 'message' : unreferenced formal parameter
+  infoPanel.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+  list.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+..\lib\controls\list.cpp(25): warning C4100: 'message' : unreferenced formal parameter
+  logControl.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  mainConfirmation.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+  mainFinish.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+  mainInfo.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+..\lib\controls\mainInfo.cpp(19): warning C4100: 'message' : unreferenced formal parameter
+  mainTabControl.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  tabControl.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\tabControl.cpp(30): warning C4100: 'message' : unreferenced formal parameter
+..\lib\controls\tabControl.cpp(38): warning C4389: '!=' : signed/unsigned mismatch
+..\lib\controls\tabControl.cpp(50): warning C4100: 'childVisible' : unreferenced formal parameter
+  toolsDate.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(67): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(71): warning C4244: '+=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(75): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(79): warning C4244: '+=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(83): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(87): warning C4244: '+=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(91): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(95): warning C4244: '+=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(99): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsDate.cpp(103): warning C4244: '+=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  toolsJustirovka.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsJustirovka.cpp(78): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsJustirovka.cpp(82): warning C4244: '+=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsJustirovka.cpp(179): warning C4060: switch statement contains no 'case' or 'default' labels
+  toolsLog.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  toolsOff.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  toolsTabControl.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  Generating Code...
+c:\projects\git\uso\nik\sources\kernel\lib\config\config.cpp(71): warning C4702: unreachable code
+c:\projects\git\uso\nik\sources\kernel\lib\config\config.cpp(92): warning C4702: unreachable code
+  Compiling...
+  toolsUpdate.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+  toolsUpdateFR.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+..\lib\controls\toolsUpdateFR.cpp(28): warning C4101: 'str2Num' : unreferenced local variable
+..\lib\controls\toolsUpdateFR.cpp(50): warning C4100: 'message' : unreferenced formal parameter
+..\lib\controls\toolsUpdateFR.cpp(51): warning C4101: 'str2Num' : unreferenced local variable
+  toolsUpdatePC.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+..\lib\controls\toolsUpdatePC.cpp(34): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\controls\toolsUpdatePC.cpp(48): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  usoModeControl.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  crc16.cpp
+  crc32.cpp
+  crt.cpp
+  serialDebug.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+..\lib\DEBUG\serialDebug.cpp(263): warning C4804: '~' : unsafe use of type 'bool' in operation
+..\lib\DEBUG\serialDebug.cpp(263): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+  display.cpp
+..\lib\display\display.cpp(168): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned short', possible loss of data
+..\lib\display\display.cpp(249): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(252): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(255): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(261): warning C4244: '=' : conversion from 'int' to 'char', possible loss of data
+..\lib\display\display.cpp(298): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(299): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(311): warning C4244: 'initializing' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(318): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(324): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(330): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(336): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(342): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(348): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(354): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(360): warning C4244: '=' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(366): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(375): warning C4189: 'position' : local variable is initialized but not referenced
+..\lib\display\display.cpp(384): warning C4244: 'initializing' : conversion from 'unsigned int' to 'char', possible loss of data
+..\lib\display\display.cpp(390): warning C4244: '=' : conversion from 'unsigned int' to 'char', possible loss of data
+..\lib\display\display.cpp(396): warning C4244: '=' : conversion from 'unsigned int' to 'char', possible loss of data
+..\lib\display\display.cpp(402): warning C4244: '=' : conversion from 'unsigned int' to 'char', possible loss of data
+..\lib\display\display.cpp(408): warning C4244: '=' : conversion from 'unsigned int' to 'char', possible loss of data
+..\lib\display\display.cpp(414): warning C4244: '=' : conversion from 'unsigned int' to 'char', possible loss of data
+..\lib\display\display.cpp(420): warning C4244: '=' : conversion from 'unsigned int' to 'char', possible loss of data
+..\lib\display\display.cpp(426): warning C4244: '=' : conversion from 'unsigned int' to 'char', possible loss of data
+..\lib\display\display.cpp(432): warning C4244: '=' : conversion from 'unsigned int' to 'char', possible loss of data
+..\lib\display\display.cpp(438): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(475): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(476): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(495): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\display\display.cpp(496): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  hdd.cpp
+  hddManager.cpp
+..\lib\hdd\hddManager.cpp(93): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+..\lib\hdd\hddManager.cpp(96): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  interrupt.cpp
+  logic.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\../log/log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+  log.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\log\log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\log\log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+  low.cpp
+  math.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\math\math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\math\math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\math\math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\math\math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+..\lib\math\math.cpp(63): warning C4100: 'f' : unreferenced formal parameter
+..\lib\math\math.cpp(69): warning C4100: 'f' : unreferenced formal parameter
+  memory.cpp
+..\lib\memory\memory.cpp(96): warning C4100: 'size' : unreferenced formal parameter
+..\lib\memory\memory.cpp(119): warning C4100: 'size' : unreferenced formal parameter
+  messages.cpp
+  process.cpp
+  serialport.cpp
+..\lib\serialport\serialport.cpp(29): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(30): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(31): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(32): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(33): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(34): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(35): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(57): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(58): warning C4244: 'argument' : conversion from 'SERIAL_PORT_SPEED' to 'unsigned char', possible loss of data
+..\lib\serialport\serialport.cpp(58): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(59): warning C4244: 'argument' : conversion from 'int' to 'unsigned char', possible loss of data
+..\lib\serialport\serialport.cpp(59): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(60): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(67): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(70): warning C4244: 'argument' : conversion from 'SERIAL_PORT_BASE_ADDRESS' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(74): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(82): warning C4244: 'argument' : conversion from 'SERIAL_PORT_BASE_ADDRESS' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(94): warning C4244: 'argument' : conversion from 'SERIAL_PORT_BASE_ADDRESS' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(143): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(150): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(166): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(173): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(189): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+..\lib\serialport\serialport.cpp(196): warning C4244: 'argument' : conversion from 'int' to 'unsigned short', possible loss of data
+  Generating Code...
+c:\projects\git\uso\nik\sources\kernel\lib\math\math.cpp(45): warning C4725: instruction may be inaccurate on some Pentiums
+  Compiling...
+  string.cpp
+  io.cpp
+..\lib\systems\io.cpp(14): warning C4100: 'number' : unreferenced formal parameter
+  fire.cpp
+  monitoring.cpp
+  pws.cpp
+  rpk.cpp
+  system.cpp
+  timer.cpp
+  touchpad.cpp
+  main.cpp
+c:\projects\git\uso\nik\sources\kernel\lib\log\Log.h(111): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\log\Log.h(113): warning C4244: 'argument' : conversion from 'unsigned int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(175): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(211): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(212): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\config\../math/math.h(213): warning C4239: nonstandard extension used : 'argument' : conversion from 'Point3<T>' to 'Point3<T> &'
+          with
+          [
+              T=float
+          ]
+          A non-const reference may only be bound to an lvalue; assigment operator takes a reference to non-const
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'blinking' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'height' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'width' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionY' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(38): warning C4100: 'positionX' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(58): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(59): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(60): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(61): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(64): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(65): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(69): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(70): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(75): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(76): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(77): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(78): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(81): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(82): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(86): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\window.h(87): warning C4245: 'argument' : conversion from 'const char' to 'unsigned char', signed/unsigned mismatch
+c:\projects\git\uso\nik\sources\kernel\lib\controls\panel.h(26): warning C4100: 'message' : unreferenced formal parameter
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(28): warning C4244: 'initializing' : conversion from 'int' to 'unsigned char', possible loss of data
+c:\projects\git\uso\nik\sources\kernel\lib\controls\label.h(46): warning C4100: 'message' : unreferenced formal parameter
+  Generating Code...
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Projects\Git\Uso\nik\sources\kernel\src\Release\kernel.exe" /VERBOSE /INCREMENTAL:NO /NOLOGO /MANIFEST:NO /ALLOWISOLATION:NO /PDB:"C:\Projects\Git\Uso\nik\sources\kernel\src\Release\kernel.pdb" /SUBSYSTEM:NATIVE /OPT:NOREF /OPT:NOICF /TLBID:1 /ENTRY:"mainCRTStartup" /BASE:"0x100000" /DYNAMICBASE:NO /FIXED /NXCOMPAT:NO /IMPLIB:"C:\Projects\Git\Uso\nik\sources\kernel\src\Release\kernel.lib" /MACHINE:X86 Release\application.obj
+  Release\clock.obj
+  Release\config.obj
+  Release\button.obj
+  Release\clockControl.obj
+  Release\control.obj
+  Release\desktop.obj
+  Release\infoPanel.obj
+  Release\list.obj
+  Release\logControl.obj
+  Release\mainConfirmation.obj
+  Release\mainFinish.obj
+  Release\mainInfo.obj
+  Release\mainTabControl.obj
+  Release\tabControl.obj
+  Release\toolsDate.obj
+  Release\toolsJustirovka.obj
+  Release\toolsLog.obj
+  Release\toolsOff.obj
+  Release\toolsTabControl.obj
+  Release\toolsUpdate.obj
+  Release\toolsUpdateFR.obj
+  Release\toolsUpdatePC.obj
+  Release\usoModeControl.obj
+  Release\crc16.obj
+  Release\crc32.obj
+  Release\crt.obj
+  Release\serialDebug.obj
+  Release\display.obj
+  Release\hdd.obj
+  Release\hddManager.obj
+  Release\interrupt.obj
+  Release\logic.obj
+  Release\log.obj
+  Release\low.obj
+  Release\math.obj
+  Release\memory.obj
+  Release\messages.obj
+  Release\process.obj
+  Release\serialport.obj
+  Release\string.obj
+  Release\io.obj
+  Release\fire.obj
+  Release\monitoring.obj
+  Release\pws.obj
+  Release\rpk.obj
+  Release\system.obj
+  Release\timer.obj
+  Release\touchpad.obj
+  Release\main.obj
+  
+  Starting pass 1
+  Processed /DEFAULTLIB:LIBCMT
+  Processed /DEFAULTLIB:OLDNAMES
+  Processed /NODEFAULTLIB:libc.lib
+  Processed /NODEFAULTLIB:libcmt.lib
+  Processed /NODEFAULTLIB:libcmtd.lib
+  
+  Searching libraries
+      Searching C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\OLDNAMES.lib:
+  
+  Finished searching libraries
+  
+  Finished pass 1
+  
+  Starting pass 2
+       main.obj
+       touchpad.obj
+       timer.obj
+       system.obj
+       rpk.obj
+       pws.obj
+       monitoring.obj
+       fire.obj
+       io.obj
+       string.obj
+       serialport.obj
+       process.obj
+       messages.obj
+       memory.obj
+       math.obj
+       low.obj
+       log.obj
+       logic.obj
+       interrupt.obj
+       hddManager.obj
+       hdd.obj
+       display.obj
+       serialDebug.obj
+       crt.obj
+       crc32.obj
+       crc16.obj
+       usoModeControl.obj
+       toolsUpdatePC.obj
+       toolsUpdateFR.obj
+       toolsUpdate.obj
+       toolsTabControl.obj
+       toolsOff.obj
+       toolsLog.obj
+       toolsJustirovka.obj
+       toolsDate.obj
+       tabControl.obj
+       mainTabControl.obj
+       mainInfo.obj
+       mainFinish.obj
+       mainConfirmation.obj
+       logControl.obj
+       list.obj
+       infoPanel.obj
+       desktop.obj
+       control.obj
+       clockControl.obj
+       button.obj
+       config.obj
+       clock.obj
+       application.obj
+  Finished pass 2
+  kernel.vcxproj -> C:\Projects\Git\Uso\nik\sources\kernel\src\Release\kernel.exe
+PostBuildEvent:
+  AddImageCRC.exe  Release/kernel.exe
+  :VCEnd
+FinalizeBuildStatus:
+  Deleting file "Release\kernel.unsuccessfulbuild".
+  Touching "Release\kernel.lastbuildstate".
+Done Building Project "C:\Projects\Git\Uso\nik\sources\kernel\src\kernel.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.23
