@@ -4,7 +4,7 @@
 #include "../math/math.h"
 #include "../id.h"
 
-const unsigned short DATA_VERSION = 0x0001;
+const unsigned short DATA_VERSION = 0x0005;
 
 enum LOGIC_FUNCTION
 {

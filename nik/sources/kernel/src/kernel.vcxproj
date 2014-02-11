@@ -219,7 +219,7 @@
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
-    <IncludePath>D:\Ilja\Piter\Uso\Tag\Rab\sources\kernel\lib\cppCode;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Projects\Git\Uso\nik\sources\kernel\lib\cppCode;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
