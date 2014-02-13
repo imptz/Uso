@@ -56,8 +56,11 @@ void InfoPanel::draw()
 
 void InfoPanel::onMessage(Message message)
 {
-	if ((message.from == usoModeControl->getId()) && (message.msg == UsoModeControl::USO_MODE_CONTROL_MESSAGE_NEW_MODE))
-		sendMessage(Message(id, MESSAGE_FROM_OFFSET_CONTROLS + INFO_PANEL_MESSAGE_NEW_USO_MODE, message.par1, message.par2));
+	if ((message.from == usoModeControl->getId()) && (message.msg == MESSAGE_USO_MODE_CONTROL_FROM_TOOLS))
+		sendMessage(Message(id, MESSAGE_FROM_OFFSET_CONTROLS + MESSAGE_USO_MODE_CONTROL_FROM_TOOLS, message.par1, message.par2));
+
+	if ((message.from == usoModeControl->getId()) && (message.msg == MESSAGE_USO_MODE_CONTROL_TO_TOOLS))
+		sendMessage(Message(id, MESSAGE_FROM_OFFSET_CONTROLS + MESSAGE_USO_MODE_CONTROL_TO_TOOLS, message.par1, message.par2));
 }
 
 UsoModeControl* InfoPanel::getUsoModeControl()

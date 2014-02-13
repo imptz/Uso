@@ -76,7 +76,7 @@ void Application::start()
 	createLogic();
 
 	Display::getSingleton().print("                     ", 33, 7, false);
-	UI::getSingleton().getUsoModeControl()->setEnabled(true);
+	UI::getSingleton().getUsoModeControl()->unLock();
 
 	for (;;)
 	{

@@ -209,7 +209,7 @@ void LogicSearching::action()
 			if (initSignal != -1)
 			{
 				DEBUG_PUT_METHOD("initSignal = %i\n", initSignal);
-				if (UI::getSingleton().getUsoModeControl()->getMode() != UsoModeControl::USO_MODE_TOOLS)
+				if (!UI::getSingleton().getUsoModeControl()->isInTools())
 				{
 					phase = PHASE_INPUT_WAITING_CONTROL;
 					timeOutBeforeStart = Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeOutBeforeStart;
@@ -233,8 +233,6 @@ void LogicSearching::action()
 			}
 			break;
 		case PHASE_INPUT_ACTION:
-			if (UI::getSingleton().getUsoModeControl()->lock())
-			{
 				if (UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_HALF_AUTO)
 				{
 					sendMessage(Message(MESSAGE_FROM_OFFSET_LOGIC, LOGIC_MESSAGE_GET_CONFIRMATION, reinterpret_cast<unsigned int>(dialogText), 0));
@@ -254,12 +252,6 @@ void LogicSearching::action()
 						}
 						return;
 					}
-			}
-			else
-			{
-				initSignal = -1;
-				phase = PHASE_INPUT_CONTROL;
-			}
 			break;
 // M061112
 		case PHASE_WAITING_CONFIRMATION_SEARCH:
@@ -268,7 +260,7 @@ void LogicSearching::action()
 				DEBUG_PUT_METHOD("PHASE_WAITING_CONFIRMATION_SEARCH ... timeOutWaiting == 0\n");
 				timeOutWaiting = TIME_OUT_WAITING_UNDEFINED;	
 // M13112012
-				UI::getSingleton().getUsoModeControl()->setMode(UsoModeControl::USO_MODE_FULL_AUTO, UsoModeControl::USO_MODE_CONTROL_ACTOR_TIME_OUT, true);
+//				UI::getSingleton().getUsoModeControl()->setMode(UsoModeControl::USO_MODE_FULL_AUTO, UsoModeControl::USO_MODE_CONTROL_ACTOR_TIME_OUT, true);
 // M13112012E
 				UI::getSingleton().getMainTabControl()->activateMainTab();
 				if (start())

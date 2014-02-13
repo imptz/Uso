@@ -5,6 +5,10 @@
 #include "../timer/Timer.h"
 #include "hdd.h"
 
+enum SECTOR_OFFSET{
+	SECTOR_OFFSET_USO_MODE = 30000
+};
+
 class HddManager : public Singleton<HddManager>, public ITimer
 {
 	private:

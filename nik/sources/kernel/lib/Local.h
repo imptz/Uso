@@ -19,6 +19,10 @@
 #define LOCAL_USO_MODE_CONTROL_USO_MODE_SET_MESSAGE_REMOTE "Выбран дистанционный режим работы"
 #define LOCAL_USO_MODE_CONTROL_USO_MODE_SET_MESSAGE_TOOLS "Выбран режим настройки"
 
+#define LOCAL_USO_MODE_CONTROL_USO_MODE_SET_MESSAGE_TOOLS_ON "Вход в режим настройки"
+#define LOCAL_USO_MODE_CONTROL_USO_MODE_SET_MESSAGE_TOOLS_OFF "Выход из режима настройки"
+
+
 #define LOCAL_INTERRUPT_DEFAULT_PROCESSOR_INTERRUPT_HANDLER "rdefaultProcessorInterruptHandler"
 #define LOCAL_INTERRUPT_DEFAULT_PROCESSOR_INTERRUPT_HANDLER0 "rdefaultProcessorInterruptHandler0"
 #define LOCAL_INTERRUPT_DEFAULT_PROCESSOR_INTERRUPT_HANDLER1 "rdefaultProcessorInterruptHandler1"
