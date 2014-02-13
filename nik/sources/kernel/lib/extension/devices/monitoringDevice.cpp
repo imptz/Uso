@@ -9,6 +9,7 @@
 #include "../../DEBUG/serialDebug.h"
 #include "../../controls/UI.h"
 #include "../../controls/UsoModeControl.h"
+#include "../../controls/UI.h"
 
 bool MonitoringDevice::registered = false;
 
@@ -467,6 +468,10 @@ void MonitoringDevice::commandGetEvent(unsigned char* _pArea)
 
 					toLog(_pArea);
 					setOutputs(_pArea);
+				}else{
+					if(isControlMessage(_pArea)){
+						controlMessage(_pArea);
+					}
 				}
 
 				nextMessage(&_pArea);
@@ -552,6 +557,13 @@ bool MonitoringDevice::isEventMessage(unsigned char* _pArea)
 	const unsigned int MESSAGE_TYPE_2 = 2;
 
 	return (getMessageType(_pArea) == MESSAGE_TYPE_2);
+}
+
+bool MonitoringDevice::isControlMessage(unsigned char* _pArea)
+{
+	const unsigned int MESSAGE_TYPE_1 = 1;
+
+	return (getMessageType(_pArea) == MESSAGE_TYPE_1);
 }
 
 void MonitoringDevice::redirectToPc(unsigned char* _pArea)
@@ -1157,10 +1169,17 @@ void MonitoringDevice::createAndSendMessage(IMonitoringDevice::MESSAGE_NUMBER me
 	fifoFrame->put(&initData);
 }
 
-bool MonitoringDevice::isCommandMessage(unsigned char* _pArea){
-	const unsigned int MESSAGE_TYPE_COMMAND = 1;
+void MonitoringDevice::controlMessage(unsigned char* _pArea){
+	const unsigned int MESSAGE_TYPE_TO_OFFSET = 7;
+	const unsigned int MESSAGE_ADDRESS_TO_OFFSET = 8;
+	const unsigned int MESSAGE_TYPE_FROM_OFFSET = 9;
+	const unsigned int MESSAGE_ADDRESS_FROM_OFFSET = 10;
+	const unsigned int MESSAGE_COMMAND_CODE_OFFSET = 11;
 
-	return (getMessageType(_pArea) == MESSAGE_TYPE_COMMAND);
+	const unsigned int PDU_ADDRESS_FIRST = 34;
+	const unsigned int PDU_ADDRESS_LAST = 37;
+
+	if((_pArea[MESSAGE_ADDRESS_FROM_OFFSET] >= PDU_ADDRESS_FIRST) && (_pArea[MESSAGE_ADDRESS_FROM_OFFSET] <= PDU_ADDRESS_LAST)){
+		UI::getSingleton().getUsoModeControl()->change_toRemote();
+	}
 }
-
-

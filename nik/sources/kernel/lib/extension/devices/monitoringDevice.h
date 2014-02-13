@@ -57,10 +57,11 @@ class MonitoringDevice : public IMonitoringDevice, public MessageReceiver, publi
 		unsigned int firstMessage(unsigned char** _ppArea);
 		void nextMessage(unsigned char** _ppArea);
 		bool isEventMessage(unsigned char* _pArea);
+		bool isControlMessage(unsigned char* _pArea);
+		void controlMessage(unsigned char* _pArea);
 		unsigned int getMessageType(unsigned char* _pArea);
 		bool isLogingMessage(unsigned char* pMsg);
 		void getMessageInfo(unsigned char* pMsg, char** text, unsigned char* parameter1, unsigned char*parameter2);
-		bool isCommandMessage(unsigned char* _pArea);
 
 	private:
 #pragma region message texts

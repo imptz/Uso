@@ -134,7 +134,13 @@ void UsoModeControl::change_cycle(){
 }
 
 void UsoModeControl::change_toRemote(){
-	setMode(USO_MODE_REMOTE, USO_MODE_CONTROL_ACTOR_USER);
+	if(inTools)
+		return;
+
+	if(mode != USO_MODE_REMOTE)
+		setMode(USO_MODE_REMOTE, USO_MODE_CONTROL_ACTOR_USER);
+
+	//remoteTimer = 0;
 }
 
 void UsoModeControl::change_fromRemote(){
