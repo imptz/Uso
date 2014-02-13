@@ -162,4 +162,5 @@ class Config : public Singleton<Config>, public ITimer, public MessageSender, pu
 
 	public:
 		void sendMessageToPort(unsigned char* pData, unsigned int size);
+		void printConfig();
 };

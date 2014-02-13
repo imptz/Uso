@@ -775,6 +775,117 @@ bool Config::getPressureTableItemsIndex(unsigned char pressureTableNumber, unsig
 	return true;
 }
 
+void Config::printConfig(){
+	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_YELLOW, SerialDebug::TEXT_ATTR_BOLD, "Конфигурация УСО:\n\n")
+
+	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Константы:\n\n")
+	DEBUG_PUT("   максимальное число ПР, участвующих в пожаротушении:                        %u\n", pConfigData->getConfigDataStructConst()->maxPR)
+	DEBUG_PUT("   задержка перед поиском очага загорания:                                    %u сек\n", pConfigData->getConfigDataStructConst()->timeOutBeforeStart)				
+	DEBUG_PUT("   задержка на окончание пожаротушения:                                       %u сек\n", pConfigData->getConfigDataStructConst()->timeOutBeforeFinish)				
+	DEBUG_PUT("   количество анализируемых источников излучения (для ИК сканера):            %u\n", pConfigData->getConfigDataStructConst()->numberFireToAnalize)
+	DEBUG_PUT("   минимальное расстояние для компактной струи:                               %u м\n", pConfigData->getConfigDataStructConst()->minimumDistanceForCompactJet)
+	DEBUG_PUT("   Разрешение тестирования {0, 1}:                                            %u\n", pConfigData->getConfigDataStructConst()->permissionTesting)
+	DEBUG_PUT("   Время начала тестирования (часы):                                          %u\n", pConfigData->getConfigDataStructConst()->testingHour)
+	DEBUG_PUT("   Время начала тестирования (минуты):                                        %u\n", pConfigData->getConfigDataStructConst()->testingMinute)
+	DEBUG_PUT("   Разрешение передачи информации о результатах тестирования {0, 1}:          %u\n", pConfigData->getConfigDataStructConst()->permissionTestingInfo)
+	DEBUG_PUT("   Время ожидания действия оператора перед выходом из дистан. режима (сек):   %u\n", pConfigData->getConfigDataStructConst()->timeControlUserAction)						
+	DEBUG_PUT("   габариты защищаемой зоны - X:                                              %f м\n", pConfigData->getConfigDataStructConst()->protectedZone.x / 100.0f)
+	DEBUG_PUT("   габариты защищаемой зоны - Y:                                              %f м\n", pConfigData->getConfigDataStructConst()->protectedZone.y / 100.0f)
+	DEBUG_PUT("   габариты защищаемой зоны - Z:                                              %f м\n", pConfigData->getConfigDataStructConst()->protectedZone.z / 100.0f)
+	DEBUG_PUT("   Наличие адаптера УСО - 'телевизионная система мониторинга':                %u\n", pConfigData->getConfigDataStructConst()->tv)
+	DEBUG_PUT("   Наличие адаптера УСО - 'PC':                                               %u\n", pConfigData->getConfigDataStructConst()->pc)
+	DEBUG_PUT("   Верхнее поле при тушении очага (град):                                     %u\n", pConfigData->getConfigDataStructConst()->topField)
+	DEBUG_PUT("   Нижнее поле при тушении очага (град):                                      %u\n", pConfigData->getConfigDataStructConst()->bottomField)
+	DEBUG_PUT("   Левое поле при тушении очага (град):                                       %u\n", pConfigData->getConfigDataStructConst()->leftField)
+	DEBUG_PUT("   Правое поле при тушении очага (град):                                      %u\n", pConfigData->getConfigDataStructConst()->rightField)
+	DEBUG_PUT("   Время возврата из дистанционного режима (сек):                             %u\n", pConfigData->getConfigDataStructConst()->timeReturnFromRemoteMode)
+	DEBUG_PUT("   Остановка поиска очага при переходе в дистанционный режим {0, 1}:          %u\n", pConfigData->getConfigDataStructConst()->stopSearchToRemote)
+	DEBUG_PUT("   Запрос оператора перед поиском очага возгорания {0, 1}:                    %u\n", pConfigData->getConfigDataStructConst()->requestUserBeforeSearch)
+	DEBUG_PUT("   Установка ПР в нулевую точку при включении РПК {0, 1}:                     %u\n", pConfigData->getConfigDataStructConst()->autoPrToZero)
+	DEBUG_PUT("   Время повторного поиска очага возгорания(сек):                             %u\n", pConfigData->getConfigDataStructConst()->timeRepeatSearch)
+	DEBUG_PUT("   Задержка на опрос пожарной сигнализации после сброса:                      %u\n\n", pConfigData->getConfigDataStructConst()->delayAfterReset)
+
+	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Положение и ориентация ПР:\n\n")
+	for (unsigned int i = 0; i < pConfigData->getConfigDataStructPRPositionCount(); ++i){
+		DEBUG_PUT("   номер:                                     %u\n", pConfigData->getConfigDataStructPRPositions()[i]->projectNumber)
+		DEBUG_PUT("   адрес:                                     %u\n", pConfigData->getConfigDataStructPRPositions()[i]->address)
+		DEBUG_PUT("   координата X:                              %f\n", pConfigData->getConfigDataStructPRPositions()[i]->position.x / 100.0f)
+		DEBUG_PUT("   координата Y:                              %f\n", pConfigData->getConfigDataStructPRPositions()[i]->position.y / 100.0f)
+		DEBUG_PUT("   координата Z:                              %f\n", pConfigData->getConfigDataStructPRPositions()[i]->position.z / 100.0f)
+		DEBUG_PUT("   ориентация ПР в горизонтальной плоскости:  %f\n", pConfigData->getConfigDataStructPRPositions()[i]->orientation.x)
+		DEBUG_PUT("   ориентация ПР в вертикальной плоскости:    %f\n", pConfigData->getConfigDataStructPRPositions()[i]->orientation.y)
+		DEBUG_PUT("   порядковый номер по магистрали:            %u\n", pConfigData->getConfigDataStructPRPositions()[i]->networkIndexNumber)
+		DEBUG_PUT("   ось Х:                                     %f\n", pConfigData->getConfigDataStructPRPositions()[i]->axis.x / 100.0f)
+		DEBUG_PUT("   ось Y:                                     %f\n", pConfigData->getConfigDataStructPRPositions()[i]->axis.y / 100.0f)
+		DEBUG_PUT("   ось Z:                                     %f\n", pConfigData->getConfigDataStructPRPositions()[i]->axis.z / 100.0f)
+		DEBUG_PUT("   количество затворов:                       %u\n\n", pConfigData->getConfigDataStructPRPositions()[i]->zatvorCount)
+	}
+
+	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Используемые входы и выходы БК-16:\n\n")
+		for (unsigned int i = 0; i < pConfigData->getConfigDataStructIOBk16Count(); ++i){
+		DEBUG_PUT("   адрес устройства (БК16):       %u\n", pConfigData->getConfigDataStructIOBk16()[i]->bkAddress)
+		DEBUG_PUT("   номер входа/выхода:            %u\n", pConfigData->getConfigDataStructIOBk16()[i]->numberOnDevice)
+		DEBUG_PUT("   функциональная группа выхода:  %u\n", pConfigData->getConfigDataStructIOBk16()[i]->outputFunctionGroup)
+		DEBUG_PUT("   номер ПР (дискового затвора):  %u\n", pConfigData->getConfigDataStructIOBk16()[i]->prGateNumber)
+		DEBUG_PUT("   использование входа:           %u\n", pConfigData->getConfigDataStructIOBk16()[i]->inputFunctionGroup)
+		DEBUG_PUT("   номер извещателя:              %u\n\n", pConfigData->getConfigDataStructIOBk16()[i]->projectNumber)
+	}
+
+	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Список инициирующих сигналов:\n\n")
+	DEBUG_PUT("   количество сигналов:  %u\n\n", pConfigData->getConfigDataStructInitSignalsCount())
+	for (unsigned int i = 0; i < pConfigData->getConfigDataStructInitSignalsCount(); ++i){
+		DEBUG_PUT("   номер инициирующего сигнала:                   %u\n", pConfigData->getConfigDataStructInitSignals()[i]->number)
+		DEBUG_PUT("   номер1 входного сигнала пожарной сигнализации:  %u\n", pConfigData->getConfigDataStructInitSignals()[i]->firstInputNumber)
+		DEBUG_PUT("   номер2 входного сигнала пожарной сигнализации:  %u\n", pConfigData->getConfigDataStructInitSignals()[i]->secondInputNumber)
+		DEBUG_PUT("   номер3 входного сигнала пожарной сигнализации:  %u\n\n", pConfigData->getConfigDataStructInitSignals()[i]->thirdInputNumber)
+	}
+
+	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Задания для ПР при поиске очага загорания и охлаждении:\n\n")
+	DEBUG_PUT("   количество заданий:  %u\n\n", pConfigData->getConfigDataStructProgramCount())
+	for (unsigned int i = 0; i < pConfigData->getConfigDataStructProgramCount(); ++i){
+		DEBUG_PUT("   номер инициирующего сигнала:    %u\n", pConfigData->getConfigDataStructPrograms()[i]->initSignalNumber)
+		DEBUG_PUT("   номер ПР:                       %u\n", pConfigData->getConfigDataStructPrograms()[i]->prNumber)
+		DEBUG_PUT("   функция:                        %u\n", pConfigData->getConfigDataStructPrograms()[i]->function)
+		DEBUG_PUT("   1-я горизонтальная координата:  %u\n", pConfigData->getConfigDataStructPrograms()[i]->point1.x)
+		DEBUG_PUT("   1-я вертикальная координата:    %u\n", pConfigData->getConfigDataStructPrograms()[i]->point1.y)
+		DEBUG_PUT("   2-я горизонтальная координата:  %u\n", pConfigData->getConfigDataStructPrograms()[i]->point2.x)
+		DEBUG_PUT("   2-я вертикальная координата:    %u\n", pConfigData->getConfigDataStructPrograms()[i]->point2.y)
+		DEBUG_PUT("   номер траектории:               %u\n", pConfigData->getConfigDataStructPrograms()[i]->nPointProgram)
+		DEBUG_PUT("   насадок:                        %u\n\n", pConfigData->getConfigDataStructPrograms()[i]->nasadok)
+	}
+
+//	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Извещатели FV300:\n\n")
+//	//DEBUG_PUT("   количество извещателей:  %u\n\n", pConfigData->getConfigDataStructFv300Count())
+//	//for (unsigned int i = 0; i < pConfigData->getConfigDataStructFv300Count(); ++i){
+//	//	DEBUG_PUT("   адрес извещателя:  %u\n", pConfigData->getConfigDataStructFv300()[i]->address)
+//	//	DEBUG_PUT("   номер ПР:          %u\n", pConfigData->getConfigDataStructFv300()[i]->prNumber)
+//	//	DEBUG_PUT("   номер извещателя:  %u\n\n", pConfigData->getConfigDataStructFv300()[i]->projectNumber)
+//	//}
+//
+//	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Траектории ПР:\n\n")
+////						DEBUG_PUT("   количество точек всех траекторий:  %u\n\n", pConfigData->getConfigDataStructTrajectoryCount())
+//
+//	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Таблицы давления:\n\n")
+////						DEBUG_PUT("   количество таблиц:  %u\n\n", pConfigData->getConfigDataStructPressureCount())
+//	//for (unsigned int i = 0; i < pConfigData->getConfigDataStructPressureCount() / 100; ++i)
+//	//{
+//	//	DEBUG_PUT("   номер ПР:      %u\n", pConfigData->getConfigDataStructPressure()[i]->prNumber)
+//	//	DEBUG_PUT("   номер таблицы: %u\n", pConfigData->getConfigDataStructPressure()[i]->arNumber)
+//	//	DEBUG_PUT("   давление:      %u\n", pConfigData->getConfigDataStructPressure()[i]->pressure)
+//	//	DEBUG_PUT("   угол:          %u\n\n", pConfigData->getConfigDataStructPressure()[i]->delta)
+//	//}
+//
+	DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Баки пенообразователя:\n\n")
+	DEBUG_PUT("   количество записей баков:  %u\n\n", pConfigData->getConfigDataStructPenaBakCount())
+	for (unsigned int i = 0; i < pConfigData->getConfigDataStructPenaBakCount(); ++i){
+		DEBUG_PUT("   номер бака:           %u\n", pConfigData->getConfigDataStructPenaBak()[i]->number)
+		DEBUG_PUT("   уровень:              %u\n", pConfigData->getConfigDataStructPenaBak()[i]->level)
+		DEBUG_PUT("   адрес контроллера:    %u\n", pConfigData->getConfigDataStructPenaBak()[i]->address)
+		DEBUG_PUT("   номер входа на плате: %u\n\n", pConfigData->getConfigDataStructPenaBak()[i]->numberOnDevice)
+	}
+}
+
+
 void Config::onMessage(Message message)
 {
 	if (message.from == MESSAGE_FROM_OFFSET_SERIAL_DEBUG)
@@ -785,95 +896,8 @@ void Config::onMessage(Message message)
 				switch (message.par1)
 				{
 					case SerialDebug::COMMAND_GET_SETTINGS:
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_YELLOW, SerialDebug::TEXT_ATTR_BOLD, "Конфигурация УСО:\n\n")
-
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Константы:\n\n")
-						DEBUG_PUT("   максимальное число ПР, участвующих в пожаротушении:              %u\n", pConfigData->getConfigDataStructConst()->maxPR)
-						DEBUG_PUT("   задержка перед поиском очага загорания:                          %u сек\n", pConfigData->getConfigDataStructConst()->timeOutBeforeStart)				
-						DEBUG_PUT("   задержка на окончание пожаротушения:                             %u сек\n", pConfigData->getConfigDataStructConst()->timeOutBeforeFinish)				
-						DEBUG_PUT("   количество анализируемых источников излучения (для ИК сканера):  %u\n", pConfigData->getConfigDataStructConst()->numberFireToAnalize)
-						DEBUG_PUT("   минимальное расстояние для компактной струи:                     %u м\n", pConfigData->getConfigDataStructConst()->minimumDistanceForCompactJet)
-						DEBUG_PUT("   габариты защищаемой зоны - X:                                    %f м\n", pConfigData->getConfigDataStructConst()->protectedZone.x / 100.0f)
-						DEBUG_PUT("   габариты защищаемой зоны - Y:                                    %f м\n\n", pConfigData->getConfigDataStructConst()->protectedZone.y / 100.0f)
-
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Положение и ориентация ПР:\n\n")
-						for (unsigned int i = 0; i < pConfigData->getConfigDataStructPRPositionCount(); ++i)
-						{
-							DEBUG_PUT("   номер:                                     %u\n", pConfigData->getConfigDataStructPRPositions()[i]->projectNumber)
-							DEBUG_PUT("   адрес:                                     %u\n", pConfigData->getConfigDataStructPRPositions()[i]->address)
-							DEBUG_PUT("   координата X:                              %f\n", pConfigData->getConfigDataStructPRPositions()[i]->position.x / 100.0f)
-							DEBUG_PUT("   координата Y:                              %f\n", pConfigData->getConfigDataStructPRPositions()[i]->position.y / 100.0f)
-							DEBUG_PUT("   координата Z:                              %f\n", pConfigData->getConfigDataStructPRPositions()[i]->position.z / 100.0f)
-							DEBUG_PUT("   ориентация ПР в горизонтальной плоскости:  %f\n", pConfigData->getConfigDataStructPRPositions()[i]->orientation.x)
-							DEBUG_PUT("   ориентация ПР в вертикальной плоскости:    %f\n", pConfigData->getConfigDataStructPRPositions()[i]->orientation.y)
-							DEBUG_PUT("   порядковый номер по магистрали:            %u\n\n", pConfigData->getConfigDataStructPRPositions()[i]->networkIndexNumber)
-						}
-
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Используемые входы и выходы БК-16:\n\n")
-						for (unsigned int i = 0; i < pConfigData->getConfigDataStructIOBk16Count(); ++i)
-						{
-							DEBUG_PUT("   адрес устройства (БК16):       %u\n", pConfigData->getConfigDataStructIOBk16()[i]->bkAddress)
-							DEBUG_PUT("   номер входа/выхода:            %u\n", pConfigData->getConfigDataStructIOBk16()[i]->numberOnDevice)
-							DEBUG_PUT("   функциональная группа выхода:  %u\n", pConfigData->getConfigDataStructIOBk16()[i]->outputFunctionGroup)
-							DEBUG_PUT("   номер ПР (дискового затвора):  %u\n", pConfigData->getConfigDataStructIOBk16()[i]->projectNumber)
-							DEBUG_PUT("   использование входа:           %u\n", pConfigData->getConfigDataStructIOBk16()[i]->prGateNumber)
-							DEBUG_PUT("   номер извещателя:              %u\n\n", pConfigData->getConfigDataStructIOBk16()[i]->projectNumber)
-						}
-
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Список инициирующих сигналов:\n\n")
-						DEBUG_PUT("   количество сигналов:  %u\n\n", pConfigData->getConfigDataStructInitSignalsCount())
-						for (unsigned int i = 0; i < pConfigData->getConfigDataStructInitSignalsCount(); ++i)
-						{
-							DEBUG_PUT("   номер инициирующего сигнала:                   %u\n", pConfigData->getConfigDataStructInitSignals()[i]->number)
-							DEBUG_PUT("   номер входного сигнала пожарной сигнализации:  %u\n", pConfigData->getConfigDataStructInitSignals()[i]->firstInputNumber)
-							DEBUG_PUT("   номер входного сигнала пожарной сигнализации:  %u\n\n", pConfigData->getConfigDataStructInitSignals()[i]->secondInputNumber)
-						}
-
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Задания для ПР при поиске очага загорания и охлаждении:\n\n")
-						DEBUG_PUT("   количество заданий:  %u\n\n", pConfigData->getConfigDataStructProgramCount())
-/*						for (unsigned int i = 0; i < pConfigData->getConfigDataStructProgramCount(); ++i)
-						{
-							DEBUG_PUT("   номер инициирующего сигнала:    %u\n", pConfigData->getConfigDataStructPrograms()[i]->initSignalNumber)
-							DEBUG_PUT("   номер ПР:                       %u\n", pConfigData->getConfigDataStructPrograms()[i]->prNumber)
-							DEBUG_PUT("   функция:                        %u\n", pConfigData->getConfigDataStructPrograms()[i]->function)
-							DEBUG_PUT("   1-я горизонтальная координата:  %u\n", pConfigData->getConfigDataStructPrograms()[i]->point1.x)
-							DEBUG_PUT("   1-я вертикальная координата:    %u\n", pConfigData->getConfigDataStructPrograms()[i]->point1.y)
-							DEBUG_PUT("   2-я горизонтальная координата:  %u\n", pConfigData->getConfigDataStructPrograms()[i]->point2.x)
-							DEBUG_PUT("   2-я вертикальная координата:    %u\n", pConfigData->getConfigDataStructPrograms()[i]->point2.y)
-							DEBUG_PUT("   номер траектории:               %u\n\n", pConfigData->getConfigDataStructPrograms()[i]->nPointProgram)
-						}
-*/
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Извещатели FV300:\n\n")
-						DEBUG_PUT("   количество извещателей:  %u\n\n", pConfigData->getConfigDataStructFv300Count())
-						for (unsigned int i = 0; i < pConfigData->getConfigDataStructFv300Count(); ++i)
-						{
-							DEBUG_PUT("   адрес извещателя:  %u\n", pConfigData->getConfigDataStructFv300()[i]->address)
-							DEBUG_PUT("   номер ПР:          %u\n", pConfigData->getConfigDataStructFv300()[i]->prNumber)
-							DEBUG_PUT("   номер извещателя:  %u\n\n", pConfigData->getConfigDataStructFv300()[i]->projectNumber)
-						}
-
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Траектории ПР:\n\n")
-						DEBUG_PUT("   количество точек всех траекторий:  %u\n\n", pConfigData->getConfigDataStructTrajectoryCount())
-
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Таблицы давления:\n\n")
-						DEBUG_PUT("   количество таблиц:  %u\n\n", pConfigData->getConfigDataStructPressureCount())
-						//for (unsigned int i = 0; i < pConfigData->getConfigDataStructPressureCount() / 100; ++i)
-						//{
-						//	DEBUG_PUT("   номер ПР:      %u\n", pConfigData->getConfigDataStructPressure()[i]->prNumber)
-						//	DEBUG_PUT("   номер таблицы: %u\n", pConfigData->getConfigDataStructPressure()[i]->arNumber)
-						//	DEBUG_PUT("   давление:      %u\n", pConfigData->getConfigDataStructPressure()[i]->pressure)
-						//	DEBUG_PUT("   угол:          %u\n\n", pConfigData->getConfigDataStructPressure()[i]->delta)
-						//}
-
-						DEBUG_PUT_COLOR_ATTR(SerialDebug::COLOR_WHITE, SerialDebug::TEXT_ATTR_BOLD, "  Баки пенообразователя:\n\n")
-						DEBUG_PUT("   количество записей баков:  %u\n\n", pConfigData->getConfigDataStructPenaBakCount())
-						for (unsigned int i = 0; i < pConfigData->getConfigDataStructPenaBakCount(); ++i){
-							DEBUG_PUT("   номер бака:        %u\n", pConfigData->getConfigDataStructPenaBak()[i]->number)
-							DEBUG_PUT("   уровень:           %u\n", pConfigData->getConfigDataStructPenaBak()[i]->level)
-							DEBUG_PUT("   адрес контроллера: %u\n", pConfigData->getConfigDataStructPenaBak()[i]->address)
-							DEBUG_PUT("   номер входа:       %u\n\n", pConfigData->getConfigDataStructPenaBak()[i]->numberOnDevice)
-						}
-					break;
+						printConfig();
+						break;
 				}
 			break;
 		}

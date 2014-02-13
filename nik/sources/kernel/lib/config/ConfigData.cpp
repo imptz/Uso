@@ -275,6 +275,40 @@ void ConfigData::setData(unsigned char* data, unsigned int length)
 	else
 		cDataNew->_Const->tv = false;
 
+	x = (data[19] << 8) + data[18];
+	if (x != 0)
+		cDataNew->_Const->pc = true;
+	else
+		cDataNew->_Const->pc = false;
+
+	cDataNew->_Const->topField = data[20];
+	cDataNew->_Const->bottomField = data[21];
+	cDataNew->_Const->leftField = data[22];
+	cDataNew->_Const->rightField = data[23];
+
+	cDataNew->_Const->timeReturnFromRemoteMode = data[24];
+	cDataNew->_Const->timeReturnFromRemoteMode *= 60;
+
+	if (data[25] != 0)
+		cDataNew->_Const->stopSearchToRemote = true;
+	else
+		cDataNew->_Const->stopSearchToRemote = false;
+
+	if (data[26] != 0)
+		cDataNew->_Const->requestUserBeforeSearch = true;
+	else
+		cDataNew->_Const->requestUserBeforeSearch = false;
+
+	if (data[27] != 0)
+		cDataNew->_Const->autoPrToZero = true;
+	else
+		cDataNew->_Const->autoPrToZero = false;
+
+	cDataNew->_Const->timeRepeatSearch = data[28];
+	cDataNew->_Const->timeRepeatSearch *= 60;
+
+	cDataNew->_Const->delayAfterReset = data[29];
+
 	data += ConfigDataStructConst::SIZE;
 #pragma endregion
 	//=====================================================
@@ -304,6 +338,8 @@ void ConfigData::setData(unsigned char* data, unsigned int length)
 		y = (data[15] << 8) + data[14];
 		z = (data[17] << 8) + data[16];
 		cDataNew->_PRPositions[i]->axis = Point3<float>(static_cast<float>(x),static_cast<float>(y),static_cast<float>(z));
+
+		cDataNew->_PRPositions[i]->zatvorCount = data[18];
 
 		data += ConfigDataStructPRPosition::SIZE;
 	}

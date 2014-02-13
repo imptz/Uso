@@ -4,7 +4,7 @@
 #include "../math/math.h"
 #include "../id.h"
 
-const unsigned short DATA_VERSION = 0x0005;
+const unsigned short DATA_VERSION = 0x0001;
 
 enum LOGIC_FUNCTION
 {
@@ -36,6 +36,17 @@ struct ConfigDataStructConst
 // M061112E
 	Point3<float> protectedZone;
 	bool tv;
+	bool pc;
+	int topField;
+	int bottomField;
+	int leftField;
+	int rightField;
+	int timeReturnFromRemoteMode;
+	bool stopSearchToRemote;
+	bool requestUserBeforeSearch;
+	bool autoPrToZero;
+	int timeRepeatSearch;
+	int delayAfterReset;
 
 	ConfigDataStructConst()
 		:	maxPR(0),
@@ -51,7 +62,18 @@ struct ConfigDataStructConst
 			timeControlUserAction(0),
 // M061112E
 			protectedZone(Point3<float>()),
-			tv(false)
+			tv(false),
+			pc(false),
+			topField(0),
+			bottomField(0),
+			leftField(0),
+			rightField(0),
+			timeReturnFromRemoteMode(0),
+			stopSearchToRemote(false),
+			requestUserBeforeSearch(false),
+			autoPrToZero(false),
+			timeRepeatSearch(0),
+			delayAfterReset(0)
 	{
 	}
 
@@ -118,6 +140,39 @@ struct ConfigDataStructConst
 
 		tv = *reinterpret_cast<bool*>(*buffer);
 		*buffer += sizeof(bool);
+
+		pc = *reinterpret_cast<bool*>(*buffer);
+		*buffer += sizeof(bool);
+
+		topField = *reinterpret_cast<int*>(*buffer);
+		*buffer += sizeof(topField);
+		
+		bottomField = *reinterpret_cast<int*>(*buffer);
+		*buffer += sizeof(bottomField);
+		
+		leftField = *reinterpret_cast<int*>(*buffer);
+		*buffer += sizeof(leftField);
+		
+		rightField = *reinterpret_cast<int*>(*buffer);
+		*buffer += sizeof(rightField);
+		
+		timeReturnFromRemoteMode = *reinterpret_cast<int*>(*buffer);
+		*buffer += sizeof(timeReturnFromRemoteMode);
+		
+		stopSearchToRemote = *reinterpret_cast<bool*>(*buffer);
+		*buffer += sizeof(bool);
+
+		requestUserBeforeSearch = *reinterpret_cast<bool*>(*buffer);
+		*buffer += sizeof(bool);
+
+		autoPrToZero = *reinterpret_cast<bool*>(*buffer);
+		*buffer += sizeof(bool);
+
+		timeRepeatSearch = *reinterpret_cast<int*>(*buffer);
+		*buffer += sizeof(timeRepeatSearch);
+		
+		delayAfterReset = *reinterpret_cast<int*>(*buffer);
+		*buffer += sizeof(delayAfterReset);
 	}
 
 	void serialize(unsigned char** buffer)
@@ -160,6 +215,39 @@ struct ConfigDataStructConst
 
 		*reinterpret_cast<bool*>(*buffer) = tv;
 		*buffer += sizeof(tv);
+
+		*reinterpret_cast<bool*>(*buffer) = pc;
+		*buffer += sizeof(pc);
+
+		*reinterpret_cast<int*>(*buffer) = topField;
+		*buffer += sizeof(topField);
+
+		*reinterpret_cast<int*>(*buffer) = bottomField;
+		*buffer += sizeof(bottomField);
+
+		*reinterpret_cast<int*>(*buffer) = leftField;
+		*buffer += sizeof(leftField);
+
+		*reinterpret_cast<int*>(*buffer) = rightField;
+		*buffer += sizeof(rightField);
+
+		*reinterpret_cast<int*>(*buffer) = timeReturnFromRemoteMode;
+		*buffer += sizeof(timeReturnFromRemoteMode);
+
+		*reinterpret_cast<bool*>(*buffer) = stopSearchToRemote;
+		*buffer += sizeof(stopSearchToRemote);
+
+		*reinterpret_cast<bool*>(*buffer) = requestUserBeforeSearch;
+		*buffer += sizeof(requestUserBeforeSearch);
+
+		*reinterpret_cast<bool*>(*buffer) = autoPrToZero;
+		*buffer += sizeof(autoPrToZero);
+
+		*reinterpret_cast<int*>(*buffer) = timeRepeatSearch;
+		*buffer += sizeof(timeRepeatSearch);
+
+		*reinterpret_cast<int*>(*buffer) = delayAfterReset;
+		*buffer += sizeof(delayAfterReset);
 	}
 };
 
@@ -172,6 +260,7 @@ struct ConfigDataStructPRPosition
 	Point2<float> orientation;
 	unsigned char networkIndexNumber;
 	Point3<float> axis;
+	unsigned char zatvorCount;
 
 	bool operator==(const ConfigDataStructPRPosition& rh)
 	{
@@ -194,7 +283,8 @@ struct ConfigDataStructPRPosition
 			position(Point3<float>()),
 			orientation(Point2<float>()),
 			networkIndexNumber(0),
-			axis(Point3<float>())
+			axis(Point3<float>()),
+			zatvorCount(0)
 	{
 	}
 
@@ -217,6 +307,9 @@ struct ConfigDataStructPRPosition
 
 		axis = *reinterpret_cast<Point3<float>*>(*buffer);
 		*buffer += sizeof(axis);
+
+		zatvorCount = *reinterpret_cast<unsigned char*>(*buffer);
+		*buffer += sizeof(zatvorCount);
 	}
 
 	void serialize(unsigned char** buffer)
@@ -238,6 +331,9 @@ struct ConfigDataStructPRPosition
 
 		*reinterpret_cast<Point3<float>*>(*buffer) = axis;
 		*buffer += sizeof(axis);
+
+		*reinterpret_cast<unsigned char*>(*buffer) = zatvorCount;
+		*buffer += sizeof(zatvorCount);
 	}
 };
 
