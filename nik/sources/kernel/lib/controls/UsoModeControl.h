@@ -3,7 +3,7 @@
 
 #include "button.h"
 
-class UsoModeControl : public Control{
+class UsoModeControl : public ITimer, public Control{
 public:
 	enum USO_MODE{
 		USO_MODE_NULL,
@@ -16,7 +16,8 @@ public:
 		USO_MODE_CONTROL_ACTOR_USER = 0,
 		USO_MODE_CONTROL_ACTOR_TOOLS = 1,
 		USO_MODE_CONTROL_ACTOR_BOOT = 2, 
-		USO_MODE_CONTROL_ACTOR_TIME_OUT = 3
+		USO_MODE_CONTROL_ACTOR_TIME_OUT = 3,
+		USO_MODE_CONTROL_ACTOR_PDU = 4
 	};
 
 private:
@@ -47,6 +48,11 @@ private:
 	UsoModeControl();
 	void setMode(USO_MODE _mode, USO_MODE_CONTROL_ACTOR actor);
 	void change_cycle();
+	bool fRemoteTimerStart;
+	int remoteTimer;
+
+	static const unsigned int TIMER_PERIOD = 1000;
+	virtual void timerHandler();
 
 public:
 	UsoModeControl(unsigned int _positionX, unsigned int _positionY, MessageReceiver* _messageReceiver = nullptr);
@@ -61,6 +67,10 @@ public:
 	void unLock();
 	USO_MODE getMode();
 	bool isInTools();
+
+	void startRemoteTimer();
+	void stopRemoteTimer();
+	void clearRemoteTimer();
 };
 
 #endif

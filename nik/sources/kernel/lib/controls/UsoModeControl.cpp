@@ -3,6 +3,8 @@
 #include "../local.h"
 #include "../hdd/hddManager.h"
 //#include "../logic/Logic.h"
+#include "../config/Config.h"
+#include "../DEBUG/serialDebug.h"
 
 #pragma warning (disable : 4355)
 
@@ -18,10 +20,10 @@ char* UsoModeControl::USO_MODE_SET_MESSAGE_TOOLS_ON = LOCAL_USO_MODE_CONTROL_USO
 char* UsoModeControl::USO_MODE_SET_MESSAGE_TOOLS_OFF = LOCAL_USO_MODE_CONTROL_USO_MODE_SET_MESSAGE_TOOLS_OFF;
 
 UsoModeControl::UsoModeControl(unsigned int _positionX, unsigned int _positionY, MessageReceiver* _messageReceiver)
-	:	Control(_positionX, _positionY, WIDTH, HEIGHT, _messageReceiver),
+	:	ITimer(TIMER_PERIOD), Control(_positionX, _positionY, WIDTH, HEIGHT, _messageReceiver),
 	modeButton(new Button(_positionX, _positionY, WIDTH_AUTO, HEIGHT, "", Window::BORDER_STYLE_INVISIBLE, this)),
 	toolsButton(new Button(_positionX + POSITION_OFFSET_TOOLS, _positionY, WIDTH_TOOLS, HEIGHT, modeToolsText, Window::BORDER_STYLE_INVISIBLE, this)),
-	buffer(new unsigned char[BUFFER_SIZE]), mode(USO_MODE_HALF_AUTO), fLock(false), inTools(false)
+	buffer(new unsigned char[BUFFER_SIZE]), mode(USO_MODE_HALF_AUTO), fLock(false), inTools(false), fRemoteTimerStart(false), remoteTimer(0)
 {
 	this->addChildControl(modeButton);
 	this->addChildControl(toolsButton);
@@ -46,6 +48,8 @@ UsoModeControl::UsoModeControl(unsigned int _positionX, unsigned int _positionY,
 		}		
 	}else
 		setMode(USO_MODE_HALF_AUTO, USO_MODE_CONTROL_ACTOR_BOOT);
+
+	pTimer->start();
 }
 
 UsoModeControl::~UsoModeControl(){}
@@ -74,10 +78,12 @@ void UsoModeControl::setMode(USO_MODE _mode, USO_MODE_CONTROL_ACTOR actor){
 		case USO_MODE_FULL_AUTO:
 			modeButton->setName(modeFullAutoText);
 			Log::getSingleton().add(LOG_MESSAGE_FROM_APPLICATION, LOG_MESSAGE_TYPE_SYSTEM, USO_MODE_SET_MESSAGE_FULL_AUTO, actor, 0);
+			stopRemoteTimer();
 			break;
 		case USO_MODE_HALF_AUTO:
 			modeButton->setName(modeHalfAutoText);
 			Log::getSingleton().add(LOG_MESSAGE_FROM_APPLICATION, LOG_MESSAGE_TYPE_SYSTEM, USO_MODE_SET_MESSAGE_HALF_AUTO, actor, 0);
+			stopRemoteTimer();
 			break;
 		case USO_MODE_REMOTE:
 			modeButton->setName(modeRemoteText);
@@ -137,14 +143,17 @@ void UsoModeControl::change_toRemote(){
 	if(inTools)
 		return;
 
-	if(mode != USO_MODE_REMOTE)
-		setMode(USO_MODE_REMOTE, USO_MODE_CONTROL_ACTOR_USER);
+	if(mode != USO_MODE_REMOTE){
+		setMode(USO_MODE_REMOTE, USO_MODE_CONTROL_ACTOR_PDU);
+		startRemoteTimer();
+	}
 
-	//remoteTimer = 0;
+	clearRemoteTimer();
 }
 
 void UsoModeControl::change_fromRemote(){
-	setMode(USO_MODE_FULL_AUTO, USO_MODE_CONTROL_ACTOR_USER);
+	DEBUG_PUT_METHOD("\n");
+	setMode(USO_MODE_FULL_AUTO, USO_MODE_CONTROL_ACTOR_TIME_OUT);
 }
 
 UsoModeControl::USO_MODE UsoModeControl::getMode(){
@@ -153,4 +162,36 @@ UsoModeControl::USO_MODE UsoModeControl::getMode(){
 
 bool UsoModeControl::isInTools(){
 	return inTools;
+}
+
+void UsoModeControl::startRemoteTimer(){
+	fRemoteTimerStart = true;
+	remoteTimer = 0;
+	//pTimer->start();
+	DEBUG_PUT_METHOD("\n");
+}
+
+void UsoModeControl::stopRemoteTimer(){
+	fRemoteTimerStart = false;
+	remoteTimer = 0;
+	//pTimer->stop();
+	DEBUG_PUT_METHOD("\n");
+}
+
+void UsoModeControl::clearRemoteTimer(){
+	remoteTimer = 0;
+	DEBUG_PUT_METHOD("\n");
+}
+
+void UsoModeControl::timerHandler(){
+	if(fRemoteTimerStart){
+		if(remoteTimer >= Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeReturnFromRemoteMode){
+				if(!inTools){
+					DEBUG_PUT_METHOD("fromRemote \n");
+					stopRemoteTimer();
+					change_fromRemote();
+				}
+		}else
+			++remoteTimer;
+	}
 }

@@ -462,6 +462,12 @@ void MonitoringDevice::commandGetEvent(unsigned char* _pArea)
 
 			unsigned int messageCount = firstMessage(&_pArea);
 			for (unsigned int i = 0; i < messageCount; ++i){
+//DEBUG_PUT_METHOD("msg = ");
+//for(unsigned int i = 0; i < 20; ++i)
+//	DEBUG_PUT("%i ", _pArea[i]);
+//
+//DEBUG_PUT("\n");
+
 				if (isEventMessage(_pArea)){
 
 //DEBUG_PUT_METHOD(" %i, %i, %i, %i, %i\n", _pArea[1], _pArea[9], _pArea[10], _pArea[11], _pArea[12])
@@ -1178,6 +1184,12 @@ void MonitoringDevice::controlMessage(unsigned char* _pArea){
 
 	const unsigned int PDU_ADDRESS_FIRST = 34;
 	const unsigned int PDU_ADDRESS_LAST = 37;
+
+	DEBUG_PUT_METHOD("msg = ");
+	for(unsigned int i = 0; i < 20; ++i)
+		DEBUG_PUT("%i ", _pArea[i]);
+
+	DEBUG_PUT("\n");
 
 	if((_pArea[MESSAGE_ADDRESS_FROM_OFFSET] >= PDU_ADDRESS_FIRST) && (_pArea[MESSAGE_ADDRESS_FROM_OFFSET] <= PDU_ADDRESS_LAST)){
 		UI::getSingleton().getUsoModeControl()->change_toRemote();
