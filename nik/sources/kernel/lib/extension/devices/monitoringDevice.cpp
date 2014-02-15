@@ -143,6 +143,11 @@ MonitoringDevice::MonitoringDevice(unsigned char _address, unsigned int _type)
 {
 	ExtensionSystem::getSingleton().addReceiver(this);
 	addReceiver(ExtensionSystem::getSingletonPtr());
+
+	zatvorOpenSize = Config::getSingleton().getConfigData()->getConfigDataStructPRPositionCount();	
+	zatvorOpen = new bool[zatvorOpenSize];
+	for(unsigned int i = 0; i < zatvorOpenSize; ++i)
+		zatvorOpen[i] = false;
 }
 
 MonitoringDevice::~MonitoringDevice()
@@ -177,6 +182,7 @@ void MonitoringDevice::timerHandler()
 
 void MonitoringDevice::action()
 {
+	zatvorAction();
 	if (!disabled)
 	{
 		switch (phase)
@@ -597,9 +603,13 @@ void MonitoringDevice::setOutputs(unsigned char* pMsg)
 			break;
 		case MESSAGE_NUMBER_ZATVOR_OTKRIT:
 			IOSubsystem::getSingleton().enableGateOutputs(pMsg[MESSAGE_PAR2_OFFSET]);
+			zatvorOpen[Config::getSingleton().getConfigData()->getPRIndexByAddress(pMsg[MESSAGE_PAR2_OFFSET])] = true;
+			DEBUG_PUT_METHOD("zatvor address = %i\n", pMsg[MESSAGE_PAR2_OFFSET]);
 			break;
 		case MESSAGE_NUMBER_ZATVOR_ZAKRIT:
 			IOSubsystem::getSingleton().disableGateOutputs(pMsg[MESSAGE_PAR2_OFFSET]);
+			zatvorOpen[Config::getSingleton().getConfigData()->getPRIndexByAddress(pMsg[MESSAGE_PAR2_OFFSET])] = false;
+			DEBUG_PUT_METHOD("zatvor address = %i\n", pMsg[MESSAGE_PAR2_OFFSET]);
 			break;
 		case MESSAGE_NUMBER_ZATVOR_OSHIBKA:
 			IOSubsystem::getSingleton().enableGateFaultOutputs(pMsg[MESSAGE_PAR2_OFFSET]);
@@ -1195,3 +1205,23 @@ void MonitoringDevice::controlMessage(unsigned char* _pArea){
 		UI::getSingleton().getUsoModeControl()->change_toRemote();
 	}
 }
+
+void MonitoringDevice::zatvorAction(){
+	bool isOpen = false;
+	for(unsigned int i = 0; i < zatvorOpenSize; ++i){
+		if(zatvorOpen[i])
+			isOpen = true;
+	}
+
+	if(isOpen)
+		IOSubsystem::getSingleton().enableAllPumpStationOutputs();
+	else
+		IOSubsystem::getSingleton().disableAllPumpStationOutputs();
+}
+
+
+
+
+
+
+

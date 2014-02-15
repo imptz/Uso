@@ -73,6 +73,8 @@ void Application::start()
 		MessageReceiver::messagesProccess();
 	}
 
+	prToNull();
+
 	createLogic();
 
 	Display::getSingleton().print("                     ", 33, 7, false);
@@ -127,4 +129,38 @@ void Application::onMessage(Message message)
 void Application::timerHandler()
 {
 	MonitoringSubsystem::getSingleton().createAndSendMessage(IMonitoringDevice::MESSAGE_NUMBER_DUMMY, 0, 0, 0, 0);
+}
+
+void Application::prToNull(){
+	if(Config::getSingleton().getConfigData()->getConfigDataStructConst()->autoPrToZero){
+		DEBUG_PUT_METHOD("to null\n");
+
+		unsigned int actionCount = Config::getSingleton().getConfigData()->getConfigDataStructPRPositionCount(); 
+		Action **actionList = new Action*[actionCount];
+
+		for (unsigned int i = 0; i < actionCount; i++)
+			actionList[i] = new ActionMoveToPoint(Config::getSingleton().getConfigData()->getConfigDataStructPRPositions()[i]->address, Point2<unsigned int>(0, 0), 0);
+
+		for(;;){
+			ExtensionSystem::getSingleton().action();
+			MessageReceiver::messagesProccess();
+
+			for (unsigned int i = 0; i < actionCount; ++i)
+				if (actionList[i] != nullptr)
+					actionList[i]->step();
+
+			bool fComplete = true;
+			for (unsigned int i = 0; i < actionCount; ++i)
+				if (actionList[i]->getState() == Action::STATE_UNDEFINED)
+					fComplete = false;
+
+			if(fComplete)
+				break;
+		}
+
+		for (unsigned int i = 0; i < actionCount; ++i)
+			delete actionList[i];
+
+		delete[] actionList;
+	}
 }

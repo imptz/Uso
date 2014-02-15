@@ -19,6 +19,7 @@ private:
 			Исходя из конфигурации создает требуемую логику работы УСО.
 		*/
 		void createLogic(); 
+		void prToNull();
 
 public:
 		//! Конструктор
