@@ -83,6 +83,7 @@ void Application::start()
 		ExtensionSystem::getSingleton().action();
 		logic->action();
 		Config::getSingleton().action();
+		UI::getSingleton().getUsoModeControl()->action();
 		Povorotniy::getSingleton().threadAction();
 		MessageReceiver::messagesProccess();
 	}

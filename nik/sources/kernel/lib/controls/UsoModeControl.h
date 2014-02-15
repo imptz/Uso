@@ -50,6 +50,7 @@ private:
 	void change_cycle();
 	bool fRemoteTimerStart;
 	int remoteTimer;
+	bool fChangeFromRemote;
 
 	static const unsigned int TIMER_PERIOD = 1000;
 	virtual void timerHandler();
@@ -71,6 +72,7 @@ public:
 	void startRemoteTimer();
 	void stopRemoteTimer();
 	void clearRemoteTimer();
+	void action();
 };
 
 #endif

@@ -23,7 +23,7 @@ UsoModeControl::UsoModeControl(unsigned int _positionX, unsigned int _positionY,
 	:	ITimer(TIMER_PERIOD), Control(_positionX, _positionY, WIDTH, HEIGHT, _messageReceiver),
 	modeButton(new Button(_positionX, _positionY, WIDTH_AUTO, HEIGHT, "", Window::BORDER_STYLE_INVISIBLE, this)),
 	toolsButton(new Button(_positionX + POSITION_OFFSET_TOOLS, _positionY, WIDTH_TOOLS, HEIGHT, modeToolsText, Window::BORDER_STYLE_INVISIBLE, this)),
-	buffer(new unsigned char[BUFFER_SIZE]), mode(USO_MODE_HALF_AUTO), fLock(false), inTools(false), fRemoteTimerStart(false), remoteTimer(0)
+	buffer(new unsigned char[BUFFER_SIZE]), mode(USO_MODE_HALF_AUTO), fLock(false), inTools(false), fRemoteTimerStart(false), remoteTimer(0), fChangeFromRemote(false)
 {
 	this->addChildControl(modeButton);
 	this->addChildControl(toolsButton);
@@ -48,8 +48,6 @@ UsoModeControl::UsoModeControl(unsigned int _positionX, unsigned int _positionY,
 		}		
 	}else
 		setMode(USO_MODE_HALF_AUTO, USO_MODE_CONTROL_ACTOR_BOOT);
-
-	pTimer->start();
 }
 
 UsoModeControl::~UsoModeControl(){}
@@ -140,8 +138,8 @@ void UsoModeControl::change_cycle(){
 }
 
 void UsoModeControl::change_toRemote(){
-	if(inTools)
-		return;
+	//if(inTools)
+	//	return;
 
 	if(mode != USO_MODE_REMOTE){
 		setMode(USO_MODE_REMOTE, USO_MODE_CONTROL_ACTOR_PDU);
@@ -167,14 +165,14 @@ bool UsoModeControl::isInTools(){
 void UsoModeControl::startRemoteTimer(){
 	fRemoteTimerStart = true;
 	remoteTimer = 0;
-	//pTimer->start();
+	pTimer->start();
 	DEBUG_PUT_METHOD("\n");
 }
 
 void UsoModeControl::stopRemoteTimer(){
 	fRemoteTimerStart = false;
 	remoteTimer = 0;
-	//pTimer->stop();
+	pTimer->stop();
 	DEBUG_PUT_METHOD("\n");
 }
 
@@ -189,9 +187,16 @@ void UsoModeControl::timerHandler(){
 				if(!inTools){
 					DEBUG_PUT_METHOD("fromRemote \n");
 					stopRemoteTimer();
-					change_fromRemote();
+					fChangeFromRemote = true;
 				}
 		}else
 			++remoteTimer;
+	}
+}
+
+void UsoModeControl::action(){
+	if(fChangeFromRemote){
+		fChangeFromRemote = false;
+		change_fromRemote();
 	}
 }
