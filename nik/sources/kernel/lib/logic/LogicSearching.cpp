@@ -28,20 +28,21 @@ LogicSearching::LogicSearching(MessageReceiver* _messageReceiver)
 	startLogText = const_cast<char*>(START_LOG_TEXT);
 
 	DetectionSubsystem::getSingleton().addReceiver(this);
+	UI::getSingleton().getUsoModeControl()->addReceiver(this);
 }
 
-LogicSearching::~LogicSearching()
-{
-
+LogicSearching::~LogicSearching(){
 }
 
-void LogicSearching::onMessage(Message message)
-{
-	switch (message.msg)
-	{
+void LogicSearching::onMessage(Message message){
+	switch (message.msg){
+		case MESSAGE_USO_MODE_CONTROL_STOP_LOGIC:
+			DEBUG_PUT_METHOD("MESSAGE_USO_MODE_CONTROL_STOP_LOGIC\n");
+			stop();
+			clearAllMessages();
+			break;
 		case MainConfirmation::CONFIRMATION_MESSAGE_RESULT:
-			if (message.par2 == MainConfirmation::CONFIRMATION_OWNER_1)
-			{
+			if (message.par2 == MainConfirmation::CONFIRMATION_OWNER_1){
 				// M061112
 				timeOutWaiting = TIME_OUT_WAITING_UNDEFINED;
 				// M061112E
@@ -998,3 +999,9 @@ void LogicSearching::startWaitingConfTushenie()
 	startWaitingConf();
 }
 // M061112E
+
+void LogicSearching::stopSearch(){
+
+}
+
+

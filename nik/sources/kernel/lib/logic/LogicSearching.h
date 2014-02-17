@@ -108,6 +108,7 @@ class LogicSearching : public Logic
 		void startWaitingConfSearch();
 		void startWaitingConfTushenie();
 		// M061112E
+		void stopSearch();
 };
 
 #endif

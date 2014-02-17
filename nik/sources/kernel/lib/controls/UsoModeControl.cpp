@@ -138,10 +138,8 @@ void UsoModeControl::change_cycle(){
 }
 
 void UsoModeControl::change_toRemote(){
-	//if(inTools)
-	//	return;
-
 	if(mode != USO_MODE_REMOTE){
+		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_USO_MODE_CONTROL_STOP_LOGIC, 0, 0));
 		setMode(USO_MODE_REMOTE, USO_MODE_CONTROL_ACTOR_PDU);
 		startRemoteTimer();
 	}
@@ -150,7 +148,6 @@ void UsoModeControl::change_toRemote(){
 }
 
 void UsoModeControl::change_fromRemote(){
-	DEBUG_PUT_METHOD("\n");
 	setMode(USO_MODE_FULL_AUTO, USO_MODE_CONTROL_ACTOR_TIME_OUT);
 }
 
@@ -166,26 +163,22 @@ void UsoModeControl::startRemoteTimer(){
 	fRemoteTimerStart = true;
 	remoteTimer = 0;
 	pTimer->start();
-	DEBUG_PUT_METHOD("\n");
 }
 
 void UsoModeControl::stopRemoteTimer(){
 	fRemoteTimerStart = false;
 	remoteTimer = 0;
 	pTimer->stop();
-	DEBUG_PUT_METHOD("\n");
 }
 
 void UsoModeControl::clearRemoteTimer(){
 	remoteTimer = 0;
-	DEBUG_PUT_METHOD("\n");
 }
 
 void UsoModeControl::timerHandler(){
 	if(fRemoteTimerStart){
 		if(remoteTimer >= Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeReturnFromRemoteMode){
 				if(!inTools){
-					DEBUG_PUT_METHOD("fromRemote \n");
 					stopRemoteTimer();
 					fChangeFromRemote = true;
 				}
