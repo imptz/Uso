@@ -38,6 +38,7 @@ void LogicSearching::onMessage(Message message){
 	switch (message.msg){
 		case MESSAGE_USO_MODE_CONTROL_STOP_LOGIC:
 			DEBUG_PUT_METHOD("MESSAGE_USO_MODE_CONTROL_STOP_LOGIC\n");
+			UI::getSingleton().getMainTabControl()->activateMainTab();
 			stop();
 			clearAllMessages();
 			break;
