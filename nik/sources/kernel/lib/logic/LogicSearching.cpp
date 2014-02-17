@@ -209,8 +209,7 @@ void LogicSearching::action()
 			if (initSignal != -1)
 			{
 				DEBUG_PUT_METHOD("initSignal = %i\n", initSignal);
-				if (!UI::getSingleton().getUsoModeControl()->isInTools())
-				{
+				if ((!UI::getSingleton().getUsoModeControl()->isInTools()) && (UI::getSingleton().getUsoModeControl()->getMode() != UsoModeControl::USO_MODE_REMOTE)){
 					phase = PHASE_INPUT_WAITING_CONTROL;
 					timeOutBeforeStart = Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeOutBeforeStart;
 				}
@@ -233,7 +232,7 @@ void LogicSearching::action()
 			}
 			break;
 		case PHASE_INPUT_ACTION:
-				if (UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_HALF_AUTO)
+			if ((UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_HALF_AUTO) && (Config::getSingleton().getConfigData()->getConfigDataStructConst()->requestUserBeforeSearch))
 				{
 					sendMessage(Message(MESSAGE_FROM_OFFSET_LOGIC, LOGIC_MESSAGE_GET_CONFIRMATION, reinterpret_cast<unsigned int>(dialogText), 0));
 					// M061112
@@ -243,7 +242,7 @@ void LogicSearching::action()
 					return;
 				}
 				else    
-					if (UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_FULL_AUTO)
+					if ((UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_FULL_AUTO) || (!Config::getSingleton().getConfigData()->getConfigDataStructConst()->requestUserBeforeSearch))
 					{
 						if (start())
 						{
