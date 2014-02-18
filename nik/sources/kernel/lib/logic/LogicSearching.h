@@ -29,11 +29,14 @@ class LogicSearching : public Logic
 		~LogicSearching();
 
 		bool start();
-		void stop(bool msg = false);
+		void stop(bool msg = false, bool resetPozhSig = true);
 
 	private:
 		enum PHASE
 		{
+			PHASE_RESET_POZHSIG,
+			PHASE_WAIT_RESET_POZHSIG,
+			PHASE_WAIT_POZHSIG,
 			PHASE_INPUT_CONTROL,
 			PHASE_INPUT_WAITING_CONTROL,
 			PHASE_INPUT_ACTION,
@@ -108,6 +111,8 @@ class LogicSearching : public Logic
 		void startWaitingConfSearch();
 		void startWaitingConfTushenie();
 		// M061112E
+
+public:
 		void stopSearch();
 };
 

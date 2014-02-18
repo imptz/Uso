@@ -80,6 +80,9 @@ class Logic : public ITimer, public MessageReceiver, public MessageSender
 		int getConfigTimeOutWaiting();
 		// M061112E
 		bool pumpOutputEnable;
+
+public:
+		int resetSignalTimer;
 };
 
 #endif

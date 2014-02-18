@@ -162,17 +162,7 @@ bool TvDevice::putFrame(unsigned char* _pArea, bool isNotTransfer)
 						}
 						break;
 					case PHASE_SET_GET_FIRE:
-						SAFE_DELETE_ARRAY(updateChannels)
-						updateChannelsCount = 1;
-
-						SAFE_DELETE_ARRAY(fireFrame)
-				unsigned int _size = _pArea[3] + _pArea[4] * 256 + 7;
-				fireFrame = new unsigned char[_size];
-				memcpy(fireFrame, _pArea, _size);
-
-//						fireFrame = _pArea;
-						phase = PHASE_START;
-						break;
+						SAFE_DELETE_ARRAY(updateChannels)						updateChannelsCount = 1;						SAFE_DELETE_ARRAY(fireFrame)						//unsigned int _size = _pArea[3] + _pArea[4] * 256 + 7;						//fireFrame = new unsigned char[_size];						//memcpy(fireFrame, _pArea, _size);						unsigned char* pp = nullptr;						unsigned int _size = _pArea[3] + _pArea[4] * 256 + 7;						pp = new unsigned char[_size];						memcpy(pp, _pArea, _size);DEBUG_PUT_METHOD("qqqqqqqqqqqqqq: ");for(unsigned int i = 0; i < 30; ++i){	DEBUG_PUT("%i ", pp[i]);}DEBUG_PUT_METHOD("\n");						unsigned int paramsCount = pp[3] + pp[4] * 256;						const unsigned int HEADER_SIZE = 5;						const unsigned int FIRE_AREA_SIZE = 4;						unsigned int channelOffset = 6;						unsigned int validAddressCount = 0;						while (channelOffset < (paramsCount + HEADER_SIZE))						{							unsigned int fireCount = pp[channelOffset];							if (fireCount != 0)							{								validAddressCount++;								channelOffset += (2 + FIRE_AREA_SIZE * fireCount);							}							else								channelOffset += 2;						}				DEBUG_PUT_METHOD("validAddressCount = %i ", validAddressCount);						fireFrame = new unsigned char[256];						fireFrame[0] = pp[0];						fireFrame[1] = pp[1];						fireFrame[2] = pp[2];						fireFrame[4] = pp[4];						unsigned int parCount = 0;						unsigned int pf = 5;						unsigned int of = 5;				//		for(unsigned int i = 0; i < validAddressCount; ++i){						while(pf < paramsCount + 5){							fireFrame[of++] = pp[pf++];							fireFrame[of++] = pp[pf++];							unsigned int firec = fireFrame[of - 1];							if(firec == 0)								continue;							for(unsigned int t = 0; t < firec; ++t){								fireFrame[of++] = pp[pf++];								fireFrame[of++] = 0;								fireFrame[of++] = pp[pf++];								fireFrame[of++] = 0;								fireFrame[of++] = pp[pf++];								fireFrame[of++] = 0;								fireFrame[of++] = pp[pf++];								fireFrame[of++] = 0;							}						}						fireFrame[3] = of - 5;				//						fireFrame = _pArea;						phase = PHASE_START;						break;
 				}
 
 				return true;

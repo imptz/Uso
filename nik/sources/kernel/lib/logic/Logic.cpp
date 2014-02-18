@@ -12,6 +12,7 @@ Logic::Logic()
 		pumpOutputEnable(false)
 {
 	pTimer->start();
+	resetSignalTimer = 0;
 }
 
 Logic::~Logic()
@@ -43,6 +44,9 @@ void Logic::timerHandler()
 		else
 			--finishTimer;
 	}
+
+	if(resetSignalTimer > 0)
+		--resetSignalTimer;
 }
 
 // M13112012

@@ -18,7 +18,7 @@ const char* LogicSearching::LOG_CANCEL_EXTINGUISHING_TEXT = LOCAL_LOGIC_SEARCHIN
 const char* LogicSearching::LOG_START_EXTINGUISHING_TEXT = LOCAL_LOGIC_SEARCHING_LOG_START_EXTINGUISHING_TEXT;
 
 LogicSearching::LogicSearching(MessageReceiver* _messageReceiver)
-	: Logic(), phase(PHASE_INPUT_CONTROL), fireCount(0), programs(nullptr), 
+	: Logic(), phase(PHASE_RESET_POZHSIG), fireCount(0), programs(nullptr), 
 	  coolingSignal(-1), listCoolingStartIndex(nullptr), 
 	  listCoolingStartCount(0), listOff(nullptr), listOffCount(0), actionStartList(nullptr), actionStopList(nullptr), isCoolingStart(false), localFires(nullptr)
 {
@@ -39,7 +39,7 @@ void LogicSearching::onMessage(Message message){
 		case MESSAGE_USO_MODE_CONTROL_STOP_LOGIC:
 			DEBUG_PUT_METHOD("MESSAGE_USO_MODE_CONTROL_STOP_LOGIC\n");
 			UI::getSingleton().getMainTabControl()->activateMainTab();
-			stop();
+			stop(true, false);
 			clearAllMessages();
 			break;
 		case MainConfirmation::CONFIRMATION_MESSAGE_RESULT:
@@ -149,7 +149,7 @@ bool LogicSearching::start()
 	return true;
 }
 
-void LogicSearching::stop(bool msg)
+void LogicSearching::stop(bool msg, bool resetPozhSig)
 {
 	timeOutBeforeStart = -1;
 	finishTimer = -1;
@@ -195,7 +195,10 @@ void LogicSearching::stop(bool msg)
 	isCoolingStart = false;
 
 	UI::getSingleton().getUsoModeControl()->unLock();
-	phase = PHASE_INPUT_CONTROL;
+	if(resetPozhSig)
+		phase = PHASE_RESET_POZHSIG;
+	else
+		phase = PHASE_INPUT_CONTROL;
 }
 
 void LogicSearching::action()
@@ -204,8 +207,32 @@ void LogicSearching::action()
 		if (actionList[i] != nullptr)
 			actionList[i]->step();
 
-	switch (phase)
-	{
+	switch (phase){
+		case PHASE_RESET_POZHSIG:
+			if(Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeRepeatSearch == 0){
+				DEBUG_PUT_METHOD("PHASE_RESET_POZHSIG timeRepeatSearch == 0\n");
+				phase = PHASE_INPUT_CONTROL;
+			}else{
+				DEBUG_PUT_METHOD("PHASE_RESET_POZHSIG timeRepeatSearch == %i\n", Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeRepeatSearch);
+				//выход на сброс сигнализации включить
+				phase = PHASE_WAIT_RESET_POZHSIG;
+				resetSignalTimer = 1;
+			}
+			break;
+		case PHASE_WAIT_RESET_POZHSIG:
+			if(resetSignalTimer == 0){
+				DEBUG_PUT_METHOD("PHASE_WAIT_RESET_POZHSIG timeRepeatSearch == 0\n");
+				phase = PHASE_WAIT_POZHSIG;
+				resetSignalTimer = Config::getSingleton().getConfigData()->getConfigDataStructConst()->delayAfterReset;
+				//выход на сброс сигнализации выключить
+			}
+			break;
+		case PHASE_WAIT_POZHSIG:
+			if(resetSignalTimer == 0){
+				DEBUG_PUT_METHOD("PHASE_WAIT_POZHSIG\n");
+				phase = PHASE_INPUT_CONTROL;
+			}
+			break;
 		case PHASE_INPUT_CONTROL:
 			initSignal = getActiveInitialSignal(LOGIC_FUNCTION_SEARCHING);
 			if (initSignal != -1)
