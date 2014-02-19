@@ -29,7 +29,7 @@ class LogicSearching : public Logic
 		~LogicSearching();
 
 		bool start();
-		void stop(bool msg = false, bool resetPozhSig = true);
+		virtual void stop(bool msg = false, bool resetPozhSig = true);
 
 	private:
 		enum PHASE
@@ -114,6 +114,7 @@ class LogicSearching : public Logic
 
 public:
 		void stopSearch();
+		bool fPovtorPoiska;
 };
 
 #endif

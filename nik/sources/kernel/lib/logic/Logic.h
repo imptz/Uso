@@ -28,7 +28,7 @@ class Logic : public ITimer, public MessageReceiver, public MessageSender
 	
 	protected:
 		virtual bool start() = 0;
-		virtual void stop(bool msg = false) = 0;
+		virtual void stop(bool msg, bool resetPozhSig) = 0;
 
 		enum START_ACTOR
 		{

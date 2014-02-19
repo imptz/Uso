@@ -81,7 +81,7 @@ bool LogicCooling::start()
 	}
 }
 
-void LogicCooling::stop(bool msg)
+void LogicCooling::stop(bool msg, bool resetPozhSig)
 {
 	timeOutBeforeStart = -1;
 	finishTimer = -1;

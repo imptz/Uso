@@ -22,6 +22,7 @@ LogicSearching::LogicSearching(MessageReceiver* _messageReceiver)
 	  coolingSignal(-1), listCoolingStartIndex(nullptr), 
 	  listCoolingStartCount(0), listOff(nullptr), listOffCount(0), actionStartList(nullptr), actionStopList(nullptr), isCoolingStart(false), localFires(nullptr)
 {
+	fPovtorPoiska = false;
 	addReceiver(_messageReceiver);
 	dialogText = const_cast<char*>(CONFIRMATION_TEXT);
 	cancelLogText = const_cast<char*>(CANCEL_LOG_TEXT);
@@ -88,6 +89,7 @@ void LogicSearching::onMessage(Message message){
 			}
 			break;
 		case MainFinish::FINISH_MESSAGE_RESULT:
+			fPovtorPoiska = false;
 			finish(FINISH_ACTOR_BUTTON);
 			break;
 		case DetectionSubsystem::DETECTION_MANAGER_MESSAGE_CHANNELS_UPDATED:
@@ -195,6 +197,10 @@ void LogicSearching::stop(bool msg, bool resetPozhSig)
 	isCoolingStart = false;
 
 	UI::getSingleton().getUsoModeControl()->unLock();
+
+	IOSubsystem::getSingleton().disableAllFireAlarmOutputs();
+	IOSubsystem::getSingleton().disableAllHardwareOutputs();
+
 	if(resetPozhSig)
 		phase = PHASE_RESET_POZHSIG;
 	else
@@ -261,7 +267,8 @@ void LogicSearching::action()
 			}
 			break;
 		case PHASE_INPUT_ACTION:
-			if ((UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_HALF_AUTO) && (Config::getSingleton().getConfigData()->getConfigDataStructConst()->requestUserBeforeSearch))
+			if (((UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_HALF_AUTO) && (Config::getSingleton().getConfigData()->getConfigDataStructConst()->requestUserBeforeSearch)) && 
+				(!fPovtorPoiska))
 				{
 					sendMessage(Message(MESSAGE_FROM_OFFSET_LOGIC, LOGIC_MESSAGE_GET_CONFIRMATION, reinterpret_cast<unsigned int>(dialogText), 0));
 					// M061112
@@ -271,12 +278,15 @@ void LogicSearching::action()
 					return;
 				}
 				else    
-					if ((UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_FULL_AUTO) || (!Config::getSingleton().getConfigData()->getConfigDataStructConst()->requestUserBeforeSearch))
+					if (((UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_FULL_AUTO) || (!Config::getSingleton().getConfigData()->getConfigDataStructConst()->requestUserBeforeSearch))
+						|| (fPovtorPoiska))
 					{
 						if (start())
 						{
-							Log::getSingleton().add(LOG_MESSAGE_FROM_LOGIC, LOG_MESSAGE_TYPE_INFO, startLogText, START_ACTOR_FULL_AUTO, initSignal);
-							MonitoringSubsystem::getSingleton().createAndSendMessage(IMonitoringDevice::MESSAGE_NUMBER_START_OROSHENIA, START_ACTOR_FULL_AUTO, initSignal);
+							if(!fPovtorPoiska){
+								Log::getSingleton().add(LOG_MESSAGE_FROM_LOGIC, LOG_MESSAGE_TYPE_INFO, startLogText, START_ACTOR_FULL_AUTO, initSignal);
+								MonitoringSubsystem::getSingleton().createAndSendMessage(IMonitoringDevice::MESSAGE_NUMBER_START_OROSHENIA, START_ACTOR_FULL_AUTO, initSignal);
+							}
 						}
 						return;
 					}
@@ -561,7 +571,7 @@ bool LogicSearching::phaseGateOpen_Execution()
 				if (!pumpOutputEnable)
 				{
 					pumpOutputEnable = true;
-					IOSubsystem::getSingleton().enableAllPumpStationOutputs();
+					//IOSubsystem::getSingleton().enableAllPumpStationOutputs();
 				}
 				break;
 		}	
@@ -671,14 +681,16 @@ bool LogicSearching::phaseWaitingStop_Start()
 
 bool LogicSearching::phaseWaitingStop_Execution()
 {
-	if (UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_FULL_AUTO)
-	{
-		if (!testInitSignal(initSignal))
-		{
-			if (finishTimer == -1)
+//	if (UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_FULL_AUTO)
+	//{
+	//	if (!testInitSignal(initSignal))
+	//	{
+			if (finishTimer == -1){
 				finishTimer = Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeOutBeforeFinish;
-		}
-	}
+				fPovtorPoiska = true;
+			}
+//		}
+//	}
 	return false;
 }
 
@@ -686,7 +698,7 @@ bool LogicSearching::phaseGateClose_Start()
 {
 	IOSubsystem::getSingleton().disableAllFireAlarmOutputs();
 	IOSubsystem::getSingleton().disableAllHardwareOutputs();
-	IOSubsystem::getSingleton().disableAllPumpStationOutputs();
+	//IOSubsystem::getSingleton().disableAllPumpStationOutputs();
 
 	for (unsigned int i = 0; i < actionCount; i++)
 	{
@@ -968,7 +980,7 @@ bool LogicSearching::phaseCoolingStartProgram_Execution()
 		if (actionStartList[i]->getState() == Action::STATE_UNDEFINED)
 			return false;
 
-	IOSubsystem::getSingleton().enableAllPumpStationOutputs();
+	//IOSubsystem::getSingleton().enableAllPumpStationOutputs();
 	return true;
 }
 

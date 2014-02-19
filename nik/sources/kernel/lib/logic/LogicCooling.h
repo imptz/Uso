@@ -21,8 +21,8 @@ class LogicCooling : public Logic
 		LogicCooling(MessageReceiver* _messageReceiver = nullptr);
 		~LogicCooling();
 
-		bool start();
-		void stop(bool msg = false);
+		bool start();		
+		void stop(bool msg = false, bool resetPozhSig = true);
 
 	private:
 		enum PHASE
