@@ -166,10 +166,126 @@ bool TvDevice::putFrame(unsigned char* _pArea, bool isNotTransfer)
 						updateChannelsCount = 1;
 
 						SAFE_DELETE_ARRAY(fireFrame)
-				unsigned int _size = _pArea[3] + _pArea[4] * 256 + 7;
-				fireFrame = new unsigned char[_size];
-				memcpy(fireFrame, _pArea, _size);
+				//unsigned int _size = _pArea[3] + _pArea[4] * 256 + 7;
+				//fireFrame = new unsigned char[_size];
+				//memcpy(fireFrame, _pArea, _size);
 
+				unsigned char* pp = nullptr;
+				unsigned int _size = _pArea[3] + _pArea[4] * 256 + 7;
+				pp = new unsigned char[_size];
+				memcpy(pp, _pArea, _size);
+
+DEBUG_PUT_METHOD("qqqqqqqqqqqqqq: ");
+for(unsigned int i = 0; i < 30; ++i){
+	DEBUG_PUT("%i ", pp[i]);
+}
+DEBUG_PUT_METHOD("\n");
+
+
+
+		unsigned int paramsCount = pp[3] + pp[4] * 256;
+		const unsigned int HEADER_SIZE = 5;
+		const unsigned int FIRE_AREA_SIZE = 4;
+
+		unsigned int channelOffset = 6;
+
+		unsigned int validAddressCount = 0;
+
+		while (channelOffset < (paramsCount + HEADER_SIZE))
+		{
+			unsigned int fireCount = pp[channelOffset];
+			if (fireCount != 0)
+			{
+				validAddressCount++;
+				channelOffset += (2 + FIRE_AREA_SIZE * fireCount);
+			}
+			else
+				channelOffset += 2;
+		}
+
+	DEBUG_PUT_METHOD("validAddressCount = %i ", validAddressCount);
+
+
+		fireFrame = new unsigned char[256];
+		fireFrame[0] = pp[0];
+		fireFrame[1] = pp[1];
+		fireFrame[2] = pp[2];
+		fireFrame[4] = pp[4];
+				
+		unsigned int parCount = 0;
+
+		unsigned int pf = 5;
+		unsigned int of = 5;
+
+//		for(unsigned int i = 0; i < validAddressCount; ++i){
+		while(pf < paramsCount + 5){
+			fireFrame[of++] = pp[pf++];
+			unsigned int pr = fireFrame[of-1];
+			fireFrame[of++] = pp[pf++];
+
+			unsigned int firec = fireFrame[of - 1];
+
+			if(firec == 0)
+				continue;
+
+		unsigned int index;
+		for (index = 0; index < pointsCount; ++index)
+			if (points[index].address == pr)
+				break;
+
+		Point2<unsigned int> point = points[index].point1;
+
+		DEBUG_PUT_METHOD("point.x = %i point.y = %i\n", point.x, point.y);
+
+			for(unsigned int t = 0; t < firec; ++t){
+				int cor = pp[pf++];
+				if(cor > 128)
+					cor = -1 * (255 - cor);
+
+				DEBUG_PUT_METHOD("cor.x1 = %i  ", cor);
+				cor += point.x;
+				DEBUG_PUT_METHOD("cor.x2 = %i  ", cor);
+
+				if (cor < 0)
+					cor = 32000 + static_cast<int>(abs(static_cast<float>(cor)));
+
+				DEBUG_PUT_METHOD("cor.x3 = %i\n", cor);
+
+				fireFrame[of++] = cor % 256;
+				fireFrame[of++] = cor / 256;
+
+				cor = pp[pf++];
+				if(cor > 128)
+					cor = -1 * (255 - cor);
+				
+				cor += point.y;				
+				
+				if (cor < 0)
+					cor = 32000 + static_cast<int>(abs(static_cast<float>(cor)));
+
+				fireFrame[of++] = cor % 256;
+				fireFrame[of++] = cor / 256;
+
+				fireFrame[of++] = pp[pf++];
+				fireFrame[of++] = 0;
+				fireFrame[of++] = pp[pf++];
+				fireFrame[of++] = 0;
+			}
+
+			//for(unsigned int t = 0; t < firec; ++t){
+			//	fireFrame[of++] = pp[pf++];
+			//	fireFrame[of++] = 0;
+			//	fireFrame[of++] = pp[pf++];
+			//	fireFrame[of++] = 0;
+			//	fireFrame[of++] = pp[pf++];
+			//	fireFrame[of++] = 0;
+			//	fireFrame[of++] = pp[pf++];
+			//	fireFrame[of++] = 0;
+			//}
+		}
+
+		fireFrame[3] = of - 5;
+		
 //						fireFrame = _pArea;
 						phase = PHASE_START;
 						break;
@@ -290,6 +406,18 @@ unsigned int TvDevice::getId()
 
 void TvDevice::updateFire(unsigned char* pAddress, unsigned int count, ActionMoveToPoint** actionMoveToPoint)
 {
+	if (points != nullptr)
+		delete[] points;
+
+	points = new ChannelInfo[count];
+	pointsCount = count;
+	for (unsigned int i = 0; i < pointsCount; ++i)
+	{
+		points[i].address = actionMoveToPoint[i]->getDeviceAddress();
+		points[i].point1.x = actionMoveToPoint[i]->getPoint().x;
+		points[i].point1.y = actionMoveToPoint[i]->getPoint().y;
+	}
+
 	DEBUG_PUT_METHOD("count = %i\n", count);
 	SAFE_DELETE_ARRAY(fireFrame);
 	updateChannels = pAddress;
@@ -301,6 +429,7 @@ void TvDevice::updateFire(unsigned char* pAddress, unsigned int count, ActionMov
 
 unsigned char* TvDevice::getFire()
 {
+
 	return fireFrame;
 }
 

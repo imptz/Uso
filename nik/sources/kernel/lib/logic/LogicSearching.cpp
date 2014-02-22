@@ -102,6 +102,8 @@ void LogicSearching::onMessage(Message message){
 				{
 					finishActor = FINISH_ACTOR_LOGIC;
 					Log::getSingleton().add(LOG_MESSAGE_FROM_LOGIC, LOG_MESSAGE_TYPE_INFO, const_cast<char*>(LOG_NOT_FIRE_DETECT_TEXT), finishActor, 0);
+					fPovtorPoiska = false;
+					setInitSignalIgnorable(initSignal, true);
 					stop();
 				}
 				else
@@ -109,7 +111,7 @@ void LogicSearching::onMessage(Message message){
 					fireCount = DetectionSubsystem::getSingleton().getFire(&localFires, &fire);
 					if (fireCount != 0)
 					{
-						if (UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_HALF_AUTO)
+						if ((UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_HALF_AUTO) && (!fPovtorPoiska))
 						{
 							sendMessage(Message(MESSAGE_FROM_OFFSET_LOGIC, LOGIC_MESSAGE_GET_CONFIRMATION, reinterpret_cast<unsigned int>(CONFIRMATION_EXTINGUISHING_TEXT), MainConfirmation::CONFIRMATION_OWNER_2));
 							// M061112
@@ -157,7 +159,7 @@ void LogicSearching::stop(bool msg, bool resetPozhSig)
 	finishTimer = -1;
 	SAFE_DELETE_ARRAY(listProgramIndex)
 	listProgramIndexCount = 0;
-	setInitSignalIgnorable(initSignal, true);
+//	setInitSignalIgnorable(initSignal, true);
 	sendMessage(Message(MESSAGE_FROM_OFFSET_LOGIC, MainTabControl::MAIN_TAB_MESSAGE_SET_MAIN_TAB, 0, 0));
 	if (msg)
 	{
@@ -221,6 +223,7 @@ void LogicSearching::action()
 			}else{
 				DEBUG_PUT_METHOD("PHASE_RESET_POZHSIG timeRepeatSearch == %i\n", Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeRepeatSearch);
 				//выход на сброс сигнализации включить
+				IOSubsystem::getSingleton().enableResetPozharSignalisacijaOutputs();
 				phase = PHASE_WAIT_RESET_POZHSIG;
 				resetSignalTimer = 1;
 			}
@@ -231,6 +234,7 @@ void LogicSearching::action()
 				phase = PHASE_WAIT_POZHSIG;
 				resetSignalTimer = Config::getSingleton().getConfigData()->getConfigDataStructConst()->delayAfterReset;
 				//выход на сброс сигнализации выключить
+				IOSubsystem::getSingleton().disableResetPozharSignalisacijaOutputs();
 			}
 			break;
 		case PHASE_WAIT_POZHSIG:

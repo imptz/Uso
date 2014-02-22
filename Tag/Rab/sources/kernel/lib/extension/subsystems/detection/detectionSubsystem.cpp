@@ -3,6 +3,7 @@
 #include "../../../Local.h"
 #include "../../devices/fv300Device.h"
 #include "../../devices/TvDevice.h"
+#include "../../../DEBUG/serialDebug.h"
 
 const char* DetectionSubsystem::MISSING_DEVICE_LOG_TEXT = LOCAL_DETECTIONSYSTEM_MISSING_DEVICE_TEXT;
 
@@ -466,6 +467,12 @@ bool DetectionSubsystem::createPreFires(PreFire** preFires, unsigned int* count)
 
 	unsigned char* pFireData = pDevices[0]->getFire();
 
+DEBUG_PUT_METHOD("QQQQQQQQQQQ: ");
+for(unsigned int i = 0; i < 30; ++i){
+	DEBUG_PUT("%i ", pFireData[i]);
+}
+DEBUG_PUT_METHOD("\n");
+
 		unsigned int paramsCount = pFireData[3] + pFireData[4] * 256;
 		const unsigned int HEADER_SIZE = 5;
 		const unsigned int FIRE_AREA_SIZE = 8;
@@ -633,10 +640,13 @@ unsigned int DetectionSubsystem::getFire(PreFire** outFires, Fire::FireObject* p
 	if (!createPreFires(outFires, &preFiresCount))
 		return 0;
 
+DEBUG_PUT_METHOD("preFiresCount1 = %i\n", preFiresCount);
+
 	correctionPreFires(*outFires, preFiresCount);
 	convertionPreFiresToObjectSpace(*outFires, preFiresCount);
 
 	Fire::calcFire(*outFires, pFire, preFiresCount);
+DEBUG_PUT_METHOD("preFiresCount2 = %i\n", preFiresCount);
 
 	return preFiresCount;
 }

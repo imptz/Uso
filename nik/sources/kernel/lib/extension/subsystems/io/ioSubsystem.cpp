@@ -333,5 +333,27 @@ void IOSubsystem::disablePrFaultOutputs(unsigned char number)
 		}
 }
 
+void IOSubsystem::enableResetPozharSignalisacijaOutputs()
+{
+	ConfigDataStructIOBk16** outputs = Config::getSingleton().getConfigData()->getConfigDataStructIOBk16();
+	for (unsigned int i = 0; i < Config::getSingleton().getConfigData()->getConfigDataStructIOBk16Count(); i++)
+		if (outputs[i]->outputFunctionGroup == ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_RESET_POZHAR_SIGNALISACIJA)
+		{
+			setOutput((outputs[i]->bkAddress - 1) * 8 + outputs[i]->numberOnDevice - 1, IIODevice::OUTPUT_STATE_ON);
+//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING2("enableAllPumpStationOutputs: ", i, outputs[i]->projectNumber); 
+		}
+}
+
+void IOSubsystem::disableResetPozharSignalisacijaOutputs()
+{
+	ConfigDataStructIOBk16** outputs = Config::getSingleton().getConfigData()->getConfigDataStructIOBk16();
+	for (unsigned int i = 0; i < Config::getSingleton().getConfigData()->getConfigDataStructIOBk16Count(); i++)
+		if (outputs[i]->outputFunctionGroup == ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_RESET_POZHAR_SIGNALISACIJA)
+		{
+			setOutput((outputs[i]->bkAddress - 1) * 8 + outputs[i]->numberOnDevice - 1, IIODevice::OUTPUT_STATE_OFF);
+//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING2("disableAllPumpStationOutputs: ", i, outputs[i]->projectNumber); 
+		}
+}
+
 #pragma endregion 
 #pragma endregion 

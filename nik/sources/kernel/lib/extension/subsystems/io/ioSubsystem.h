@@ -100,6 +100,8 @@ class IOSubsystem : public Singleton<IOSubsystem>, public ISubsystem
 		void disablePrFaultOutputs(unsigned char number);
 		void enableGateFaultOutputs(unsigned char number);
 		void disableGateFaultOutputs(unsigned char number);
+		void enableResetPozharSignalisacijaOutputs();
+		void disableResetPozharSignalisacijaOutputs();
 #pragma endregion 		
 };
 				

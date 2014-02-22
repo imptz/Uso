@@ -105,6 +105,10 @@ void LogicSearching::onMessage(Message message)
 					fireCount = DetectionSubsystem::getSingleton().getFire(&localFires, &fire);
 					if (fireCount != 0)
 					{
+						for(unsigned int i = 0; i < fireCount; ++i){
+							DEBUG_PUT_METHOD("FIRE_CNT___ i = %i, ch = %i\n", i, localFires->channel);
+						}
+
 						if (UI::getSingleton().getUsoModeControl()->getMode() == UsoModeControl::USO_MODE_HALF_AUTO)
 						{
 							sendMessage(Message(MESSAGE_FROM_OFFSET_LOGIC, LOGIC_MESSAGE_GET_CONFIRMATION, reinterpret_cast<unsigned int>(CONFIRMATION_EXTINGUISHING_TEXT), MainConfirmation::CONFIRMATION_OWNER_2));

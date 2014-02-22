@@ -389,6 +389,9 @@ void ConfigData::setData(unsigned char* data, unsigned int length)
 			case 8:
 				cDataNew->_IOBk16[i]->outputFunctionGroup = ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_GATE_FAULT;
 				break;
+			case 9:
+				cDataNew->_IOBk16[i]->outputFunctionGroup = ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_RESET_POZHAR_SIGNALISACIJA;
+				break;
 		}
 
 		cDataNew->_IOBk16[i]->prGateNumber = data[3];

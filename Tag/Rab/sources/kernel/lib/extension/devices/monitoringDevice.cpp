@@ -641,7 +641,8 @@ bool MonitoringDevice::isLogingMessage(unsigned char* pMsg)
 		case MESSAGE_NUMBER_NIZKOE_NAPRAZHENIE_PITANIA_PLATI:
 		case MESSAGE_NUMBER_VISOKOE_NAPRAZHENIE_PITANIA_PLATI:
 		case MESSAGE_NUMBER_NAPRAZHENIE_PITANIA_PLATI_V_NORME:
-			
+		case MESSAGE_NUMBER_ZATVOR_AOUU:
+
 			result = false;
 			break;
 	}

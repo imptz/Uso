@@ -49,4 +49,7 @@ class TvDevice : public IDetectionDevice, public MessageReceiver, public Message
 		virtual void updateFire(unsigned char* pAddress, unsigned int count, ActionMoveToPoint** actionMoveToPoint = nullptr);
 		virtual void updateFire(ChannelInfo* pChannelInfo, unsigned int count);
 		virtual unsigned char* getFire();
+		ChannelInfo* points;
+		unsigned int pointsCount;
+
 };

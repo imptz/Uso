@@ -71,7 +71,7 @@ void ActionStartProgramScanLine::step()
 
 				MonitoringSubsystem::getSingleton().createAndSendMessage(IMonitoringDevice::MESSAGE_NUMBER_START_PROGRAMMI_SCANIROVANIJA, deviceAddress, par2, par3, par4);
 
-				DEBUG_PUT_METHOD("point1x = %i, point2x = %i, point1y = %i, point2y = %i\n", point1X, point2X, point1.y, point2.y)
+				DEBUG_PUT_METHOD("deviceAddress = %i, point1x = %i, point2x = %i, point1y = %i, point2y = %i\n", deviceAddress, point1X, point2X, point1.y, point2.y)
 			}
 			break;
 		case PHASE_COMMAND_WAIT:
