@@ -115,6 +115,7 @@ class LogicSearching : public Logic
 public:
 		void stopSearch();
 		bool fPovtorPoiska;
+		static const unsigned int TIME_RESER_POZH_SIGNAL_SEK = 2;
 };
 
 #endif

@@ -40,7 +40,8 @@ void LogicSearching::onMessage(Message message){
 		case MESSAGE_USO_MODE_CONTROL_STOP_LOGIC:
 			DEBUG_PUT_METHOD("MESSAGE_USO_MODE_CONTROL_STOP_LOGIC\n");
 			UI::getSingleton().getMainTabControl()->activateMainTab();
-			stop(true, false);
+			stop(false, false);
+			fPovtorPoiska = false;
 			clearAllMessages();
 			break;
 		case MainConfirmation::CONFIRMATION_MESSAGE_RESULT:
@@ -225,7 +226,7 @@ void LogicSearching::action()
 				//выход на сброс сигнализации включить
 				IOSubsystem::getSingleton().enableResetPozharSignalisacijaOutputs();
 				phase = PHASE_WAIT_RESET_POZHSIG;
-				resetSignalTimer = 1;
+				resetSignalTimer = TIME_RESER_POZH_SIGNAL_SEK;
 			}
 			break;
 		case PHASE_WAIT_RESET_POZHSIG:
