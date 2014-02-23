@@ -141,7 +141,8 @@ void UsoModeControl::change_toRemote(){
 	if(mode != USO_MODE_REMOTE){
 		sendMessage(Message(MESSAGE_FROM_OFFSET_CONTROLS + id, MESSAGE_USO_MODE_CONTROL_STOP_LOGIC, 0, 0));
 		setMode(USO_MODE_REMOTE, USO_MODE_CONTROL_ACTOR_PDU);
-		startRemoteTimer();
+		if(Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeReturnFromRemoteMode != 0)
+			startRemoteTimer();
 	}
 
 	clearRemoteTimer();
