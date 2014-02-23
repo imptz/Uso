@@ -68,17 +68,7 @@ void LogicSearching::onMessage(Message message){
 			{
 				if (message.par1 == MainConfirmation::CONFIRMATION_RESULT_YES)
 				{
-					Log::getSingleton().add(LOG_MESSAGE_FROM_LOGIC, LOG_MESSAGE_TYPE_INFO, const_cast<char*>(LOG_START_EXTINGUISHING_TEXT), START_ACTOR_HALF_AUTO, 0);
-					IOSubsystem::getSingleton().enableAllFireAlarmOutputs();
-					IOSubsystem::getSingleton().enableAllHardwareOutputs();
-
-					//SAFE_DELETE_ARRAY(programs)
-
-					calcProgram(&fireCount, localFires, &fire, &programs);
-
-					phaseSendPressureTable_Start(fireCount, programs);
-					phase = PHASE_SEND_PRESSURE_TABLE;
-					SAFE_DELETE_ARRAY(listProgramIndex);
+					startTushenie();
 				}
 				else
 				{
@@ -254,6 +244,8 @@ void LogicSearching::action()
 					timeOutBeforeStart = Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeOutBeforeStart;
 				}
 			}
+			else
+				fPovtorPoiska = false;
 			break;
 		case PHASE_INPUT_WAITING_CONTROL:
 			if (timeOutBeforeStart == 0)
@@ -314,6 +306,14 @@ void LogicSearching::action()
 			}
 			break;
 // M061112E
+		case PHASE_WAITING_CONFIRMATION_TUSHENIE:
+			if (timeOutWaiting == 0)
+			{
+				timeOutWaiting = TIME_OUT_WAITING_UNDEFINED;	
+				UI::getSingleton().getMainTabControl()->activateMainTab();
+				startTushenie();
+			}
+			break;
 		case PHASE_SEND_PRESSURE_TABLE:
 			if (phaseSendPressureTable_Execution())
 			{
@@ -1049,4 +1049,16 @@ void LogicSearching::stopSearch(){
 
 }
 
+void LogicSearching::startTushenie(){
+	Log::getSingleton().add(LOG_MESSAGE_FROM_LOGIC, LOG_MESSAGE_TYPE_INFO, const_cast<char*>(LOG_START_EXTINGUISHING_TEXT), START_ACTOR_HALF_AUTO, 0);
+	IOSubsystem::getSingleton().enableAllFireAlarmOutputs();
+	IOSubsystem::getSingleton().enableAllHardwareOutputs();
 
+	//SAFE_DELETE_ARRAY(programs)
+
+	calcProgram(&fireCount, localFires, &fire, &programs);
+
+	phaseSendPressureTable_Start(fireCount, programs);
+	phase = PHASE_SEND_PRESSURE_TABLE;
+	SAFE_DELETE_ARRAY(listProgramIndex);
+}
