@@ -262,11 +262,12 @@ void Fire::calcProgram(unsigned int fireCount, PreFire* localFires, Fire::FireOb
 		(*programs)[i].point1.x += (360 - static_cast<int>(prp[Config::getSingleton().getConfigData()->getPRIndexByAddress(localFires[i].channel)]->orientation.x));
 		(*programs)[i].point2.x += (360 - static_cast<int>(prp[Config::getSingleton().getConfigData()->getPRIndexByAddress(localFires[i].channel)]->orientation.x));
 
-		static const int BORDER = 5;
-		(*programs)[i].point1.x -= BORDER;
-		(*programs)[i].point1.y += BORDER;
-		(*programs)[i].point2.x += BORDER;
-		(*programs)[i].point2.y -= BORDER;
+//		static const int BORDER = 5;
+
+		(*programs)[i].point1.x -= Config::getSingleton().getConfigData()->getConfigDataStructConst()->leftField;
+		(*programs)[i].point1.y += Config::getSingleton().getConfigData()->getConfigDataStructConst()->topField;
+		(*programs)[i].point2.x += Config::getSingleton().getConfigData()->getConfigDataStructConst()->rightField;
+		(*programs)[i].point2.y -= Config::getSingleton().getConfigData()->getConfigDataStructConst()->bottomField;
 
 		(*programs)[i].point1.x += 360;
 		(*programs)[i].point2.x += 360;
@@ -292,6 +293,7 @@ void Fire::calcProgram(unsigned int fireCount, PreFire* localFires, Fire::FireOb
 		
 		(*programs)[i].step = 3;
 
-		//calcPressureTable((*programs)[i].prNumber, fire, *programs, i); /*180 gradusov*/
+		DEBUG_PUT_METHOD("i = %i, (*programs)[i].prNumber = %i\n", i, (*programs)[i].prNumber);
+		calcPressureTable((*programs)[i].prNumber, fire, *programs, i); /*180 gradusov*/
 	}
 }

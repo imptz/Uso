@@ -213,7 +213,6 @@ void LogicSearching::action()
 				phase = PHASE_INPUT_CONTROL;
 			}else{
 				DEBUG_PUT_METHOD("PHASE_RESET_POZHSIG timeRepeatSearch == %i\n", Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeRepeatSearch);
-				//выход на сброс сигнализации включить
 				IOSubsystem::getSingleton().enableResetPozharSignalisacijaOutputs();
 				phase = PHASE_WAIT_RESET_POZHSIG;
 				resetSignalTimer = TIME_RESER_POZH_SIGNAL_SEK;
@@ -224,7 +223,6 @@ void LogicSearching::action()
 				DEBUG_PUT_METHOD("PHASE_WAIT_RESET_POZHSIG timeRepeatSearch == 0\n");
 				phase = PHASE_WAIT_POZHSIG;
 				resetSignalTimer = Config::getSingleton().getConfigData()->getConfigDataStructConst()->delayAfterReset;
-				//выход на сброс сигнализации выключить
 				IOSubsystem::getSingleton().disableResetPozharSignalisacijaOutputs();
 			}
 			break;
@@ -609,9 +607,9 @@ bool LogicSearching::phaseOpenValve_Start()
 		unsigned char deviceAddress;
 
 		unsigned int count = Config::getSingleton().getConfigData()->getConfigDataStructProgramCount();
-		ConfigDataStructProgram** programs = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
+		ConfigDataStructProgram** _programs = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
 
-		if ((count != 0) && (programs[0]->function == LOGIC_FUNCTION_SEARCHING_PENA)){
+		if ((count != 0) && (_programs[0]->function == LOGIC_FUNCTION_SEARCHING_PENA)){
 			if ((actionList[i] != nullptr) && (actionList[i]->getState() != Action::STATE_ERROR))
 			{
 				deviceAddress = actionList[i]->getDeviceAddress();
@@ -745,9 +743,9 @@ bool LogicSearching::phaseCloseValve_Start()
 			SAFE_DELETE(actionList[i])
 
 			unsigned int count = Config::getSingleton().getConfigData()->getConfigDataStructProgramCount();
-			ConfigDataStructProgram** programs = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
+			ConfigDataStructProgram** _programs = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
 
-			if ((count != 0) && (programs[0]->function == LOGIC_FUNCTION_SEARCHING_PENA)){
+			if ((count != 0) && (_programs[0]->function == LOGIC_FUNCTION_SEARCHING_PENA)){
 				actionList[i] = new ActionValveClose(deviceAddress);
 				res = true;
 			}
@@ -808,7 +806,7 @@ bool LogicSearching::phaseStopProgramEnd_Execution()
 	return true;
 }
 
-bool LogicSearching::calcProgram(unsigned int* channelsCount, PreFire* localFires, Fire::FireObject* fire, Fire::FireScanProgram** programs)
+bool LogicSearching::calcProgram(unsigned int* channelsCount, PreFire* localFires, Fire::FireObject* fire, Fire::FireScanProgram** _programs)
 {
 	ConfigDataStructPRPosition** prp = Config::getSingleton().getConfigData()->getConfigDataStructPRPositions();
 	
@@ -836,7 +834,7 @@ for (unsigned int i = 0; i < *channelsCount; i++)
 	if (Config::getSingleton().getConfigData()->getConfigDataStructConst()->maxPR < *channelsCount)
 		*channelsCount = Config::getSingleton().getConfigData()->getConfigDataStructConst()->maxPR;
 
-	Fire::calcProgram(*channelsCount, localFires, fire, programs);
+	Fire::calcProgram(*channelsCount, localFires, fire, _programs);
 
 	return true;
 }
