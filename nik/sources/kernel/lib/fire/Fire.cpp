@@ -148,7 +148,7 @@ void Fire::calcFire(PreFire* preFires, FireObject* pFire, unsigned int preFiresC
 //	}
 //}
 
-void Fire::calcPressureTable(unsigned char prNumber, Fire::FireObject* fire, FireScanProgram* programs, unsigned int i)
+void Fire::calcPressureTable(unsigned int prNumber, Fire::FireObject* fire, FireScanProgram* programs, unsigned int i)
 {
 	const float  pcon = 2360;
 	const float  pis = 3.1457/180.0;
@@ -161,6 +161,7 @@ void Fire::calcPressureTable(unsigned char prNumber, Fire::FireObject* fire, Fir
 	ConfigDataStructPRPosition** prp = Config::getSingleton().getConfigData()->getConfigDataStructPRPositions();
 
 	float length = fire->massCenter.distance(prp[Config::getSingleton().getConfigData()->getPRIndexByAddress(Config::getSingleton().getConfigData()->getPRAddressByNumber(prNumber))]->position) / 100.0f;
+
 	an = static_cast<int>(angle * pis1);
 
 	if (sin(angle) + cos(angle) * 9.81f * length / (pcon * 0.6f) < 1.0f)
@@ -293,7 +294,99 @@ void Fire::calcProgram(unsigned int fireCount, PreFire* localFires, Fire::FireOb
 		
 		(*programs)[i].step = 3;
 
-		DEBUG_PUT_METHOD("i = %i, (*programs)[i].prNumber = %i\n", i, (*programs)[i].prNumber);
+		DEBUG_PUT_METHOD("i = %i, (*programs)[i].prNumber = %i, programs = %i\n", i, (*programs)[i].prNumber, programs);
 		calcPressureTable((*programs)[i].prNumber, fire, *programs, i); /*180 gradusov*/
 	}
 }
+
+
+//void Fire::calcPressureTable(unsigned int prNumber, Fire::FireObject* fire, FireScanProgram* programs, unsigned int i)
+//{
+//	const float  pcon = 2360;
+//	const float  pis = 3.1457/180.0;
+//	const float  pis1 = 180.0/3.1457;
+//
+//	double tempd;
+//	int an;
+//	float angle = 0.0f;
+// 
+//	ConfigDataStructPRPosition** prp = Config::getSingleton().getConfigData()->getConfigDataStructPRPositions();
+//
+//	float length = fire->massCenter.distance(prp[Config::getSingleton().getConfigData()->getPRIndexByAddress(Config::getSingleton().getConfigData()->getPRAddressByNumber(prNumber))]->position) / 100.0f;
+//	float length = 0;
+//	an = static_cast<int>(angle * pis1);
+//
+//	if (sin(angle) + cos(angle) * 9.81f * length / (pcon * 0.6f) < 1.0f)
+//	{
+//		tempd=(asin(sin(angle) + cos(angle) * 9.81f * length / (pcon * 0.6f)) + angle) / (pis * 2.0f);
+//		programs[i].pressureTable0 = static_cast<unsigned int>((tempd - an + 0.5f));
+//	}
+//	else 
+//		programs[i].pressureTable0 = 0;
+//   
+//	if (sin(angle) + cos(angle) * 9.81f * length / (pcon * 0.64f) < 1.0f)
+//	{
+//		tempd=(asin(sin(angle) + cos(angle) * 9.81f * length / (pcon * 0.64f)) + angle) / (pis * 2.0f);
+//		programs[i].pressureTable1 = static_cast<unsigned int>((tempd - an + 0.5f));
+//	}
+//	else 
+//		programs[i].pressureTable1 = 0; 
+//
+//	if (sin(angle) + cos(angle) * 9.81f * length / (pcon * 0.68f) < 1.0f)
+//	{
+//		tempd=(asin(sin(angle) + cos(angle) * 9.81f * length / (pcon * 0.68f)) + angle) / (pis * 2.0f);
+//		programs[i].pressureTable2 = static_cast<unsigned int>((tempd - an + 0.5f));
+//	}
+//	else 
+//		programs[i].pressureTable2 = 0;
+//
+//	if (sin(angle)+cos(angle)*9.81f*length/(pcon*0.72f) < 1.0f)
+//	{
+//		tempd=(asin(sin(angle)+cos(angle)*9.81f*length/(pcon*0.72f))+angle)/(pis*2.0f);
+//		programs[i].pressureTable3 = static_cast<unsigned int>((tempd-an+0.5f));
+//	}
+//	else 
+//		programs[i].pressureTable3 = 0;
+//
+//	if (sin(angle)+cos(angle)*9.81f*length/(pcon*0.76f) < 1.0f)
+//	{
+//		tempd=(asin(sin(angle)+cos(angle)*9.81f*length/(pcon*0.76f))+angle)/(pis*2.0f);
+//		programs[i].pressureTable4 = static_cast<unsigned int>((tempd-an+0.5f));
+//	}
+//	else 
+//		programs[i].pressureTable4 = 0;
+//
+//  if (sin(angle)+cos(angle)*9.81f*length/(pcon*0.80f) < 1.0f)
+//  {
+//   tempd=(asin(sin(angle)+cos(angle)*9.81f*length/(pcon*0.80f))+angle)/(pis*2.0f);
+//   programs[i].pressureTable5 = static_cast<unsigned int>((tempd-an+0.5f));
+//  }
+//  else 
+//	  programs[i].pressureTable5 = 0;
+//
+//  if (sin(angle)+cos(angle)*9.81f*length/(pcon*0.84f) < 1.0f)
+//  {
+//   tempd=(asin(sin(angle)+cos(angle)*9.81f*length/(pcon*0.84f))+angle)/(pis*2.0f);
+//   programs[i].pressureTable6 = static_cast<unsigned int>((tempd-an+0.5f));
+//  }
+//  else 
+//	  programs[i].pressureTable6 = 0;
+//
+//  if (sin(angle)+cos(angle)*9.81f*length/(pcon*0.86f) < 1.0f)
+//  {
+//   tempd=(asin(sin(angle)+cos(angle)*9.81f*length/(pcon*0.86f))+angle)/(pis*2.0f);
+//   programs[i].pressureTable7 = static_cast<unsigned int>((tempd-an+0.5f));
+//  }
+//  else 
+//	  programs[i].pressureTable7 = 0;
+//
+//  if (sin(angle)+cos(angle)*9.81f*length/(pcon*0.92f) < 1.0f)
+//  {
+//   tempd=(asin(sin(angle)+cos(angle)*9.81f*length/(pcon*0.92f))+angle)/(pis*2.0f);
+//   programs[i].pressureTable8 = static_cast<unsigned int>((tempd-an+0.5f));
+//  }
+//  else 
+//	  programs[i].pressureTable8 = 0;
+//
+//  programs[i].pressureTable9 = 0;
+//}

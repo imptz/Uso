@@ -42,7 +42,7 @@ class Fire
 		};
 
 	private:
-		static void calcPressureTable(unsigned char prNumber, Fire::FireObject* fire, FireScanProgram* programs, unsigned int i);
+		static void calcPressureTable(unsigned int prNumber, Fire::FireObject* fire, FireScanProgram* programs, unsigned int i);
 
 	public:
 		static void calcFire(PreFire* preFires, FireObject* pFire, unsigned int preFiresCount);
