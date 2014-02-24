@@ -133,7 +133,7 @@ void Application::timerHandler()
 
 void Application::prToNull(){
 	if(Config::getSingleton().getConfigData()->getConfigDataStructConst()->autoPrToZero){
-		DEBUG_PUT_METHOD("to null\n");
+		//DEBUG_PUT_METHOD("to null\n");
 
 		unsigned int actionCount = Config::getSingleton().getConfigData()->getConfigDataStructPRPositionCount(); 
 		Action **actionList = new Action*[actionCount];

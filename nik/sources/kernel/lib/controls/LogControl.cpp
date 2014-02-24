@@ -1,4 +1,5 @@
 #include "LogControl.h"
+#include "../DEBUG/serialDebug.h"
 
 #pragma warning (disable : 4355)
 
@@ -48,8 +49,10 @@ void LogControl::onMessage(Message message)
 			if ((message.from == MESSAGE_FROM_OFFSET_CONTROLS + lastButton->getId()) && (message.msg == Button::BUTTON_MESSAGE_DOWN))
 				onLast();
 			else
-				if ((message.from == MESSAGE_FROM_OFFSET_LOG) && (message.msg == Log::LOG_MESSAGE_NEW_RECORD))
+				if ((message.from == MESSAGE_FROM_OFFSET_LOG) && (message.msg == Log::LOG_MESSAGE_NEW_RECORD)){
+					//DEBUG_PUT_METHOD("onLast()\n");
 					onLast();
+				}
 				else
 					if ((message.from == MESSAGE_FROM_OFFSET_LOG) && (message.msg == Log::LOG_MESSAGE_CLEAR))
 						onClear();

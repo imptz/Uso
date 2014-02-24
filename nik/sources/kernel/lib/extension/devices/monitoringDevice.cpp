@@ -274,7 +274,7 @@ bool MonitoringDevice::putFrame(unsigned char* _pArea, bool isNotTransfer)
 				{
 //11062013
 					case PHASE_CONFIG_0:
-						DEBUG_PUT_METHOD("PHASE_CONFIG_0   _pArea[2] == COMMAND_GET_INITIALIZE_RESULT  _pArea[5] = %u   (INITIALIZE_RESULT_OK == 1)\n", _pArea[5]);
+						//DEBUG_PUT_METHOD("PHASE_CONFIG_0   _pArea[2] == COMMAND_GET_INITIALIZE_RESULT  _pArea[5] = %u   (INITIALIZE_RESULT_OK == 1)\n", _pArea[5]);
 						if (_pArea[2] == COMMAND_GET_INITIALIZE_RESULT){
 							if (_pArea[5] == INITIALIZE_RESULT_OK){
 								phase = PHASE_START;
@@ -604,12 +604,12 @@ void MonitoringDevice::setOutputs(unsigned char* pMsg)
 		case MESSAGE_NUMBER_ZATVOR_OTKRIT:
 			IOSubsystem::getSingleton().enableGateOutputs(pMsg[MESSAGE_PAR2_OFFSET]);
 			zatvorOpen[Config::getSingleton().getConfigData()->getPRIndexByAddress(pMsg[MESSAGE_PAR2_OFFSET])] = true;
-			DEBUG_PUT_METHOD("zatvor address = %i\n", pMsg[MESSAGE_PAR2_OFFSET]);
+//			DEBUG_PUT_METHOD("zatvor address = %i\n", pMsg[MESSAGE_PAR2_OFFSET]);
 			break;
 		case MESSAGE_NUMBER_ZATVOR_ZAKRIT:
 			IOSubsystem::getSingleton().disableGateOutputs(pMsg[MESSAGE_PAR2_OFFSET]);
 			zatvorOpen[Config::getSingleton().getConfigData()->getPRIndexByAddress(pMsg[MESSAGE_PAR2_OFFSET])] = false;
-			DEBUG_PUT_METHOD("zatvor address = %i\n", pMsg[MESSAGE_PAR2_OFFSET]);
+//			DEBUG_PUT_METHOD("zatvor address = %i\n", pMsg[MESSAGE_PAR2_OFFSET]);
 			break;
 		case MESSAGE_NUMBER_ZATVOR_OSHIBKA:
 			IOSubsystem::getSingleton().enableGateFaultOutputs(pMsg[MESSAGE_PAR2_OFFSET]);
@@ -1195,11 +1195,11 @@ void MonitoringDevice::controlMessage(unsigned char* _pArea){
 	const unsigned int PDU_ADDRESS_FIRST = 34;
 	const unsigned int PDU_ADDRESS_LAST = 37;
 
-	DEBUG_PUT_METHOD("msg = ");
-	for(unsigned int i = 0; i < 20; ++i)
-		DEBUG_PUT("%i ", _pArea[i]);
+	//DEBUG_PUT_METHOD("msg = ");
+	//for(unsigned int i = 0; i < 20; ++i)
+	//	DEBUG_PUT("%i ", _pArea[i]);
 
-	DEBUG_PUT("\n");
+	//DEBUG_PUT("\n");
 
 	if((_pArea[MESSAGE_ADDRESS_FROM_OFFSET] >= PDU_ADDRESS_FIRST) && (_pArea[MESSAGE_ADDRESS_FROM_OFFSET] <= PDU_ADDRESS_LAST)){
 		UI::getSingleton().getUsoModeControl()->change_toRemote();

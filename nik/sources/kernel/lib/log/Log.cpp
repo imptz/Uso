@@ -87,9 +87,7 @@ void Log::add(LOG_MESSAGE_FROM _from, LOG_MESSAGE_TYPE _type, char* _str, int n1
 			writeCounter++;
 	}
 
-//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING("Log: "); 
-//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING(_str); 
-//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING2(" : ", readMessageNumber, header.writeMessageNumber); 
+//DEBUG_PUT_METHOD("writeCounter = %i\n", writeCounter); 
 }
 
 LogMessage Log::get(LOG_POSITION position)

@@ -159,7 +159,7 @@ int Logic::getConfigTimeOutWaiting()
 	if (time == 0)
 		time = TIME_OUT_WAITING_UNDEFINED;
 
-	DEBUG_PUT_METHOD("timeOut = %is\n", time);
+	//DEBUG_PUT_METHOD("timeOut = %is\n", time);
 
 	return time;
 }

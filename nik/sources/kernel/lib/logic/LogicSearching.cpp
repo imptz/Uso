@@ -38,7 +38,7 @@ LogicSearching::~LogicSearching(){
 void LogicSearching::onMessage(Message message){
 	switch (message.msg){
 		case MESSAGE_USO_MODE_CONTROL_STOP_LOGIC:
-			DEBUG_PUT_METHOD("MESSAGE_USO_MODE_CONTROL_STOP_LOGIC\n");
+			//DEBUG_PUT_METHOD("MESSAGE_USO_MODE_CONTROL_STOP_LOGIC\n");
 			UI::getSingleton().getMainTabControl()->activateMainTab();
 			stop(false, false);
 			fPovtorPoiska = false;
@@ -209,10 +209,10 @@ void LogicSearching::action()
 	switch (phase){
 		case PHASE_RESET_POZHSIG:
 			if(Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeRepeatSearch == 0){
-				DEBUG_PUT_METHOD("PHASE_RESET_POZHSIG timeRepeatSearch == 0\n");
+				//DEBUG_PUT_METHOD("PHASE_RESET_POZHSIG timeRepeatSearch == 0\n");
 				phase = PHASE_INPUT_CONTROL;
 			}else{
-				DEBUG_PUT_METHOD("PHASE_RESET_POZHSIG timeRepeatSearch == %i\n", Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeRepeatSearch);
+				//DEBUG_PUT_METHOD("PHASE_RESET_POZHSIG timeRepeatSearch == %i\n", Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeRepeatSearch);
 				IOSubsystem::getSingleton().enableResetPozharSignalisacijaOutputs();
 				phase = PHASE_WAIT_RESET_POZHSIG;
 				resetSignalTimer = TIME_RESER_POZH_SIGNAL_SEK;
@@ -220,7 +220,7 @@ void LogicSearching::action()
 			break;
 		case PHASE_WAIT_RESET_POZHSIG:
 			if(resetSignalTimer == 0){
-				DEBUG_PUT_METHOD("PHASE_WAIT_RESET_POZHSIG timeRepeatSearch == 0\n");
+				//DEBUG_PUT_METHOD("PHASE_WAIT_RESET_POZHSIG timeRepeatSearch == 0\n");
 				phase = PHASE_WAIT_POZHSIG;
 				resetSignalTimer = Config::getSingleton().getConfigData()->getConfigDataStructConst()->delayAfterReset;
 				IOSubsystem::getSingleton().disableResetPozharSignalisacijaOutputs();
@@ -228,7 +228,7 @@ void LogicSearching::action()
 			break;
 		case PHASE_WAIT_POZHSIG:
 			if(resetSignalTimer == 0){
-				DEBUG_PUT_METHOD("PHASE_WAIT_POZHSIG\n");
+				//DEBUG_PUT_METHOD("PHASE_WAIT_POZHSIG\n");
 				phase = PHASE_INPUT_CONTROL;
 			}
 			break;
@@ -236,7 +236,7 @@ void LogicSearching::action()
 			initSignal = getActiveInitialSignal(LOGIC_FUNCTION_SEARCHING);
 			if (initSignal != -1)
 			{
-				DEBUG_PUT_METHOD("initSignal = %i\n", initSignal);
+				//DEBUG_PUT_METHOD("initSignal = %i\n", initSignal);
 				if ((!UI::getSingleton().getUsoModeControl()->isInTools()) && (UI::getSingleton().getUsoModeControl()->getMode() != UsoModeControl::USO_MODE_REMOTE)){
 					phase = PHASE_INPUT_WAITING_CONTROL;
 					timeOutBeforeStart = Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeOutBeforeStart;
@@ -290,7 +290,7 @@ void LogicSearching::action()
 		case PHASE_WAITING_CONFIRMATION_SEARCH:
 			if (timeOutWaiting == 0)
 			{
-				DEBUG_PUT_METHOD("PHASE_WAITING_CONFIRMATION_SEARCH ... timeOutWaiting == 0\n");
+				//DEBUG_PUT_METHOD("PHASE_WAITING_CONFIRMATION_SEARCH ... timeOutWaiting == 0\n");
 				timeOutWaiting = TIME_OUT_WAITING_UNDEFINED;	
 // M13112012
 //				UI::getSingleton().getUsoModeControl()->setMode(UsoModeControl::USO_MODE_FULL_AUTO, UsoModeControl::USO_MODE_CONTROL_ACTOR_TIME_OUT, true);

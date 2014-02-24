@@ -43,11 +43,11 @@ void ActionSendPressureTable::step()
 			frame[12] = program->pressureTable8;
 			frame[13] = program->pressureTable9;
 
-DEBUG_PUT_METHOD(": ");
-for(unsigned int i = 0; i < 10; ++i){
-	DEBUG_PUT("%i ", frame[4 + i]);
-}
-DEBUG_PUT("\n");
+//DEBUG_PUT_METHOD(": ");
+//for(unsigned int i = 0; i < 10; ++i){
+//	DEBUG_PUT("%i ", frame[4 + i]);
+//}
+//DEBUG_PUT("\n");
 
 			frameId = RpkSubsystem::getSingleton().write(frame);
 			if (frameId == IRpkDevice::BAD_FRAME_ID)
