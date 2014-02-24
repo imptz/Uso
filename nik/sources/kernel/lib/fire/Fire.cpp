@@ -294,7 +294,7 @@ void Fire::calcProgram(unsigned int fireCount, PreFire* localFires, Fire::FireOb
 		
 		(*programs)[i].step = 3;
 
-		DEBUG_PUT_METHOD("i = %i, (*programs)[i].prNumber = %i, programs = %i\n", i, (*programs)[i].prNumber, programs);
+		//DEBUG_PUT_METHOD("i = %i, (*programs)[i].prNumber = %i, programs = %i\n", i, (*programs)[i].prNumber, programs);
 		calcPressureTable((*programs)[i].prNumber, fire, *programs, i); /*180 gradusov*/
 	}
 }

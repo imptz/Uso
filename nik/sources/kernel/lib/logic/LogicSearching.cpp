@@ -689,8 +689,13 @@ bool LogicSearching::phaseWaitingStop_Execution()
 	//	if (!testInitSignal(initSignal))
 	//	{
 			if (finishTimer == -1){
-				finishTimer = Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeOutBeforeFinish;
-				fPovtorPoiska = true;
+				if(Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeRepeatSearch == 0){
+					fPovtorPoiska = false;
+					finishTimer = Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeOutBeforeFinish;
+				}else{
+					finishTimer = Config::getSingleton().getConfigData()->getConfigDataStructConst()->timeRepeatSearch;
+					fPovtorPoiska = true;
+				}
 			}
 //		}
 //	}
