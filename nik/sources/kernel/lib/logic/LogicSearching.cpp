@@ -43,6 +43,7 @@ void LogicSearching::onMessage(Message message){
 			stop(false, false);
 			fPovtorPoiska = false;
 			clearAllMessages();
+			IOSubsystem::getSingleton().disableResetPozharSignalisacijaOutputs();
 			break;
 		case MainConfirmation::CONFIRMATION_MESSAGE_RESULT:
 			if (message.par2 == MainConfirmation::CONFIRMATION_OWNER_1){
