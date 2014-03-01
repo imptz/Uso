@@ -1,1 +1,0 @@
-MonitorTerm.exe com7 write kernel.exe
