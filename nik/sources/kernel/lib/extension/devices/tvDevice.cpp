@@ -177,11 +177,11 @@ bool TvDevice::putFrame(unsigned char* _pArea, bool isNotTransfer)
 				pp = new unsigned char[_size];
 				memcpy(pp, _pArea, _size);
 
-DEBUG_PUT_METHOD("qqqqqqqqqqqqqq: ");
-for(unsigned int i = 0; i < 30; ++i){
-	DEBUG_PUT("%i ", pp[i]);
-}
-DEBUG_PUT_METHOD("\n");
+//DEBUG_PUT_METHOD("qqqqqqqqqqqqqq: ");
+//for(unsigned int i = 0; i < 30; ++i){
+//	DEBUG_PUT("%i ", pp[i]);
+//}
+//DEBUG_PUT_METHOD("\n");
 
 
 
@@ -205,7 +205,7 @@ DEBUG_PUT_METHOD("\n");
 				channelOffset += 2;
 		}
 
-	DEBUG_PUT_METHOD("validAddressCount = %i ", validAddressCount);
+//	DEBUG_PUT_METHOD("validAddressCount = %i ", validAddressCount);
 
 
 		fireFrame = new unsigned char[256];
@@ -237,21 +237,21 @@ DEBUG_PUT_METHOD("\n");
 
 		Point2<unsigned int> point = points[index].point1;
 
-		DEBUG_PUT_METHOD("point.x = %i point.y = %i\n", point.x, point.y);
+//		DEBUG_PUT_METHOD("point.x = %i point.y = %i\n", point.x, point.y);
 
 			for(unsigned int t = 0; t < firec; ++t){
 				int cor = pp[pf++];
 				if(cor > 128)
 					cor = -1 * (255 - cor);
 
-				DEBUG_PUT_METHOD("cor.x1 = %i  ", cor);
+//				DEBUG_PUT_METHOD("cor.x1 = %i  ", cor);
 				cor += point.x;
-				DEBUG_PUT_METHOD("cor.x2 = %i  ", cor);
+//				DEBUG_PUT_METHOD("cor.x2 = %i  ", cor);
 
 				if (cor < 0)
 					cor = 32000 + static_cast<int>(abs(static_cast<float>(cor)));
 
-				DEBUG_PUT_METHOD("cor.x3 = %i\n", cor);
+//				DEBUG_PUT_METHOD("cor.x3 = %i\n", cor);
 
 				fireFrame[of++] = cor % 256;
 				fireFrame[of++] = cor / 256;

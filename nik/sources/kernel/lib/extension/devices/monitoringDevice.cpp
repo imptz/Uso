@@ -1213,9 +1213,10 @@ void MonitoringDevice::zatvorAction(){
 			isOpen = true;
 	}
 
-	if(isOpen)
+	if(isOpen){
+		UI::getSingleton().getUsoModeControl()->clearRemoteTimer();
 		IOSubsystem::getSingleton().enableAllPumpStationOutputs();
-	else
+	}else
 		IOSubsystem::getSingleton().disableAllPumpStationOutputs();
 }
 
