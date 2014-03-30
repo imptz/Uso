@@ -31,6 +31,7 @@ void ActionSearch::step()
 	{
 		case PHASE_COMMAND:
 
+DEBUG_PUT_METHOD("PHASE_COMMAND address = %i\n", deviceAddress)
 			point1.x = 360 - point1.x;
 			point2.x = 360 - point2.x;
 
@@ -52,10 +53,14 @@ void ActionSearch::step()
 			point2.x = 360 - point2.x;
 
 			frameId = RpkSubsystem::getSingleton().write(frame);
-			if (frameId == IRpkDevice::BAD_FRAME_ID)
+			if (frameId == IRpkDevice::BAD_FRAME_ID){
+				DEBUG_PUT_METHOD("PHASE_COMMAND IRpkDevice::BAD_FRAME_ID address = %i\n", deviceAddress)
 				error(1);
-			else
+			}
+			else{
+				DEBUG_PUT_METHOD("PHASE_COMMAND IRpkDevice:: TRUE address = %i\n", deviceAddress)
 				phase = PHASE_COMMAND_WAIT;
+			}
 			break;
 		case PHASE_COMMAND_WAIT:
 			result = RpkSubsystem::getSingleton().read(frameId, &pFrame);
@@ -63,17 +68,21 @@ void ActionSearch::step()
 			switch (result)
 			{
 				case IRpkDevice::FRAME_RESULT_ID_NOT_FOUND:
+					DEBUG_PUT_METHOD("PHASE_COMMAND_WAIT IRpkDevice::FRAME_RESULT_ID_NOT_FOUND address = %i\n", deviceAddress)
 					error(2);
 					break;
 				case IRpkDevice::FRAME_RESULT_ERROR:
+					DEBUG_PUT_METHOD("PHASE_COMMAND_WAIT IRpkDevice::FRAME_RESULT_ERROR address = %i\n", deviceAddress)
 					error(3);
 					break;
 				case IRpkDevice::FRAME_RESULT_READY:
+					DEBUG_PUT_METHOD("PHASE_COMMAND_WAIT IRpkDevice::FRAME_RESULT_ID_READY address = %i\n", deviceAddress)
 					phase = PHASE_TEST;
 					break;
 			}
 			break;
 		case PHASE_TEST:
+DEBUG_PUT_METHOD("PHASE_TEST address = %i\n", deviceAddress)
 			frame[0] = deviceAddress;
 			frame[1] = 0;
 			frame[2] = RPK_COMMANDS_FLAGS;
@@ -82,10 +91,14 @@ void ActionSearch::step()
 
 //SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING1_UINT("PHASE_TEST_frameId: ", frameId);
 
-			if (frameId == IRpkDevice::BAD_FRAME_ID)
+			if (frameId == IRpkDevice::BAD_FRAME_ID){
+DEBUG_PUT_METHOD("PHASE_TEST frameId == IRpkDevice::BAD_FRAME_ID address = %i\n", deviceAddress)
 				error(4);
-			else
+			}
+			else{
+DEBUG_PUT_METHOD("PHASE_TEST frameId == TRUE address = %i\n", deviceAddress)
 				phase = PHASE_TEST_WAIT;
+			}
 			break;
 		case PHASE_TEST_WAIT:
 //SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING1_UINT("PHASE_TEST_WAIT_frameId: ", frameId);
@@ -94,36 +107,38 @@ void ActionSearch::step()
 			switch (result)
 			{
 				case IRpkDevice::FRAME_RESULT_ID_NOT_FOUND:
+DEBUG_PUT_METHOD("PHASE_TEST_WAIT IRpkDevice::FRAME_RESULT_ID_NOT_FOUND address = %i\n", deviceAddress)
+
 					error(5);
 //DEBUG_PUT_METHOD("IRpkDevice::FRAME_RESULT_ID_NOT_FOUND\n");
 					break;
 				case IRpkDevice::FRAME_RESULT_ERROR:
-//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING("PHASE_TEST_WAIT IRpkDevice::FRAME_RESULT_ERROR\n");
+DEBUG_PUT_METHOD("PHASE_TEST_WAIT IRpkDevice::FRAME_RESULT_ERROR address = %i\n", deviceAddress)
 					error(6);
 //DEBUG_PUT_METHOD("IRpkDevice::FRAME_RESULT_ERROR\n");
 					break;
 				case IRpkDevice::FRAME_RESULT_READY:
 					if (pFrame[5] == 0)
 					{
-//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING("IRpkDevice::FRAME_RESULT_READY: ");
-//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_CHAR_ARRAY(pFrame, 20);
-//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING("\n");
+DEBUG_PUT_METHOD("PHASE_TEST_WAIT IRpkDevice::FRAME_RESULT_READY pFrame[5] == 0 address = %i\n", deviceAddress)
 						if (pFrame[6] == 0){
+DEBUG_PUT_METHOD("PHASE_TEST_WAIT IRpkDevice::FRAME_RESULT_READY pFrame[6] == 0 address = %i\n", deviceAddress)
 							error(7);
 						}
 						else
 						{
-//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING("PHASE_TEST_WAIT\n");
+DEBUG_PUT_METHOD("PHASE_TEST_WAIT IRpkDevice::FRAME_RESULT_READY pFrame[6] != 0 address = %i\n", deviceAddress)
 							phase = PHASE_GET_RESULT;
-//DEBUG_PUT_METHOD("phase = PHASE_GET_RESULT;\n");
 						}
 					}
-					else
+					else{
+DEBUG_PUT_METHOD("PHASE_TEST_WAIT IRpkDevice::FRAME_RESULT_READY pFrame[5] != 0 address = %i\n", deviceAddress)
 						if (timeCounter < TEST_TIME_OUT)
 							phase = PHASE_TEST;
 						else{
 							error(8);
 						}
+					}
 					break;
 			}
 

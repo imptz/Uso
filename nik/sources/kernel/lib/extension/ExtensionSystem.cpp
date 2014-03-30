@@ -2,6 +2,8 @@
 #include "../message/Messages.h"
 #include "devices\IDevice.h"
 #include "../Local.h"
+#include "../DEBUG/serialDebug.h"
+
 
 const SERIAL_PORT ExtensionSystem::PORT_NAME = SERIAL_PORT_2;
 const SERIAL_PORT_SPEED ExtensionSystem::PORT_SPEED = SERIAL_PORT_SPEED_57600;
@@ -376,6 +378,12 @@ void ExtensionSystem::sendFrame(unsigned char* _pData)
 	serialPort->startSend();
 
 	enableTransfer(length + 7);
+
+//DEBUG_PUT_METHOD(": ")
+//for(unsigned int gg = 0; gg < length + 7; ++gg)
+//	DEBUG_PUT("%i ", _pData[gg])
+//
+//DEBUG_PUT("\n")
 }
 
 void ExtensionSystem::testMissingDevices()

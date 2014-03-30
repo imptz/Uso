@@ -46,7 +46,7 @@ class RpkDevice : public IRpkDevice, public MessageReceiver, public MessageSende
 			unsigned int id;
 			unsigned char* frame;
 			FRAME_RESULT resultCode;
-			static const unsigned int TIME_LIVE = 10;
+			static const unsigned int TIME_LIVE = 1000;
 			unsigned int timeLive;
 
 			Item(unsigned int _id)

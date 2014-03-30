@@ -64,7 +64,7 @@ class SerialDebug : public ITimer, public MessageSender, public Singleton<Serial
 		static const SERIAL_PORT_SPEED PORT_SPEED;
 		SerialPort* serialPort;
 		
-		static const unsigned int FIFO_SIZE = 1024 * 64;
+		static const unsigned int FIFO_SIZE = 1024 * 256;
 		Fifo<char> *fifo;
 
 	public:

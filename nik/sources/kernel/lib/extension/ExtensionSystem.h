@@ -47,7 +47,7 @@ class ExtensionSystem : public Singleton<ExtensionSystem>, public ITimer, public
 
 		unsigned int length;
 		unsigned int position;
-		static const unsigned int MAX_TIME_COUNTER = 5;
+		static const unsigned int MAX_TIME_COUNTER = 50;
 		unsigned int timeCounter;
 
 		enum PRE_START_PHASE
@@ -143,7 +143,7 @@ class ExtensionSystem : public Singleton<ExtensionSystem>, public ITimer, public
 		};
 
 	private:
-		static const unsigned int FIFO_FRAME_SIZE = 1000;
+		static const unsigned int FIFO_FRAME_SIZE = 10000;
 		Fifo<unsigned char*>* fifoFrame;
 		void sendFrame(unsigned char* _pData);
 		void testMissingDevices();

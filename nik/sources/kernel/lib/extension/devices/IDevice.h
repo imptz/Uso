@@ -14,7 +14,7 @@ class IDevice
 
 	protected:
 
-		static const unsigned int FIFO_FRAME_SIZE = 1000;
+		static const unsigned int FIFO_FRAME_SIZE = 10000;
 		Fifo<unsigned char*>* fifoFrame;
 
 		unsigned char address;

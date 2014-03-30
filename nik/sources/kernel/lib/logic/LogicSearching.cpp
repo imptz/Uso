@@ -93,7 +93,7 @@ void LogicSearching::onMessage(Message message){
 				if (message.par1 == DetectionSubsystem::DETECTION_FAULT)
 				{
 					finishActor = FINISH_ACTOR_LOGIC;
-					Log::getSingleton().add(LOG_MESSAGE_FROM_LOGIC, LOG_MESSAGE_TYPE_INFO, const_cast<char*>(LOG_NOT_FIRE_DETECT_TEXT), finishActor, 0);
+					Log::getSingleton().add(LOG_MESSAGE_FROM_LOGIC, LOG_MESSAGE_TYPE_INFO, const_cast<char*>(LOG_NOT_FIRE_DETECT_TEXT), finishActor, message.par2);
 					fPovtorPoiska = false;
 					setInitSignalIgnorable(initSignal, true);
 					stop();
@@ -128,7 +128,7 @@ void LogicSearching::onMessage(Message message){
 					else
 					{
 						finishActor = FINISH_ACTOR_LOGIC;
-						Log::getSingleton().add(LOG_MESSAGE_FROM_LOGIC, LOG_MESSAGE_TYPE_INFO, const_cast<char*>(LOG_NOT_FIRE_DETECT_TEXT), finishActor, 0);
+						Log::getSingleton().add(LOG_MESSAGE_FROM_LOGIC, LOG_MESSAGE_TYPE_INFO, const_cast<char*>(LOG_NOT_FIRE_DETECT_TEXT), finishActor, 1);
 						stop();
 					}
 				}
@@ -234,7 +234,7 @@ void LogicSearching::action()
 			}
 			break;
 		case PHASE_INPUT_CONTROL:
-			initSignal = getActiveInitialSignal(LOGIC_FUNCTION_SEARCHING);
+			initSignal = getActiveInitialSignal(LOGIC_FUNCTION_SEARCHING, LOGIC_FUNCTION_SEARCHING_PENA);
 			if (initSignal != -1)
 			{
 				//DEBUG_PUT_METHOD("initSignal = %i\n", initSignal);

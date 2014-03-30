@@ -75,6 +75,7 @@ void ScannerDevice::action()
 
 				if (zaversheno)
 				{
+					DEBUG_PUT_METHOD("zaversheno actionCount = %i\n", actionCount)
 					Point2<int> _point1;
 					Point2<int> _point2;
 					if (fireFrame != nullptr)
