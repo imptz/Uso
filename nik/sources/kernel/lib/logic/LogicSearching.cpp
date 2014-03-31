@@ -368,9 +368,11 @@ void LogicSearching::action()
 			if (phaseWaitingStop_Execution())
 			{
 				if (phaseCloseValve_Start()){
+DEBUG_PUT_METHOD("case PHASE_WAITING_STOP: 371\n")
 					phase = PHASE_CLOSE_VALVE;
 				}
 				else{
+DEBUG_PUT_METHOD("case PHASE_WAITING_STOP: 375\n")
 					phaseGateClose_Start();
 					phase = PHASE_CLOSE_GATE;
 				}
@@ -427,14 +429,14 @@ void LogicSearching::finish(FINISH_ACTOR _finishActor)
 	{
 		finishTimer = -1;
 		if (coolingSignal == -1)
-			phase = PHASE_CLOSE_GATE;
+			phase = PHASE_CLOSE_VALVE;
 		else
 			phase = PHASE_COOLING_END;
 		finishActor = _finishActor;
 		sendMessage(Message(MESSAGE_FROM_OFFSET_LOGIC, MainFinish::FINISH_MESSAGE_LABEL, MainFinish::FINISH_MESSAGE_PARAM_FINISH, 0));
 		_asm sti
 		if (coolingSignal == -1){
-			phaseGateClose_Start();
+			phaseCloseValve_Start();
 		}
 		else
 			phaseCoolingEnd_Start();

@@ -8,7 +8,7 @@ ActionValveClose::ActionValveClose()
 ActionValveClose::ActionValveClose(unsigned char _deviceAddress)
 	:	Action(_deviceAddress), phase(PHASE_COMMAND)
 {
-
+DEBUG_PUT_METHOD("address = %i\n", _deviceAddress)
 }
 
 ActionValveClose::~ActionValveClose()
@@ -31,6 +31,7 @@ void ActionValveClose::step()
 	switch (phase)
 	{
 		case PHASE_COMMAND:
+DEBUG_PUT_METHOD("PHASE_COMMAND address = %i\n", deviceAddress)
 			frame[0] = deviceAddress;
 			frame[1] = 0;
 			frame[2] = RPK_COMMANDS_VALVE;
@@ -59,6 +60,7 @@ void ActionValveClose::step()
 			}
 			break;
 		case PHASE_TEST:
+DEBUG_PUT_METHOD("PHASE_TEST address = %i\n", deviceAddress)
 			frame[0] = deviceAddress;
 			frame[1] = 0;
 			frame[2] = RPK_COMMANDS_GATE_INFO;
