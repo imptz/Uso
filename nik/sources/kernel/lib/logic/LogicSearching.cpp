@@ -81,6 +81,7 @@ void LogicSearching::onMessage(Message message){
 			}
 			break;
 		case MainFinish::FINISH_MESSAGE_RESULT:
+			DEBUG_PUT_METHOD("\n");
 			fPovtorPoiska = false;
 			finish(FINISH_ACTOR_BUTTON);
 			break;
@@ -348,9 +349,11 @@ void LogicSearching::action()
 			if (phaseGateOpen_Execution())
 			{
 				if (phaseOpenValve_Start()){
+DEBUG_PUT_METHOD("PHASE_OPEN_GATE 1\n");
 					phase = PHASE_OPEN_VALVE;
 				}
 				else{
+DEBUG_PUT_METHOD("PHASE_OPEN_GATE 2\n");
 					phaseWaitingStop_Start();
 					phase = PHASE_WAITING_STOP;
 				}
@@ -436,7 +439,12 @@ void LogicSearching::finish(FINISH_ACTOR _finishActor)
 		sendMessage(Message(MESSAGE_FROM_OFFSET_LOGIC, MainFinish::FINISH_MESSAGE_LABEL, MainFinish::FINISH_MESSAGE_PARAM_FINISH, 0));
 		_asm sti
 		if (coolingSignal == -1){
-			phaseCloseValve_Start();
+			DEBUG_PUT_METHOD("1\n");
+			if(!phaseCloseValve_Start()){
+				DEBUG_PUT_METHOD("2\n");
+				phaseGateClose_Start();
+				phase = PHASE_CLOSE_GATE;
+			}
 		}
 		else
 			phaseCoolingEnd_Start();
@@ -592,9 +600,11 @@ bool LogicSearching::phaseGateOpen_Execution()
 		switch (actionList[i]->getState())
 		{
 			case Action::STATE_ERROR:
+				DEBUG_PUT_METHOD("STATE_ERROR 2 i = %i\n", i);
 				deleteActionInList(i);
 				break;
 			case Action::STATE_READY:
+				DEBUG_PUT_METHOD("STATE_READY 2 i = %i\n", i);
 				break;
 		}	
 	}
@@ -711,11 +721,14 @@ bool LogicSearching::phaseGateClose_Start()
 	IOSubsystem::getSingleton().disableAllHardwareOutputs();
 	//IOSubsystem::getSingleton().disableAllPumpStationOutputs();
 
+	DEBUG_PUT_METHOD("actionCount = %i\n", actionCount);
+
 	for (unsigned int i = 0; i < actionCount; i++)
 	{
 		if (actionList[i] != nullptr)
 		{
 			unsigned char deviceAddress = actionList[i]->getDeviceAddress();
+			DEBUG_PUT_METHOD("i = %i deviceAddress = \n", i, deviceAddress);
 			SAFE_DELETE(actionList[i])
 			actionList[i] = new ActionGateClose(deviceAddress);
 		}
@@ -748,18 +761,18 @@ bool LogicSearching::phaseCloseValve_Start()
 		if (actionList[i] != nullptr)
 		{
 			unsigned char deviceAddress = actionList[i]->getDeviceAddress();
-			SAFE_DELETE(actionList[i])
-
+			
 			unsigned int count = Config::getSingleton().getConfigData()->getConfigDataStructProgramCount();
 			ConfigDataStructProgram** _programs = Config::getSingleton().getConfigData()->getConfigDataStructPrograms();
 
 			if ((count != 0) && (_programs[0]->function == LOGIC_FUNCTION_SEARCHING_PENA)){
+				SAFE_DELETE(actionList[i])
 				actionList[i] = new ActionValveClose(deviceAddress);
 				res = true;
 			}
 		}
 	}
-	return true;
+	return res;
 }
 
 bool LogicSearching::phaseCloseValve_Execution()

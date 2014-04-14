@@ -37,7 +37,7 @@ void ActionGateOpen::step()
 			frame[4] = 0;
 			frameId = RpkSubsystem::getSingleton().write(frame);
 
-			DEBUG_PUT("PHASE_COMMAND deviceAddress = %i\n", deviceAddress);
+			DEBUG_PUT_METHOD("PHASE_COMMAND deviceAddress = %i\n", deviceAddress);
 
 			if (frameId == IRpkDevice::BAD_FRAME_ID)
 				error();
@@ -83,7 +83,7 @@ void ActionGateOpen::step()
 					break;
 				case IRpkDevice::FRAME_RESULT_READY:
 					if ((pFrame[5] & 0x30) == 0x10){
-						DEBUG_PUT("FRAME_RESULT_READY finish deviceAddress = %i\n", deviceAddress);
+						DEBUG_PUT_METHOD("FRAME_RESULT_READY finish deviceAddress = %i\n", deviceAddress);
 						finish();
 					}
 					else

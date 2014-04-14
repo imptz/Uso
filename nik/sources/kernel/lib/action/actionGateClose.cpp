@@ -31,6 +31,7 @@ void ActionGateClose::step()
 	switch (phase)
 	{
 		case PHASE_COMMAND:
+			DEBUG_PUT_METHOD("deviceAddress = %i\n", deviceAddress);
 			frame[0] = deviceAddress;
 			frame[1] = 0;
 			frame[2] = RPK_COMMANDS_GATE_CLOSE;
