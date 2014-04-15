@@ -61,7 +61,7 @@ class MonitoringDevice : public IMonitoringDevice, public MessageReceiver, publi
 		void controlMessage(unsigned char* _pArea);
 		unsigned int getMessageType(unsigned char* _pArea);
 		bool isLogingMessage(unsigned char* pMsg);
-		void getMessageInfo(unsigned char* pMsg, char** text, unsigned char* parameter1, unsigned char*parameter2);
+		bool getMessageInfo(unsigned char* pMsg, char** text, unsigned char* parameter1, unsigned char*parameter2);
 
 	private:
 #pragma region message texts

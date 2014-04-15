@@ -516,8 +516,8 @@ void MonitoringDevice::toLog(unsigned char* pMsg)
 		char* messageText = nullptr;
 		unsigned char parameter1 = 0;
 		unsigned char parameter2 = 0;
-		getMessageInfo(pMsg, &messageText, &parameter1, &parameter2);
-		Log::getSingleton().add(LOG_MESSAGE_FROM_MONITORING, LOG_MESSAGE_TYPE_MESSAGE, reinterpret_cast<char*>(messageText), parameter1, parameter2);
+		if (getMessageInfo(pMsg, &messageText, &parameter1, &parameter2))
+			Log::getSingleton().add(LOG_MESSAGE_FROM_MONITORING, LOG_MESSAGE_TYPE_MESSAGE, reinterpret_cast<char*>(messageText), parameter1, parameter2);
 	}
 }
 
@@ -679,7 +679,7 @@ bool MonitoringDevice::isLogingMessage(unsigned char* pMsg)
 	return result;
 }
 
-void MonitoringDevice::getMessageInfo(unsigned char* pMsg, char** text, unsigned char* parameter1, unsigned char*parameter2)
+bool MonitoringDevice::getMessageInfo(unsigned char* pMsg, char** text, unsigned char* parameter1, unsigned char*parameter2)
 {
 	const unsigned int MESSAGE_CODE_OFFSET = 1;
 	const unsigned int MESSAGE_PAR1_OFFSET = 9;
@@ -1161,11 +1161,14 @@ void MonitoringDevice::getMessageInfo(unsigned char* pMsg, char** text, unsigned
 			break;
 		default:
 //			DEBUG_PUT_METHOD("default: %i %i %i\n", pMsg[MESSAGE_CODE_OFFSET], pMsg[MESSAGE_PAR2_OFFSET], pMsg[MESSAGE_PAR3_OFFSET])
-			*text = "...";//const_cast<char*>("FIG ZNAET CHTO");
-			*parameter1 = pMsg[MESSAGE_CODE_OFFSET] / 100;
-			*parameter2 = pMsg[MESSAGE_CODE_OFFSET] % 100;
+//			*text = "...";//const_cast<char*>("FIG ZNAET CHTO");
+//			*parameter1 = pMsg[MESSAGE_CODE_OFFSET] / 100;
+//			*parameter2 = pMsg[MESSAGE_CODE_OFFSET] % 100;
+			return false;
 			break;
 	}
+
+	return true;
 }
 
 void MonitoringDevice::createAndSendMessage(IMonitoringDevice::MESSAGE_NUMBER messageNumber, unsigned char parameter1, unsigned char parameter2, unsigned char parameter3, unsigned char parameter4)
