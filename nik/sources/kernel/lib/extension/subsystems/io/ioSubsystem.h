@@ -94,6 +94,8 @@ class IOSubsystem : public Singleton<IOSubsystem>, public ISubsystem
 		void disablePrPressureOutputs(unsigned char number);
 		void enableGateOutputs(unsigned char number);
 		void disableGateOutputs(unsigned char number);
+		void enableGateBk16Outputs(unsigned char number);
+		void disableGateBk16Outputs(unsigned char number);
 		void enableSystemFaultOutputs();
 		void disableSystemFaultOutputs();
 		void enablePrFaultOutputs(unsigned char number);

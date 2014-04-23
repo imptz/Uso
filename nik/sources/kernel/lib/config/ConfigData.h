@@ -83,6 +83,8 @@ class ConfigData : public ITimer
 
 		unsigned int getConfigDataStructPenaBakCount();
 		ConfigDataStructPenaBak** getConfigDataStructPenaBak();		
+
+		unsigned int getZatvorBk16Count();
 	private:
 		void setData(unsigned char* data, unsigned int length);
 

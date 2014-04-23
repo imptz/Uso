@@ -267,6 +267,28 @@ void IOSubsystem::disableGateOutputs(unsigned char number)
 		}
 }
 
+void IOSubsystem::enableGateBk16Outputs(unsigned char number)
+{
+	ConfigDataStructIOBk16** outputs = Config::getSingleton().getConfigData()->getConfigDataStructIOBk16();
+	for (unsigned int i = 0; i < Config::getSingleton().getConfigData()->getConfigDataStructIOBk16Count(); i++)
+		if ((outputs[i]->outputFunctionGroup == ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_ZATVOR_BK16) && (outputs[i]->prGateNumber == number))
+		{
+			setOutput((outputs[i]->bkAddress - 1) * 8 + outputs[i]->numberOnDevice - 1, IIODevice::OUTPUT_STATE_ON);
+//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING2("enableGateOutputs: ", i, outputs[i]->numberOnDevice); 
+		}
+}
+
+void IOSubsystem::disableGateBk16Outputs(unsigned char number)
+{
+	ConfigDataStructIOBk16** outputs = Config::getSingleton().getConfigData()->getConfigDataStructIOBk16();
+	for (unsigned int i = 0; i < Config::getSingleton().getConfigData()->getConfigDataStructIOBk16Count(); i++)
+		if ((outputs[i]->outputFunctionGroup == ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_ZATVOR_BK16) && (outputs[i]->prGateNumber == number))
+		{
+			setOutput((outputs[i]->bkAddress - 1) * 8 + outputs[i]->numberOnDevice - 1, IIODevice::OUTPUT_STATE_OFF);
+//SERIAL_DEBUG_ADD_DEBUG_MESSAGE_STRING2("disableGateOutputs: ", i, outputs[i]->numberOnDevice); 
+		}
+}
+
 void IOSubsystem::enableSystemFaultOutputs()
 {
 	ConfigDataStructIOBk16** outputs = Config::getSingleton().getConfigData()->getConfigDataStructIOBk16();

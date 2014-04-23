@@ -363,7 +363,8 @@ void MonitoringDevice::createInitFrame()
 	initData[HOUR_OFFSET] = constStruct->testingHour;
 	initData[MINUTE_OFFSET] = constStruct->testingMinute;
 	initData[TESTING_INFO_OFFSET] = constStruct->permissionTestingInfo;
-	initData[BK_ZATVOR_OFFSET] = 0;
+	
+	initData[BK_ZATVOR_OFFSET] = pConfigData->getZatvorBk16Count();
 
 	initData[PR_COUNT_OFFSET] = prCount;
 
@@ -624,6 +625,12 @@ void MonitoringDevice::setOutputs(unsigned char* pMsg)
 		case MESSAGE_NUMBER_SVAZ_S_PLATOY_PRIVODA_EST:
 		case MESSAGE_NUMBER_NAPRAZHENIE_NA_KONDENSATORAH_V_NORME:
 			IOSubsystem::getSingleton().disablePrFaultOutputs(pMsg[MESSAGE_PAR2_OFFSET]);
+			break;
+		case MESSAGE_NUMBER_ZATVOR_BK16_OTKRIT:
+			IOSubsystem::getSingleton().enableGateBk16Outputs(pMsg[MESSAGE_PAR2_OFFSET]);
+			break;
+		case MESSAGE_NUMBER_ZATVOR_BK16_ZAKRIT:
+			IOSubsystem::getSingleton().disableGateBk16Outputs(pMsg[MESSAGE_PAR2_OFFSET]);
 			break;
 	}
 }
