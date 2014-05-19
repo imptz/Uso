@@ -1,1 +1,1 @@
-MonitorTerm.exe com5 write kernel.exe
+MonitorTerm.exe com4 write kernel.exe

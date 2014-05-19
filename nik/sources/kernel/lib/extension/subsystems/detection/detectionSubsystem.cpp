@@ -319,7 +319,7 @@ void DetectionSubsystem::createPointsList(unsigned int* listProgramIndex, unsign
 
 		unsigned int index = Config::getSingleton().getConfigData()->getPRIndexByAddress(Config::getSingleton().getConfigData()->getPRAddressByNumber(programs[listProgramIndex[i]]->prNumber));
 		
-		//x1 -= pr[index]->orientation.x; херня полная
+		//x1 -= pr[index]->orientation.x;
 		//x2 -= pr[index]->orientation.x;
 		//y1 -= pr[index]->orientation.y;
 		//y2 -= pr[index]->orientation.y;
@@ -373,16 +373,19 @@ void DetectionSubsystem::createPointsListForScanner(unsigned int* listProgramInd
 
 		unsigned int index = Config::getSingleton().getConfigData()->getPRIndexByAddress(Config::getSingleton().getConfigData()->getPRAddressByNumber(programs[listProgramIndex[i]]->prNumber));
 		
+//===== 1905
+		if(pr[index]->orientation.y != 0){
+			pChannelInfo[i].point1.x = 360 - pChannelInfo[i].point1.x;
+			pChannelInfo[i].point2.x = 360 - pChannelInfo[i].point2.x;
+			pChannelInfo[i].point1.y = 360 - pChannelInfo[i].point1.y;
+			pChannelInfo[i].point2.y = 360 - pChannelInfo[i].point2.y;
+		}
+//=========
+
 		pChannelInfo[i].point1.x += 360;
 		pChannelInfo[i].point2.x += 360;
 		pChannelInfo[i].point1.y += 360;
 		pChannelInfo[i].point2.y += 360;
-
-		//pChannelInfo[i].point1.x -= pr[index]->orientation.x;
-		//pChannelInfo[i].point2.x -= pr[index]->orientation.x;
-		//pChannelInfo[i].point1.y -= pr[index]->orientation.y;
-		//pChannelInfo[i].point2.y -= pr[index]->orientation.y;
-
 
 		if (pChannelInfo[i].point1.x > 180)
 			pChannelInfo[i].point1.x = (360 - pChannelInfo[i].point1.x) * -1;
