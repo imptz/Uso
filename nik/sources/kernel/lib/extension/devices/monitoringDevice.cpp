@@ -328,9 +328,7 @@ void MonitoringDevice::createInitFrame()
 	
 //	unsigned int dataLength = 10 + prCount * 4 + 1 + penaBakCount * 4; 
 
-//20052014
-//	unsigned int dataLength = 10 + 1 + prCount * 5 + 1 + penaBakCount * 4;
-	unsigned int dataLength = 10 + 0 + prCount * 4 + 1 + penaBakCount * 4;
+	unsigned int dataLength = 10 + 1 + prCount * 5 + 1 + penaBakCount * 4;
 
 
 	unsigned char* initData = new unsigned char[dataLength + 7];
@@ -369,45 +367,27 @@ void MonitoringDevice::createInitFrame()
 	initData[MINUTE_OFFSET] = constStruct->testingMinute;
 	initData[TESTING_INFO_OFFSET] = constStruct->permissionTestingInfo;
 	
-// 20052014
-//	initData[BK_ZATVOR_OFFSET] = pConfigData->getZatvorBk16Count();
+	initData[BK_ZATVOR_OFFSET] = pConfigData->getZatvorBk16Count();
 
 	initData[PR_COUNT_OFFSET] = prCount;
 
-// 20052014
-//	for (unsigned int i = 0; i < prCount; i++)
-//	{
-//		initData[FIRST_PR_INFO_OFFSET + i * 5] = prPositionStruct[i]->projectNumber;
-//		initData[FIRST_PR_INFO_OFFSET + i * 5 + 1] = prPositionStruct[i]->address;
-//		initData[FIRST_PR_INFO_OFFSET + i * 5 + 2] = prPositionStruct[i]->networkIndexNumber;
-//		initData[FIRST_PR_INFO_OFFSET + i * 5 + 3] = 0;
-//		initData[FIRST_PR_INFO_OFFSET + i * 5 + 4] = 1;
-//	}
-//	initData[FIRST_PR_INFO_OFFSET + prCount * 5] = penaBakCount;
-//
-//	for (unsigned int i = 0; i < penaBakCount; ++i){
-//		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 1] = penaBakStruct[i]->number;
-//		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 1 + 1] = penaBakStruct[i]->level;
-//		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 2 + 1] = penaBakStruct[i]->address;
-//		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 3 + 1] = penaBakStruct[i]->numberOnDevice;
-//	}
-
 	for (unsigned int i = 0; i < prCount; i++)
 	{
-		initData[FIRST_PR_INFO_OFFSET + i * 4] = prPositionStruct[i]->projectNumber;
-		initData[FIRST_PR_INFO_OFFSET + i * 4 + 1] = prPositionStruct[i]->address;
-		initData[FIRST_PR_INFO_OFFSET + i * 4 + 2] = prPositionStruct[i]->networkIndexNumber;
-		initData[FIRST_PR_INFO_OFFSET + i * 4 + 3] = 0;
+		initData[FIRST_PR_INFO_OFFSET + i * 5] = prPositionStruct[i]->projectNumber;
+		initData[FIRST_PR_INFO_OFFSET + i * 5 + 1] = prPositionStruct[i]->address;
+		initData[FIRST_PR_INFO_OFFSET + i * 5 + 2] = prPositionStruct[i]->networkIndexNumber;
+		initData[FIRST_PR_INFO_OFFSET + i * 5 + 3] = 0;
+		initData[FIRST_PR_INFO_OFFSET + i * 5 + 4] = 1;
 	}
-
-	initData[FIRST_PR_INFO_OFFSET + prCount * 4] = penaBakCount;
+	initData[FIRST_PR_INFO_OFFSET + prCount * 5] = penaBakCount;
 
 	for (unsigned int i = 0; i < penaBakCount; ++i){
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 1] = penaBakStruct[i]->number;
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 1 + 1] = penaBakStruct[i]->level;
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 2 + 1] = penaBakStruct[i]->address;
-		initData[FIRST_PR_INFO_OFFSET + prCount * 4 + i * 4 + 3 + 1] = penaBakStruct[i]->numberOnDevice;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 1] = penaBakStruct[i]->number;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 1 + 1] = penaBakStruct[i]->level;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 2 + 1] = penaBakStruct[i]->address;
+		initData[FIRST_PR_INFO_OFFSET + prCount * 5 + i * 4 + 3 + 1] = penaBakStruct[i]->numberOnDevice;
 	}
+
 	fifoFrame->put(&initData);
 }
 
