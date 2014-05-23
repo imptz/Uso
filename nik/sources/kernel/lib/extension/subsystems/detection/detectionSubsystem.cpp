@@ -375,8 +375,8 @@ void DetectionSubsystem::createPointsListForScanner(unsigned int* listProgramInd
 		
 //===== 1905
 		if(pr[index]->orientation.y != 0){
-			pChannelInfo[i].point1.x = 360 - pChannelInfo[i].point1.x;
-			pChannelInfo[i].point2.x = 360 - pChannelInfo[i].point2.x;
+//			pChannelInfo[i].point1.x = 360 - pChannelInfo[i].point1.x;
+//			pChannelInfo[i].point2.x = 360 - pChannelInfo[i].point2.x;
 			pChannelInfo[i].point1.y = 360 - pChannelInfo[i].point1.y;
 			pChannelInfo[i].point2.y = 360 - pChannelInfo[i].point2.y;
 		}
