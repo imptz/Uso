@@ -104,6 +104,8 @@ class IOSubsystem : public Singleton<IOSubsystem>, public ISubsystem
 		void disableGateFaultOutputs(unsigned char number);
 		void enableResetPozharSignalisacijaOutputs();
 		void disableResetPozharSignalisacijaOutputs();
+		void disableAutoModeOutput();
+		void enableAutoModeOutput();
 #pragma endregion 		
 };
 				

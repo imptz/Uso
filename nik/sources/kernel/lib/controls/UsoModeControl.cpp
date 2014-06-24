@@ -5,6 +5,7 @@
 //#include "../logic/Logic.h"
 #include "../config/Config.h"
 #include "../DEBUG/serialDebug.h"
+#include "../extension/subsystems/io/ioSubsystem.h"
 
 #pragma warning (disable : 4355)
 
@@ -77,15 +78,18 @@ void UsoModeControl::setMode(USO_MODE _mode, USO_MODE_CONTROL_ACTOR actor){
 			modeButton->setName(modeFullAutoText);
 			Log::getSingleton().add(LOG_MESSAGE_FROM_APPLICATION, LOG_MESSAGE_TYPE_SYSTEM, USO_MODE_SET_MESSAGE_FULL_AUTO, actor, 0);
 			stopRemoteTimer();
+			IOSubsystem::getSingleton().enableAutoModeOutput();
 			break;
 		case USO_MODE_HALF_AUTO:
 			modeButton->setName(modeHalfAutoText);
 			Log::getSingleton().add(LOG_MESSAGE_FROM_APPLICATION, LOG_MESSAGE_TYPE_SYSTEM, USO_MODE_SET_MESSAGE_HALF_AUTO, actor, 0);
 			stopRemoteTimer();
+			IOSubsystem::getSingleton().disableAutoModeOutput();
 			break;
 		case USO_MODE_REMOTE:
 			modeButton->setName(modeRemoteText);
 			Log::getSingleton().add(LOG_MESSAGE_FROM_APPLICATION, LOG_MESSAGE_TYPE_SYSTEM, USO_MODE_SET_MESSAGE_REMOTE, actor, 0);
+			IOSubsystem::getSingleton().disableAutoModeOutput();
 			break;
 	}
 

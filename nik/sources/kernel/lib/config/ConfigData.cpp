@@ -395,6 +395,9 @@ void ConfigData::setData(unsigned char* data, unsigned int length)
 			case 10:
 				cDataNew->_IOBk16[i]->outputFunctionGroup = ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_ZATVOR_BK16;
 				break;
+			case ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_AUTO_MODE:
+				cDataNew->_IOBk16[i]->outputFunctionGroup = ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_AUTO_MODE;
+				break;
 		}
 
 		cDataNew->_IOBk16[i]->prGateNumber = data[3];

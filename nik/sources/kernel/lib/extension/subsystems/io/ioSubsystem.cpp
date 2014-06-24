@@ -377,5 +377,25 @@ void IOSubsystem::disableResetPozharSignalisacijaOutputs()
 		}
 }
 
+void IOSubsystem::enableAutoModeOutput()
+{
+	ConfigDataStructIOBk16** outputs = Config::getSingleton().getConfigData()->getConfigDataStructIOBk16();
+	for (unsigned int i = 0; i < Config::getSingleton().getConfigData()->getConfigDataStructIOBk16Count(); i++)
+		if (outputs[i]->outputFunctionGroup == ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_AUTO_MODE)
+		{
+			setOutput((outputs[i]->bkAddress - 1) * 8 + outputs[i]->numberOnDevice - 1, IIODevice::OUTPUT_STATE_ON);
+		}
+}
+
+void IOSubsystem::disableAutoModeOutput()
+{
+	ConfigDataStructIOBk16** outputs = Config::getSingleton().getConfigData()->getConfigDataStructIOBk16();
+	for (unsigned int i = 0; i < Config::getSingleton().getConfigData()->getConfigDataStructIOBk16Count(); i++)
+		if (outputs[i]->outputFunctionGroup == ConfigDataStructIOBk16::OUTPUT_FUNCTION_GROUP_AUTO_MODE)
+		{
+			setOutput((outputs[i]->bkAddress - 1) * 8 + outputs[i]->numberOnDevice - 1, IIODevice::OUTPUT_STATE_OFF);
+		}
+}
+
 #pragma endregion 
 #pragma endregion 
