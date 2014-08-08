@@ -263,6 +263,12 @@ void Fire::calcProgram(unsigned int fireCount, PreFire* localFires, Fire::FireOb
 		(*programs)[i].point1.x += (360 - static_cast<int>(prp[Config::getSingleton().getConfigData()->getPRIndexByAddress(localFires[i].channel)]->orientation.x));
 		(*programs)[i].point2.x += (360 - static_cast<int>(prp[Config::getSingleton().getConfigData()->getPRIndexByAddress(localFires[i].channel)]->orientation.x));
 
+		if(prp[Config::getSingleton().getConfigData()->getPRIndexByAddress(localFires[i].channel)]->orientation.y != 0){
+			unsigned int tempYY1 = (*programs)[i].point1.y;
+			(*programs)[i].point1.y = 360 - (*programs)[i].point2.y;
+			(*programs)[i].point2.y = 360 - tempYY1;
+		}
+
 //		static const int BORDER = 5;
 
 		(*programs)[i].point1.x -= Config::getSingleton().getConfigData()->getConfigDataStructConst()->leftField;
