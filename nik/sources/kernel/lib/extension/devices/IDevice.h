@@ -34,7 +34,7 @@ class IDevice
 	protected:
 		unsigned int type;
 		static const unsigned int INITIALIZE_RESULT_OK = 1;
-		static const unsigned int ACTION_TIME_OUT = 20;
+		static const unsigned int ACTION_TIME_OUT = 200;
 		unsigned int actionTimeOut;
 		bool isActionTimeOut;
 
